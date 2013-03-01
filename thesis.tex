@@ -1,0 +1,97 @@
+\documentclass[12pt,oneside,draft]{fithesis2}
+\usepackage[english]{babel} % package for multilingual support
+\usepackage[cp1250]{inputenc} % Windows OS encoding
+\usepackage[T1]{fontenc}
+\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
+\thesistitle{Evolutionary Heuristics for Optimizing Intrusion Detection Systems of Wireles Sensor Networks } % enter thesis title
+\thesissubtitle{Diploma thesis}
+\thesisstudent{Adam Saleh}
+% name of the author
+\thesiswoman{false}
+% defines author’s gender
+\thesisfaculty{fi}
+\thesisyear{spring 2008}
+\thesisadvisor{Andryi Stetsko, Ph.D.} % fill in advisor’s name
+\thesislang{en}
+% thesis is in English
+\begin{document}
+\FrontMatter
+\ThesisTitlePage
+\begin{ThesisDeclaration}
+\DeclarationText
+\AdvisorName
+\end{ThesisDeclaration}
+\begin{ThesisThanks}
+I would like to thank my supervisor ...
+\end{ThesisThanks}
+\begin{ThesisAbstract}
+The aim of the bachelor work is to provide...
+\end{ThesisAbstract}
+\begin{ThesisKeyWords}
+keyword1, keyword2, etc.
+\end{ThesisKeyWords}
+
+\tableofcontents % prints table of contents
+
+\MainMatter
+\chapter{Introduction}
+This is the first chapter of the thesis.
+\chapter{Wireles Sensor Networks}
+
+\chapter{Intrusion Detetection System}
+
+\chapter{Evolutionary Heuristics}
+
+\subchapter{Single criteria evolution algorithms}
+
+\subchapter{Multi criteria evolution algorithms}
+
+\subchapter{NSGAII}
+http://www.cleveralgorithms.com/nature-inspired/evolution/nsga.html
+
+Non-dominated Sorting Genetic Algorithm, Nondominated Sorting Genetic Algorithm, Fast Elitist Non-dominated Sorting Genetic Algorithm, NSGA, NSGA-II, NSGAII.
+
+Taxonomy
+
+The Non-dominated Sorting Genetic Algorithm is a Multiple Objective Optimization (MOO) algorithm and is an instance of an Evolutionary Algorithm from the field of Evolutionary Computation. Refer to for more information and references on Multiple Objective Optimization. NSGA is an extension of the Genetic Algorithm for multiple objective function optimization. It is related to other Evolutionary Multiple Objective Optimization Algorithms (EMOO) (or Multiple Objective Evolutionary Algorithms MOEA) such as the Vector-Evaluated Genetic Algorithm (VEGA), Strength Pareto Evolutionary Algorithm (SPEA), and Pareto Archived Evolution Strategy (PAES). There are two versions of the algorithm, the classical NSGA and the updated and currently canonical form NSGA-II.
+
+Strategy
+
+The objective of the NSGA algorithm is to improve the adaptive fit of a population of candidate solutions to a Pareto front constrained by a set of objective functions. The algorithm uses an evolutionary process with surrogates for evolutionary operators including selection, genetic crossover, and genetic mutation. The population is sorted into a hierarchy of sub-populations based on the ordering of Pareto dominance. Similarity between members of each sub-group is evaluated on the Pareto front, and the resulting groups and similarity measures are used to promote a diverse front of non-dominated solutions.
+
+Procedure
+
+Algorithm (below) provides a pseudocode listing of the Non-dominated Sorting Genetic Algorithm II (NSGA-II) for minimizing a cost function. The SortByRankAndDistance function orders the population into a hierarchy of non-dominated Pareto fronts. The CrowdingDistanceAssignment calculates the average distance between members of each front on the front itself. Refer to Deb et al. for a clear presentation of the Pseudocode and explanation of these functions [Deb2002]. The CrossoverAndMutation function performs the classical crossover and mutation genetic operators of the Genetic Algorithm. Both the SelectParentsByRankAndDistance and SortByRankAndDistance functions discriminate members of the population first by rank (order of dominated precedence of the front to which the solution belongs) and then distance within the front (calculated by CrowdingDistanceAssignment).
+
+
+\subchapter{Spea2}
+
+http://www.cleveralgorithms.com/nature-inspired/evolution/spea.html
+
+Strength Pareto Evolutionary Algorithm, SPEA, SPEA2.
+
+Taxonomy
+
+Strength Pareto Evolutionary Algorithm is a Multiple Objective Optimization (MOO) algorithm and an Evolutionary Algorithm from the field of Evolutionary Computation. It belongs to the field of Evolutionary Multiple Objective (EMO) algorithms. Refer to for more information and references on Multiple Objective Optimization. Strength Pareto Evolutionary Algorithm is an extension of the Genetic Algorithm for multiple objective optimization problems. It is related to sibling Evolutionary Algorithms such as Non-dominated Sorting Genetic Algorithm (NSGA), Vector-Evaluated Genetic Algorithm (VEGA), and Pareto Archived Evolution Strategy (PAES). There are two versions of SPEA, the original SPEA algorithm and the extension SPEA2. Additional extensions include SPEA+ and iSPEA.
+
+Strategy
+
+The objective of the algorithm is to locate and and maintain a front of non-dominated solutions, ideally a set of Pareto optimal solutions. This is achieved by using an evolutionary process (with surrogate procedures for genetic recombination and mutation) to explore the search space, and a selection process that uses a combination of the degree to which a candidate solution is dominated (strength) and an estimation of density of the Pareto front as an assigned fitness. An archive of the non-dominated set is maintained separate from the population of candidate solutions used in the evolutionary process, providing a form of elitism.
+
+Procedure
+
+Algorithm (below) provides a pseudocode listing of the Strength Pareto Evolutionary Algorithm 2 (SPEA2) for minimizing a cost function. The CalculateRawFitness function calculates the raw fitness as the sum of the strength values of the solutions that dominate a given candidate, where strength is the number of solutions that a give solution dominate. The CandidateDensity function estimates the density of an area of the Pareto front as  where  is the Euclidean distance of the objective values between a given solution the $k$th nearest neighbor of the solution, and  is the square root of the size of the population and archive combined. The PopulateWithRemainingBest function iteratively fills the archive with the remaining candidate solutions in order of fitness. The RemoveMostSimilar function truncates the archive population removing those members with the smallest  values as calculated against the archive. The SelectParents function selects parents from a population using a Genetic Algorithm selection method such as binary tournament selection. The CrossoverAndMutation function performs the crossover and mutation genetic operators from the Genetic Algorithm.
+
+\chapter{Our Framework}
+
+\subchapter{Exhaustive Search}
+
+\subchapter{Boinc Assisted Evolutionh}
+
+
+
+\bibliographystyle{plain} % sets plain bibliography style
+\bibliography{bib-db}
+% BibTeX database file
+\end{document}
+
