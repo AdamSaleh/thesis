@@ -1,9 +1,9 @@
 \documentclass[12pt,oneside,draft]{fithesis2}
 \usepackage[english]{babel} % package for multilingual support
-\usepackage[cp1250]{inputenc} % Windows OS encoding
+\usepackage[utf8]{inputenc} % Windows OS encoding
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
-\thesistitle{Evolutionary Heuristics for Optimizing Intrusion Detection Systems of Wireles Sensor Networks } % enter thesis title
+\thesistitle{Evolutionary optimization of intrusion detection system in wireless sensor networks} % enter thesis title
 \thesissubtitle{Diploma thesis}
 \thesisstudent{Adam Saleh}
 % name of the author
@@ -25,69 +25,284 @@
 I would like to thank my supervisor ...
 \end{ThesisThanks}
 \begin{ThesisAbstract}
-The aim of the bachelor work is to provide...
 \end{ThesisAbstract}
+Wireless Sensor networks are an interesting topic for security research because of their possible real world applications, their distributed nature and the constrains on their hardware. For example, setting up intrusion detection system on network of nodes so that it satisfies constrains on accuracy and hardware can be a timeconsuming.
+We believe that this process could be greatly improved by using genetic algorithms.
+Purpouse  of this work is to provide a reasonably reusable framework for optimizations with evolutionary heuristics and calibrate it for optimizing of Intrusion Detection System on Wireless Sensor Network. 
 \begin{ThesisKeyWords}
-keyword1, keyword2, etc.
+Wsn,ids,spea2,nsgaii
 \end{ThesisKeyWords}
 
 \tableofcontents % prints table of contents
 
 \MainMatter
 \chapter{Introduction}
-This is the first chapter of the thesis.
-\chapter{Wireles Sensor Networks}
-
-\chapter{Intrusion Detetection System}
-
-\chapter{Evolutionary Heuristics}
-
-\subchapter{Single criteria evolution algorithms}
-
-\subchapter{Multi criteria evolution algorithms}
-
-\subchapter{NSGAII}
-http://www.cleveralgorithms.com/nature-inspired/evolution/nsga.html
-
-Non-dominated Sorting Genetic Algorithm, Nondominated Sorting Genetic Algorithm, Fast Elitist Non-dominated Sorting Genetic Algorithm, NSGA, NSGA-II, NSGAII.
-
-Taxonomy
-
-The Non-dominated Sorting Genetic Algorithm is a Multiple Objective Optimization (MOO) algorithm and is an instance of an Evolutionary Algorithm from the field of Evolutionary Computation. Refer to for more information and references on Multiple Objective Optimization. NSGA is an extension of the Genetic Algorithm for multiple objective function optimization. It is related to other Evolutionary Multiple Objective Optimization Algorithms (EMOO) (or Multiple Objective Evolutionary Algorithms MOEA) such as the Vector-Evaluated Genetic Algorithm (VEGA), Strength Pareto Evolutionary Algorithm (SPEA), and Pareto Archived Evolution Strategy (PAES). There are two versions of the algorithm, the classical NSGA and the updated and currently canonical form NSGA-II.
-
-Strategy
-
-The objective of the NSGA algorithm is to improve the adaptive fit of a population of candidate solutions to a Pareto front constrained by a set of objective functions. The algorithm uses an evolutionary process with surrogates for evolutionary operators including selection, genetic crossover, and genetic mutation. The population is sorted into a hierarchy of sub-populations based on the ordering of Pareto dominance. Similarity between members of each sub-group is evaluated on the Pareto front, and the resulting groups and similarity measures are used to promote a diverse front of non-dominated solutions.
-
-Procedure
-
-Algorithm (below) provides a pseudocode listing of the Non-dominated Sorting Genetic Algorithm II (NSGA-II) for minimizing a cost function. The SortByRankAndDistance function orders the population into a hierarchy of non-dominated Pareto fronts. The CrowdingDistanceAssignment calculates the average distance between members of each front on the front itself. Refer to Deb et al. for a clear presentation of the Pseudocode and explanation of these functions [Deb2002]. The CrossoverAndMutation function performs the classical crossover and mutation genetic operators of the Genetic Algorithm. Both the SelectParentsByRankAndDistance and SortByRankAndDistance functions discriminate members of the population first by rank (order of dominated precedence of the front to which the solution belongs) and then distance within the front (calculated by CrowdingDistanceAssignment).
 
 
-\subchapter{Spea2}
+\chapter{Evolutionary Optimization of Wireles Sensor Networks}
 
-http://www.cleveralgorithms.com/nature-inspired/evolution/spea.html
+Optimizing configuration of a wireless sensor network can be a time-consuming task. Nodes of the network are constrained devices,
+so tradeoffs between battery life, network, memory and processor usage have to be considered. Because it is difficult to to predict how will different configuration settings change the performance of the network, it is advisable to measure the impact of changing configuration with WSN simulation software. Unfortunately, simulation of such configuration can take anywhere between several minutes to several hours of processor time, rendering usage of simple exhaustive search on all configurations impractical for most WSN calibration purposes.
 
-Strength Pareto Evolutionary Algorithm, SPEA, SPEA2.
+According to (b Talbi), optimization problems with problem space that is hard to characterize and expensive to search are good fit for heuristic approaches.
 
-Taxonomy
+[copy figure 1.9 from talbi]
 
-Strength Pareto Evolutionary Algorithm is a Multiple Objective Optimization (MOO) algorithm and an Evolutionary Algorithm from the field of Evolutionary Computation. It belongs to the field of Evolutionary Multiple Objective (EMO) algorithms. Refer to for more information and references on Multiple Objective Optimization. Strength Pareto Evolutionary Algorithm is an extension of the Genetic Algorithm for multiple objective optimization problems. It is related to sibling Evolutionary Algorithms such as Non-dominated Sorting Genetic Algorithm (NSGA), Vector-Evaluated Genetic Algorithm (VEGA), and Pareto Archived Evolution Strategy (PAES). There are two versions of SPEA, the original SPEA algorithm and the extension SPEA2. Additional extensions include SPEA+ and iSPEA.
+Most of the heuristics used are variants on search through problem space, with different approaches to avoid undesirable local optima.
 
-Strategy
+There are two basic principles that are used when designing a metaheuristic:
+a) diversification: algorithm should explore the search space
 
-The objective of the algorithm is to locate and and maintain a front of non-dominated solutions, ideally a set of Pareto optimal solutions. This is achieved by using an evolutionary process (with surrogate procedures for genetic recombination and mutation) to explore the search space, and a selection process that uses a combination of the degree to which a candidate solution is dominated (strength) and an estimation of density of the Pareto front as an assigned fitness. An archive of the non-dominated set is maintained separate from the population of candidate solutions used in the evolutionary process, providing a form of elitism.
+Random search can be considered an extreme application of difersification, where in every round we generate next solution randomly without using any information from previous (good) solutions.
 
-Procedure
+Less extreme example is the family of population based heuristics, where in each iteration we are trying to improve a set of candidates, called a population.
 
-Algorithm (below) provides a pseudocode listing of the Strength Pareto Evolutionary Algorithm 2 (SPEA2) for minimizing a cost function. The CalculateRawFitness function calculates the raw fitness as the sum of the strength values of the solutions that dominate a given candidate, where strength is the number of solutions that a give solution dominate. The CandidateDensity function estimates the density of an area of the Pareto front as  where  is the Euclidean distance of the objective values between a given solution the $k$th nearest neighbor of the solution, and  is the square root of the size of the population and archive combined. The PopulateWithRemainingBest function iteratively fills the archive with the remaining candidate solutions in order of fitness. The RemoveMostSimilar function truncates the archive population removing those members with the smallest  values as calculated against the archive. The SelectParents function selects parents from a population using a Genetic Algorithm selection method such as binary tournament selection. The CrossoverAndMutation function performs the crossover and mutation genetic operators from the Genetic Algorithm.
+b) intensification: algorithm should exploit information from the best solutions found
+
+Local search can be considered an extreme application of intensification, where next instance to evaluate is allways selected deterministicaly, based on the previous solution.
+
+Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
+(b talbi)
+
+
+Because of their nature, heuristic approaches are hard to evaluate and reason about, therefore they are often considered to be a method of last resort. (b Talbi) warns against using heuristics laizily on problems where more deterministic approaches (such as using a SAT-solver or linear programming) would be more efficient. Heuristic approaches are usually considered whe we need to solve our problem in order of magnitude faster than possible using conventional approaches, while sacrificing guarantees on optimality.
+
+In our case, we are constrained by number of configuration evaluations we are able to perform in a given timeframe. 
+
+We are focusing on evolutionary heuristics, because they seem to have reasonable performance with regard of optimizing WSN (b Stetsko 2011). 
+These are modeled natural proces of evolution of species. It is a family os stochastic, population-based heuristics (as opposed to deterministic, single-solution based). 
+
+\section{Single objective evolution algorithms}
+
+Basic principles behind evolutionary algorithms can be shown on example of simple evolutionary algorithm. 
+
+Evolutionary algorithms are based of the fact, that natural proces of evolution can be considered an algorithm solving an optimization problem of adapting a species to its environment. 
+
+Template of an evolutionary algorithm. (b Talbi) \
+Generate(P(0)) ; \
+t=0; \
+While not Termination Criterion(P(t)) Do \
+	Evaluate(P(t)); \
+	P'(t)= Selection(P(t)) ; \
+	P'(t)= Reproduction(P'(t)); \
+	Evaluate(P'(t)) ; \
+	P(t+1) = Replace(P(t),P'(t)) ; \
+	t =t+1; \
+End While \
+Output Best individual or best population found. \
+
+If we continue with this metaphor, we can find these paralels:
+
+Population of individuals is a set of configurations. Their environment is the optimization problem.
+
+We decide surviving individuals based on their evaluation function score.
+
+From surviving individuals we generate next generation, either by mutation or crossover.
+
+Mutation of individual usualy consists of randomly selecting some configuration from its neghbourhood as its ofspring. This step provides intensification for evolution heuristic.
+
+Crosover usualy consists of creating an offspring by permutation of two individuals. This step provides diversification for evolution heuristic.
+
+In our framework selection and replacement steps are part of the evolutionary algorithm, while crossover and mutation functions are to be calibrated on case by case basis.
+
+\section{Multiobjective evolution algorithms}
+Problem that we are trying to optimize is unfortunately illsuited for single objective evolution. Objectives such as memory consumption and IDS accuracy are ortoghonal, therefore it is hard to determine single criteria that would satisfactory cover both of them. A usual solution is to provide some sort of weighted average. In this case,because output of our algorithm would be only a single solution, we need to know emphasis on different criteria before we run our optimization. 
+
+Multi objective alrgorithms on the other hand are based on idea of Pareto optimality and domination. We say that solution A dominates solution B, if A has no objective "worse" than B and at least one objective "better". We say that A is pareto-optimal, if there is no other solution that would dominate A. This means that no objective of A can be improved without deterioration of another objective. Set of all non-dominated solutions is then called Pareto front. Set of solutions where no two solutions dominate each other is called Pareto optimal set.
+
+[formal definition of pareto optimality p 336]
+
+Multiobjective heuristics then try to obtain best aproximation of Pareto front. To gauge how good an approximation of Pareto front is, we need to use at least two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found pareto set.
+
+[image about approximations]
+
+Calibration of multi objective evolution algorithms is harder than their single criteria counter-parts, mainly because it is hard to reason about the convergence of output without having the real Pareto optimal front in the first place. Pareto optimal sets often aren't directly comparable. TODO We will discuss calibration in greater detail in later chapters.
+
+
+\subsection{NsgaII}
+In Non-dominated Sorting Genetic Algorithm, the Replace step is performed
+first by sorting union of old $P(t)$ and new $P'(t)$ in into ranks based on the ordering of pareto dominance.
+then sorting among members of each rank is performed based on similarity beween individuals. Best individuals are then chosen for the next iteration.
+
+We can see that first sorting helps with general convergence to real Pareto front, while second improves diversity in the nondominate part of the population.
+To get the result we just need to extract non-dominated results from the final population. 
+
+\subsection{Spea2}
+In Strength Pareto Evolutionary Algorithm, unlike previous NSGAii, stores non-dominated indivituals in archive separate from the rest of the population. Therefore after new population is generated, new contents of archive are determined in two passes, first using procedure to ensure convergence and then procedure to ensure diversity.
+
+0) union of nondominated archive and current population is created. For each individual, algorithm computes
+	a) strength based on number of individuals evaluated individual dominates
+	b) raw fitness, that is determined by the sum of strengths of individuals that dominate the evaluated one \note{this criterion is to be minimized}
+	c) density information
+	d) agregated fittness
+1) new archive of nondominated solutions is created from the union
+2) if a) new archive has less individuals, than its desired capacity,
+	best remaining individuals based on agregated fittness will ba added
+  b) archive has more individuals than its desired capacity,
+	remove some of them from the archive based on density information
+
+The final result then contains just the nondominated individuals of the archive.
+
+\subsection{Ibea}
+Both NsgaII and Spea2 differ mostly in their aproach to characterize the convergence to Pareto front and diversity. 
+Indicator-Based evolutionary algorithm, takes more abstract approach, based on a concept of binary quality indicators.
+Indicator is a function, that takes two pareto sets of the same domain and outputs some quantification of a difference between the two.
+
+Zitzler and Kunzli proposed two indicators,
+
+1) additive $\epsilon$-indicator that quantifies the minimal distance first pareto set has to be moved in each dimension in objective space such that the second pareto set is weakly dominated.
+
+2) hypervolume-distance indicator, that quantifies how much volume is dominated by the first pareto set but not dominated by the second, with respect to predefined reference point $Z$.
+
+Both of these indicators are dominance preserving.
+
+Because any single individual can be considered a pareto set of size one, IBEA uses given indicator to quantify fitness of an individual.
+
+
+
+\subsection{Choosing the algorithm}
+Design of both of these algorithms give some guarantees on convergence to Pareto front. Both of them are incremental improvements on their predecessor, and while Spea2 is newer, it doesn't mean it is better in every instance. It has to be noted, that even comparison between these two algorithms with regards to optimizing IDS for WSN (Stehlik 2013) came out inconclusive. 
+
+Of the more interesting concepts that IBEA uses is the hyper-volume distance indicator, which might provide an interesting alternative to more popular NSGA and SPEA, if provided with good reference point. We will tallk more about hyper-volume as a metric of pareto set convergence in chapter on calibration.
+
+We would advise to focus on calibration only one algorithm.
 
 \chapter{Our Framework}
 
-\subchapter{Exhaustive Search}
+(b Stetsko 2011) showed, that using simple evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks. Unfortunately, prevoius experimental setup was too tightly coupled with optimization framework, rendering the code of previous experiments hard to reuse. Therefore we have created a micro-framework based on python and ParadisEO. 
 
-\subchapter{Boinc Assisted Evolutionh}
+ParadisEO is a highly configurable framework for metaheuristics written in C++. Our micro-framework simplifies its usage by allowing to specify evaluation, mutation and crossover functions in python. Emphasis is on multiobjective algorithms, ability to evaluate population in parallel and having good facilities for experiment analysis.
 
+We chose python, for these reasons:
+
+1) it is an efficient glue language. 
+Most often you will want to optimize already written application with minimal changes. Python is well suited for running external applications, specifying their inputs and parsing their outputs.
+ 
+2) it has good facilities for statistical analysis.
+That allows us to include analysis of every optimization run into the executable itself. Having automatically generated experimental log has proven invaluable especialy in callibration of algorithms for our spepcific problem.
+
+3) it is easily integrated with C++.
+We strive to make the integration with ParadisEO simple and extensible. 
+
+\section{Evaluation function}
+To simplify configuration, inputs and outputs of evaluation function are allways a list of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint.
+
+\subsection{Bounds}
+For inputs you specify their bounds, which are then used to initialize the population and to supply constraints for mutation and crossover parameters
+
+[Example]
+
+\subsection{Objectives}
+
+Because we focus on multiobjective evolution, you need to specify number of objectives and which ones we want to minimize (maximize). 
+
+[example]
+
+It is advisable to have three objectives at maximum, because number of solutions on the Pareto optimal dramaticaly increase with new objectives.
+At minimum, (n+1) objective problem will contain all the solutions of an n-objective problem. [CITATION? 309 talbi]
+
+Then there is the problem of visualizing and evaluating more than 3-dimensional data.
+
+\subsection{Boinc Assisted Evolution}
+
+Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol [CITATION], or by using SMP on multi-core machine. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastracture and is usually hard to retro-fit on already written program. 
+
+Boinc on the other hand  can simply utilize machines already preasent to form a simple computational grid. With its simple archhitecture consisting of Management server and several worker nodes it can be deployed in most settings. Its simple architecture prohibits cooperation between worker nodes, but that doesn't concern us while evaluating individuals.
+
+We have decided to give the evolution algorithms ability to use a simple scheduler for creating Boinc work units, plugable from python.
+
+In our micro-framework it consists of three functions, schedule\_work\_unit, wait\_for\_completion and gather\_result.
+
+Even though the evaluations themselves will be done in parallel, we wanted to avoid any threaded code in our framework itself. Because we have written it with research in mind, we understand that accessing auxiliary data is important to evaluate experiments. In threaded environment, this could lead to deadlocks.
+
+\section{Calibration}
+
+We can think of calibration on an evolutionary algorithm as a meta-optimization problem with two objectives,
+
+1) maximizing the fittness of result
+2) minimizing the number of evaluations
+
+With single-objective algorithms, optimizing for these two objectives is easy, because both of them are usualy represented by numbers.
+With multi-objective problems, resuls are Pareto sets, which are often not directly comparable.
+
+Quality of a multiobjective result can be judged based on several criteria:
+
+1) number of results in Pareto set.
+2) distance from true Pareto front
+3) regularity in distance beween results
+
+Because the main reason we use multi objective algorithms is to avoid the need to do the expensive computation of true pareto front,
+we could either calibrate on a smaller sample of the problem
+
+Underlying assumption behind sampling is, that the Pareto front of the solutions of the problems subset will be the subset of true pareto-front. 
+
+Or we could use different convergence criterion. One of the more popular is maximizing the hypervolume of the objective space dominated by the resulting approximation
+ [TODO]
+
+
+This works well only if we can assume that the solution-space is homogenous, can accurately gauge its boundaries.
+
+\subsection{Population size and Number of generations}
+These two parameters set the boundaries on minimal and maximal number of evaluations. Lets mark the size of population $N$ and number of generations $G$ Because the whole initial population needs to be evaluated, number of evaluations will at least the size of populations.
+Because at each new generation, at most $N$ new individuals are generated, therefore in one optimization run, at most $N \times G$ evaluations.
+
+\subsection{Mutation and Crossover}
+Probability of mutation, or crossover directly influence number of generated individuals in each generations.
+
+
+\chapter{Experiments}
+To test our framework we have decided to optimize a simple intrusion detection system on a model wireless sensor network.
+
+\section{Wireless sensor network}
+Implementation of WSN was reused from previous research (Stetsko 2012), with just a slight modifications to decouple it from previous optimisation framework. Nodes are simulated with MiXiM framework, with test application on each of them, that sends a packet containing arbitrary information through the network to a base station. Network has a static routing tree based on [TODO] algorithm. 
+
+We have marked some of the nodes as "droppers", so that instead of forwarding all of the packets through the 
+
+\section{Intrusion Detetection System}
+Our nodes implement a simple IDS capable of detecting nodes that seem to be intentionaly dropping packets.
+If we look at the wireless network stack of our node, IDS is part of the medium access controll sublayer.
+There it can eavesdrop on neighbouring nodes and check whether they behave accordingly.
+
+For each neighbour it updates 
+a) number of packets recieved 
+b) number of packets forwarded.
+
+
+We wanted to use IDS that is simple, but highly configurable. 
+We have these four parameters to optimize:
+1) number of monitored nodes
+2) size of buffer for eavesdropped packets
+3) treshold for minimal number of recieved packets for a node to be considered malicious
+4) treshold for ratio between forwarded and recieved packets for a node to be considered to be malicious
+
+At the end of simulation, based on a preset tresholds and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious nodes is:
+
+$$M = \{n \in N|r_n \geq r_{min} \and \frac{f_n}{r_n} \geq d_{max} \} $$
+
+And the set of benign nodes is:
+
+$$B = \{n \in N|r_n < r_{min} \or \frac{f_n}{r_n} < d_{max} \} $$
+
+You can see, that both sets are disjoint, and their union is the set of neighbours $N$
+
+\section{Setup}
+We want to use our framework to optimize IDS in this boundaries:
+
+Because this experiment is aimed primarily on showcasing the functionality of our framework, 
+we have attempted meta optimization with the help of sample pareto-front, as well as [TODO].
+We have used exhaustive search to sample the Pareto front and determine the [TODO],
+therefore we could check, whether our assumptions hold. 
+
+Our mutation function had three parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from:
+
+[TODO CODE,IMAGE]
+
+Our cross-over function, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped):
+
+Calibration was first done on fixed number of generations and population size, with optimizing for values $pMut$, $\delta$, and the type of algorithm, without using cross-over at all ($pCross=0$).
+
+
+\section{Results}
 
 
 \bibliographystyle{plain} % sets plain bibliography style
