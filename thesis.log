@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  30 APR 2013 15:18
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  1 MAY 2013 00:26
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -497,89 +497,85 @@ our prob-|
  []
 
 [5]
-Overfull \hbox (1.55016pt too wide) in paragraph at lines 166--167
-\T1/ppl/m/n/12 on sim-i-lar-ity be-ween in-di-vid-u-als. Best in-di-vid-u-als a
-re then cho-|
+Overfull \hbox (2.54437pt too wide) in paragraph at lines 169--170
+[]\T1/ppl/m/n/12 sort the $\OML/cmm/m/it/12 P[] \OMS/cmsy/m/n/12 [ \OML/cmm/m/i
+t/12 P[]$\T1/ppl/m/n/12 , first by dom-i-na-tion rank,|
  []
 
-
-Overfull \vbox (4.51495pt too high) has occurred while \output is active []
-
-
 [6]
-Overfull \hbox (2.38727pt too wide) in paragraph at lines 182--183
+Overfull \hbox (2.38727pt too wide) in paragraph at lines 194--195
 []$\OML/cmm/m/it/12 P[]$ \T1/ppl/m/n/12 to be the pop-u-la-tion in gen-er-a-tio
 n $\OML/cmm/m/it/12 t$\T1/ppl/m/n/12 ,$[]$ the core-spond-ing archive|
  []
 
-
-Overfull \hbox (1.44987pt too wide) in paragraph at lines 189--190
+[7]
+Overfull \hbox (1.44987pt too wide) in paragraph at lines 201--202
 []\T1/ppl/m/n/12 Copy all non-dom-i-nated in-di-vid-u-als|
  []
 
 
-Overfull \hbox (5.94951pt too wide) in paragraph at lines 192--193
+Overfull \hbox (5.94951pt too wide) in paragraph at lines 204--205
 []\T1/ppl/m/n/12 apply crossover and mu-ta-tion op-er-a-tors to the mat-|
  []
 
-[7]
-Overfull \hbox (0.67415pt too wide) in paragraph at lines 217--218
+[8]
+Overfull \hbox (0.67415pt too wide) in paragraph at lines 229--230
 \T1/ppl/m/n/12 Enviromental se-lec-ton step de-pends on the num-ber of non-dom-
 i-nated|
  []
 
-[8] [9] [10]
+[9] [10] [11]
 Chapter 3.
 
-Overfull \hbox (13.86195pt too wide) in paragraph at lines 270--272
+Overfull \hbox (13.86195pt too wide) in paragraph at lines 282--284
 \T1/ppl/m/n/12 self. Hav-ing au-to-mat-i-cally gen-er-ated ex-per-i-men-tal log
  has proven|
  []
 
-[11
+[12
 
 ]
-Overfull \hbox (8.5095pt too wide) in paragraph at lines 300--301
+Overfull \hbox (8.5095pt too wide) in paragraph at lines 312--313
 \T1/ppl/m/n/12 par-al-lel eval-u-a-tion of its in-di-vid-u-als. Par-adisEO al-r
 eady has two meth-|
  []
 
-[12]
-Overfull \hbox (17.9903pt too wide) in paragraph at lines 302--303
+[13]
+Overfull \hbox (17.9903pt too wide) in paragraph at lines 314--315
 []\T1/ppl/m/n/12 Boinc on the other hand can sim-ply uti-lize ma-chines al-read
 y preasent|
  []
 
 
-Overfull \hbox (5.2818pt too wide) in paragraph at lines 304--305
+Overfull \hbox (5.2818pt too wide) in paragraph at lines 316--317
 \T1/ppl/m/n/12 sim-ple sched-uler for cre-at-ing Boinc work units, plu-gable fr
 om python. |
  []
 
 
-Overfull \hbox (48.50578pt too wide) in paragraph at lines 306--307
+Overfull \hbox (48.50578pt too wide) in paragraph at lines 318--319
 []\T1/ppl/m/n/12 In our micro-framework it con-sists of three func-tions, sched
 -ule_work_unit,|
  []
 
 
-Overfull \hbox (2.82195pt too wide) in paragraph at lines 330--332
+Overfull \hbox (2.82195pt too wide) in paragraph at lines 342--344
 \T1/ppl/m/n/12 Because the main rea-son we use multi-objective al-go-rithms is 
 to avoid|
  []
 
-[13] [14] [15]
+[14] [15] [16]
 Chapter 4.
-[16
+[17
 
 ]
-Overfull \hbox (1.00313pt too wide) in paragraph at lines 420--421
+Overfull \hbox (1.00313pt too wide) in paragraph at lines 432--433
 []\T1/ppl/m/n/12 Our cross-over func-tion, with pa-ram-e-ters $\OML/cmm/m/it/12
  pCross$ \T1/ppl/m/n/12 (prob-a-bil-ity that|
  []
 
 No file thesis.bbl.
-[17] (./thesis.aux) ) 
+[18] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
  3986 strings out of 256216
  49019 string characters out of 1917072
@@ -595,13 +591,13 @@ fb></usr/share/texmf/fonts/type1/bluesky/cm/cmmi8.pfb></usr/share/texmf/fonts/t
 ype1/bluesky/cm/cmr12.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmr6.pfb></u
 sr/share/texmf/fonts/type1/bluesky/cm/cmr8.pfb></usr/share/texmf/fonts/type1/bl
 uesky/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/bluesky/cm/cmsy8.pfb></usr/sh
-are/texmf/fonts/type1/bluesky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/urw/
-palatino/uplb8a.pfb></usr/share/texmf/fonts/type1/urw/palatino/uplr8a.pfb></usr
-/share/texmf/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf/fonts/type1/
-urw/palatino/uplri8a.pfb>
-Output written on thesis.pdf (25 pages, 186844 bytes).
+are/texmf/fonts/type1/bluesky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/blue
+sky/ams/msbm7.pfb></usr/share/texmf/fonts/type1/urw/palatino/uplb8a.pfb></usr/s
+hare/texmf/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf/fonts/type1/ur
+w/palatino/uplr8a.pfb></usr/share/texmf/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on thesis.pdf (26 pages, 192027 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
+ 207 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

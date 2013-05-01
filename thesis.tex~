@@ -160,17 +160,38 @@ Calibration of multi objective evolution algorithms is harder than their single 
 
 
 \subsection{NsgaII}
-In Non-dominated Sorting Genetic Algorithm, the Replace step is performed in two steps
-\begin{enumerate}
-\item first by sorting union of old $P(t)$ and new $P'(t)$ in into ranks based on the ordering of pareto dominance.
-\item then sorting among members of each rank is performed based on similarity beween individuals. Best individuals are then chosen for the next iteration.
-\end{enumerate}
+
+\begin{description}
+	\item[Step 0: Initialization:] Generate an initial population $P_0$ 
+	\item[Step 1: Fitness assigment:] calculate the fittness values of individuals $P_0$
+	\item[Step 2: Variation:] Generate temporary population $P'_t$ by applying crossover and mutation operators on $P_t$
+	\item[Step 3: Fitness assigment:] calculate the fitness of $P'_t$
+	\item[Step 4: Nondominated sort:] sort the $P_t \cup P'_t$, first by domination rank, second by crowding metric
+	\item[Step 5: Enviromental selection:] create $P_{t+1}$ as the first $N$ individuals of the sorted $P_t \cup P'_t$
+	\item[Step 6: Termination:] If $t \geq T$, or other stopping criterion is satisfied, return nondominated individuals from $P_{t+1}$, else increment $t$ and continue with step 2.
+\end{description}
+
+We can separate step 4, the nondominated sort into two phases:
 
 \subsubsection{Non-dominated sorting}
+Every individual is assigned a rank based on order of nondominated front it belongs to. The first front is the Pareto front of the population:
 
+$$\mathbb{F_1} = {x \in P | \not \exists x' \in P, x' \prec x} $$
 
+Other can be defined recursively as the paretofront of the remaining population not containing previous fronts $R_i = P - \bigcup\limits_{1\geq j < i} F_j$:
+
+$$\mathbb{F_i} = {x \in R_i | \not \exists x' \in R_i, x' \prec x} $$
 
 \subsubsection{Crowding distance sorting}
+
+Individuals in the same rank are then sorted by their crowding distance. First crowding distance per objective of each individual is calculated.Agregated crowding distance of the individual is then the sum through all the objectives.
+
+Let $\mathbb{P_m}$ be a nondominated set ordered by objective $m$, and $\mathbb{P_m}[i]$ the value of objective $m$ of individual $i$, then we can recursivaley. define individuals crowding distance $C_i$:
+
+$$C_i = \sum\limits_{m} C_i_m $$, where $$C_i_m = \frac{\mathbb{P_m}[i+1] - \mathbb{P_m}[i-1]}{f^{max}_m - f^{min}_m}$$
+
+
+
 
 We can see that first sorting helps with general convergence to real Pareto front, while second improves diversity in the nondominated part of the population. To get the result we just need to extract non-dominated results from the final population. 
 
