@@ -3,9 +3,11 @@
 \usepackage[utf8]{inputenc} % Windows OS encoding
 \usepackage[T1]{fontenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
+\usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{enumerate}
+\usepackage{listings}
 
 \newtheorem{defn}{Definition}
 
@@ -188,10 +190,9 @@ Individuals in the same rank are then sorted by their crowding distance. First c
 
 Let $\mathbb{P_m}$ be a nondominated set ordered by objective $m$, and $\mathbb{P_m}[i]$ the value of objective $m$ of individual $i$, then we can recursivaley. define individuals crowding distance $C_i$:
 
-$$C_i = \sum\limits_{m} C_i_m $$, where $$C_i_m = \frac{\mathbb{P_m}[i+1] - \mathbb{P_m}[i-1]}{f^{max}_m - f^{min}_m}$$
+$$C_i = \sum\limits_{m} C_{i_m} $$, where $$C_{i_m} = \frac{\mathbb{P_m}[i+1] - \mathbb{P_m}[i-1]}{f^{max}_m - f^{min}_m}$$
 
-
-
+It has to be noted, that for agregation to work, each $C_{i_m}$ is normalized to be a fraction between $0$ and $1$. 
 
 We can see that first sorting helps with general convergence to real Pareto front, while second improves diversity in the nondominated part of the population. To get the result we just need to extract non-dominated results from the final population. 
 
@@ -247,15 +248,32 @@ Iteratively, individual that has minimum distance to another individual is chose
 
 \subsection{Ibea}
 Both NsgaII and Spea2 differ mostly in their aproach to characterize the convergence to Pareto front and diversity. 
-Indicator-Based evolutionary algorithm, takes more abstract approach, based on a concept of binary quality indicators.
+Indicator-Based evolutionary algorithm takes more abstract approach, based on a concept of binary quality indicators.
 Indicator is a function, that takes two pareto sets of the same domain and outputs some quantification of a difference between the two.
 
-Zitzler and Kunzli proposed two indicators,
-\begin{enumerate}
-\item additive $\epsilon$-indicator that quantifies the minimal distance first pareto set has to be moved in each dimension in objective space such that the second pareto set is weakly dominated.
+Zitzler and Kunzli proposed two indicators:
 
-\item hypervolume-distance indicator, that quantifies how much volume is dominated by the first pareto set but not dominated by the second, with respect to predefined reference point $Z$.
-\end{enumerate}
+
+\subsubsection{$\epsilon$-indicator}   
+Additive $\epsilon$-indicator that quantifies the minimal distance first pareto set has to be moved in each dimension in objective space such that the second pareto set is weakly dominated.Formal definition:
+
+$$I_{\epsilon^+}(A,B) = min_\epsilon\{\epsilon |\forall x_1 \in A, \forall x_2 \in B, \forall m \in M: P_m[x_i] + \epsilon < P_m[x_2] \} $$
+
+If $A$ dominates $B$, resulting indicator will be negative.
+
+\subsubsection{Hypervolume based indicator}   
+Hypervolume-distance indicator, that quantifies how much volume is dominated by the first pareto set but not dominated by the second, with respect to predefined reference point $Z$. 
+Hypervolume $H(A)$ of a pareto aproximation $A$ is the total volume of $n$-dimensional space that is "contained" between the individual results and the reference point $Z$. That is, hypervolume of a set is the total volume of space dominated by the sets individuals.
+
+Hypervolume indicator then compares two pareto aproximations:
+
+$$I_{HD}(A,B) = 
+\begin{cases} 
+    H(B) - H(A) & \text{if} \forall x_1 \in A, \forall x_2 \in B, x_2 \prec x_1 \\
+    H(B \cup A) - H(A) & \text{else}
+\end{cases}$$
+
+Hypervolume is considered to be the best single value indicator of how good a pareto aproximation is. (c FUNKY HYPERVOLUME THESIIS) 
 
 Both of these indicators are dominance preserving. 
 
@@ -266,24 +284,114 @@ A binary quality indicator is denoted as dominance preserving if $\forall x_1,x_
 \item $x_1 \prec x_2 \Rightarrow I({x_3},{x_1}) > I({x_3},{x_2})$
 \end{enumerate}
 \end{defn}
-Because any single individual can be considered a pareto set of size one, IBEA uses given indicator to quantify fitness of an individual.
+Because any single individual can be considered a pareto set of size one, IBEA uses given indicator to quantify fitness of an individual:
 
+$$F(x_1) = \sum\limits{x_2 \in P - {x_1}} a(I(x_1,x_2),k)$$,
+    where $a(i,k) = -e^{-\frac{i}{k}}$ is function that amplifies fitness of dominating individuals.
+
+Algorithm then goes as follows:
+\begin{description}
+	\item[Step 1: Initialization:] Generate an initial population $P_0$, set $t=0$
+	\item[Step 2: Fitness assigment:] calculate the fittness values of individuals in $P_t$ based on the chosen indicator
+	\item[Step 3: Enviromental selection:] iterate the folowing steps untill $|P_t|< N$: 
+       \begin{enumerate}
+        \item find $x \in P_t$ that has minimal fitness and remove it from $P_t$
+        \item recalculate the fitness of the remaining population, 
+       \end{enumerate}
+	\item[Step 3: Termination:] if $t \geq T$ or another stopping criterion is satisfied, then stop and return the result as the nondominated individuals from $P_{t+1}$
+	\item[Step 5: Mating selection:] generate the temporary mating pool $M$a with binary tournament selection on $P$
+	\item[Step 6: Variation:] apply crossover and mutation operators to the mating pool and set $P_{t+1}$ to the resulting population. Increment generation counter and go to Step 2.
+\end{description}
+
+Paradiseo implementation of IBEA uses adaptive scaling of the amplification function parameter, therefore calibration of the $k$ is not as important. On the other hand, chosing appropriate indicator is crucial.
 
 
 \subsection{Choosing the algorithm}
-Design of both of these algorithms give some guarantees on convergence to Pareto front. Both of them are incremental improvements on their predecessor, and while Spea2 is newer, it doesn't mean it is better in every instance. It has to be noted, that even comparison between these two algorithms with regards to optimizing IDS for WSN (Stehlik 2013) came out inconclusive. 
+Design of both of these algorithms give some guarantees on convergence to Pareto front. Both of them are incremental improvements on their predecessor. 
 
-Of the more interesting concepts that IBEA uses is the hyper-volume distance indicator, which might provide an interesting alternative to more popular NSGA and SPEA, if provided with good reference point. We will tallk more about hyper-volume as a metric of pareto set convergence in chapter on calibration.
+Right now, NSGAII is considered to be the standard benchmark for MOEA algorithms. It is the oldest of the three and therefore the most widely used one. Because there are no algorithm specific variables, it has the easiest calibration.
+       
+       While Spea2 is newer, it doesn't mean it is better in every instance. It has to be noted, that even comparison between these two algorithms with regards to optimizing IDS for WSN (Stehlik 2013) came out inconclusive. On the other hand, several papers (citation) claim they achieved better result with spea2 than NSGAii. Similiary to NSGAii it doesn't have any algorithm specific configuration.  
 
-We would advise to focus on calibration only one algorithm.
+Of the more interesting concepts that IBEA uses is the hyper-volume distance indicator, which might provide an interesting alternative to heuristics used inmore popular NSGA and SPEA. Unfortunately experimental results in (citacion) show, that $I_{HD}$ based IBEA is very sensitive to miscalibration of reference point $Z$. If provided with good reference point, it consistently outperformed the other tho algorithms, but optimal value of $Z$ varied greatly based on the problem set. We will tallk more about hyper-volume as a metric of pareto set convergence in chapter on calibration.
+
 
 \chapter{Our Framework}
 
 (b Stetsko 2011) showed, that using simple evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks. Unfortunately, prevoius experimental setup was too tightly coupled with optimization framework, rendering the code of previous experiments hard to reuse. Therefore we have created a micro-framework based on python and ParadisEO. 
 
-ParadisEO is a highly configurable framework for metaheuristics written in C++. Our micro-framework simplifies its usage by allowing to specify evaluation, mutation and crossover functions in python. Emphasis is on multiobjective algorithms, ability to evaluate population in parallel and having good facilities for experiment analysis.
+Our micro-framework simplifies its usage by allowing to specify evaluation, mutation and crossover functions in python. Emphasis is on multiobjective algorithms, ability to evaluate population in parallel and having good facilities for experiment analysis.
 
-We chose python, for these reasons:
+\section{Paradiseo MOEO}
+ParadisEO is a highly configurable framework for metaheuristics written in C++. 
+
+Out of the seven algorithms provided in Paradiseo, we include three of them: NSGAII, SPEA2 and IBEA. We do not include the predecessors, NSGA and SPEA, because in general, they have worse performance. SEEA, or simple elitist evolutionary algorithm is best suited for problems with inexpensive evaluation functions, where the most time consuming process is the selection, but evaluating WSN configuration is seldom cheap. Should for any reason be an algorithm not included in our micro-framework be better suited than the ones that are, it is easy to add one. Main modifications required are to enable parallel evaluation for the algorithm.
+
+Even if the algorithm we'd wanted to use wasn't present in Paradiseo framework, due to its whitebox nature and modular design and large library of integrated metrics it could be easily added.
+
+\subsection{Object-oriented design of MOEA}
+
+Every multiobjective evolutionary algorithm in Paradiseo extends the moeoEA. 
+The implementation of such algorith is best explained on a  moeoNSGAII[CITE], probably the most popular multi-objective algorithm. 
+Because moeoEA implements the unary functor interface, to define new algorithm it is sufficient to define the the operator().
+
+\begin{lstlisting}
+    virtual void operator () (eoPop < MOEOT > &_pop)
+    {
+        eoPop < MOEOT > offspring, empty_pop;
+        popEval (empty_pop, _pop);	// a first eval of _pop
+        // evaluate fitness and diversity
+        fitnessAssignment(_pop);
+        diversityAssignment(_pop);
+        do
+        {
+            // generate offspring, worths are recalculated if necessary
+            breed (_pop, offspring);
+            // eval of offspring
+            popEval (_pop, offspring);
+            // after replace, the new pop is in _pop. Worths are recalculated if necessary
+            replace (_pop, offspring);
+        }
+        while (continuator (_pop));
+     }
+\end{lstlisting}
+
+As you can see, the algorithm itself is a template defined by implementation of the fitnessAssigment,diversityAssignment,breed,popEval, replace and continuator functors and eoPop population object. Therfore most of the implementation iself is done in definig various classes that implement. We can showcase how this composing works on an example of a continuator:
+
+\begin{lstlisting}
+    /** a continuator based on the number of generations (used as default) */
+    eoGenContinue < MOEOT > defaultGenContinuator;
+    /** stopping criteria */
+    eoContinue < MOEOT > & continuator;
+
+moeoNSGAII (unsigned int _maxGen, ...):
+defaultGenContinuator(_maxGen), continuator(defaultGenContinuator)
+\end{lstlisting}
+
+If we use constructor that ends evaluation after certain number of generation, it first initializes defaultGenContinuator with number of generations, and then passes it as a continuator to use. 
+
+\subsubsection{Population object}
+Population in Paradiseo is in its core an ordered vector of individuals. Because our individuals are represented by vectors of real numbers, we will describe the moeoRealVector implementation. Each individual has its value, and contains variables for fitness and diversity metrics. It should be noted, that moeoRealVector doesn't contain any bounds on specific parameters of individals configuration. In paradiseo, we define boundaries externaly, with specification in initialization function and crossover and mutation functions. 
+
+\subsubsection{Fitness and diversity assigment}
+
+Class moeoDominanceDepthFitnessAssignment is used to sort the population into nondominated ranks, by updating the fitness variable of each individual. Class moeoFrontByFrontCrowdingDiversityAssignment is similarily used to set the diversity variable. The replace operator uses these to evaluate the children of the old population and creating the new generation.
+
+\subsubsection{Creation of new generation}
+
+Breed operator is a standard eoBreed class that gets supplied with transform-object that agregates mutation and cross-over functions. Similiarily, the popEval function just evaluates all the new individuals in populations and assignes them objective values. The specifics of the algorithm are hiden in the replace operator of moeoElitistReplacement class:
+\begin{enumerate}
+\item recalculate fitness and diversity
+\item sort the population with standard moeoFitnessThenDiversityComparator
+\item remove exceeding population
+\end{enumerate}
+
+As you can see, this implementation slightly differs from the sketch of algorithm provided in previous chapter, namely that the NSGAII in paper never exceeded the population size.
+
+\subsubsection{Stopping criteria}
+Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multicriteria optimization problems we usualy don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
+
+We chose python for these reasons:
 \begin{enumerate}
 \item it is an efficient glue language. 
 Most often you will want to optimize already written application with minimal changes. Python is well suited for running external applications, specifying their inputs and parsing their outputs.
@@ -294,20 +402,16 @@ That allows us to include analysis of every optimization run into the executable
 \item it is easily integrated with C++.
 We strive to make the integration with ParadisEO simple and extensible. 
 \end{enumerate}
-\section{Evaluation function}
 
-To simplify configuration, inputs and outputs of evaluation function are allways a list of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successfull with using just a simple rounding techniques. We wanted to avoid usage of binary strings as input vectors.
+Our microframework consists of a single executable and a configuration file in python. Configuration itself consists of definig selected entry points, in particular the number and bounds of input parameters, the number of objectves to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for sheduling evaluations in parallel on boinc. We provide reporting function entry-point as well, to automatically colect and analyze results of the algorithm run.
 
-Many evolutionary algorithms support them and if we were using them we wouldn't need to concern ourselves with implementation details of mutation and crossover functions. On the other hand, with generalized mutation functions on binary strings, there are no guarantees that mutated individual will even be valid. CITATION In our opinion, vectors of reals are esier to reason about, and their convergence may provide valuable insight to structure of the problem.
+\section{Entry points}
 
-\subsection{Bounds}
+\subsection{Input parameters}
 For inputs you specify their bounds, which are then used to initialize the population and to supply constraints for mutation and crossover parameters
 
-[Example]
-
 \subsection{Objectives}
-
-Because we focus on multiobjective evolution, you need to specify number of objectives. To simplify configuration, all the parameters will be minimized.
+Because we focus on multiobjective evolution, you need to specify number of objectives. To simplify configuration,minimization of all the objectives is hardcoded.
 
 [example]
 
@@ -315,6 +419,12 @@ It is advisable to have three objectives at maximum, because number of solutions
 At minimum, $(n+1)$ objective problem will contain all the solutions of an n-objective problem. [CITATION? 309 talbi]
 
 Then there is the problem of visualizing and evaluating more than 3-dimensional data.
+
+\subsection{Evaluation function}
+
+To simplify configuration, inputs and outputs of evaluation function are allways an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successfull with using just a simple rounding techniques. We wanted to avoid usage of binary strings as input vectors.
+
+Many evolutionary algorithms support them and if we were using them we wouldn't need to concern ourselves with implementation details of mutation and crossover functions. On the other hand, with generalized mutation functions on binary strings, there are no guarantees that mutated individual will even be valid. CITATION In our opinion, vectors of reals are esier to reason about, and their convergence may provide valuable insight to structure of the problem.
 
 \subsection{Boinc Assisted Evolution}
 
@@ -328,9 +438,17 @@ In our micro-framework it consists of three functions, schedule\_work\_unit, wai
 
 Even though the evaluations themselves will be done in parallel, we wanted to avoid any threaded code in our framework itself. Because we have written it with research in mind, we understand that accessing auxiliary data is important to evaluate experiments. In threaded environment, this could lead to deadlocks.
 
+\subsection{Reporting}
+
+Reporting function takes two arguments, both strings. First string is the char * args string passed to the executable. Second string is the console printout or the Paradiseo result-archive.
+
+This way, we could integrate the creation of experimental log directly into our executable, computing different . This helps especialy with calibration of evolution algorithm parameters.
+We provide examples of different metrics and indicators that help with evaluation of result in next section.
+
+Integrating python with C++ by passing strings is not particulary elegant. We have chosen this particular implementation, because it is easiest to extend and debug.
 \section{Calibration}
 
-We can think of calibration on an evolutionary algorithm as a meta-optimization problem with two objectives,
+We can think of calibration on an evolutionary algorithm as a meta-optimization problem with two objectives, 
 
 \begin{enumerate}
 \item maximizing the fittness of result
@@ -430,18 +548,29 @@ You can see, that both sets are disjoint, and their union is the set of neighbou
 We want to use our framework to optimize IDS in this boundaries:
 
 Because this experiment is aimed primarily on showcasing the functionality of our framework, 
-we have attempted meta optimization with the help of sample pareto-front, as well as TODO.
-We have used exhaustive search to sample the Pareto front and determine the TODO,
-therefore we could check, whether our assumptions hold. 
+we have first calculated a two sample exhaustive searches to gauge the problem space and run calibration on it, that are not as resource intensive.
 
-Our mutation function had three parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from:
+After somparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to several, form computational resources standpoint, expensive problems. With the help of Boinc-assisted evolution we could assess whether MOEA evolution can provide reasonable and consistent optimisation of IDS on WSN.
+
+All the algorithms will share mutation and cross-over functions:
+
+\subsubsection{Mutation function}
+Our mutation function had two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from:
 
 TODO CODE,IMAGE
 
+\subsubsection{Crosover function}
 Our cross-over function, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped):
 
-Calibration was first done on fixed number of generations and population size, with optimizing for values $pMut$, $\delta$, and the type of algorithm, without using cross-over at all ($pCross=0$).
+\subsubsection{Calibration}
 
+For algorithms NSGAii and Spea2, calibration was done on fixed number of generations and population size, with optimizing for values $pMut$, $\delta$, and $pCross$. We have used the same set of parameters as in (Stehlik 2013), main difference is usage of different, much smaller network.
+
+[TODO TABLE]
+
+For IBEA we have chosen the $I_{HD}$ indicator, that we use as a comparison metric for other two algorithms as well. Because IBEA with $I_{HD}$ requires calibration of reference point $Z$, we haven't used crossover operator with IBEA at all ($pCross=0$).
+
+[TODO TABLE for Z]
 
 \section{Results}
 
