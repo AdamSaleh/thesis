@@ -12,6 +12,9 @@
 \usepackage{listings}
 \usepackage{courier}
 \usepackage{caption} 
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{arrows,snakes,backgrounds}
 \usepackage{graphics}
 \usepackage{color}
  \lstset{
@@ -140,7 +143,7 @@ Problem spaces with many local optima are less likely to cause problems for algo
 \subsection{Intensification} 
 An algorithm should exploit information from the solutions it previously found. This principle is called intensification, because it covers the notion of trying to intensify a good solution to find a better one.
 
-Local search can be considered an extreme application of intensification, where next instance to evaluate is allways selected deterministicaly, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.(b talbi)
+Local search can be considered an extreme application of intensification, where next instance to evaluate is allways selected deterministicaly, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
 
 Algorithms with strong intensification component are usually more efficient with regards to number of unique evaluations.
 
@@ -148,7 +151,7 @@ Algorithms with strong intensification component are usually more efficient with
 Because of their nature, heuristic approaches are hard to evaluate and reason about, therefore they are often considered to be a method of last resort. (b Talbi) warns against using heuristics laizily on problems where more deterministic approaches (such as using a SAT-solver or linear programming) would be more efficient. Heuristic approaches are usually considered whe we need to solve our problem in order of magnitude faster than possible using conventional approaches, while sacrificing guarantees on optimality.
 
 In our case, we are constrained by number of configuration evaluations we are able to perform in a given timeframe. 
-We are focusing on evolutionary heuristics, because they seem to have reasonable performance with regard of optimizing WSN (b Stetsko 2011). 
+We are focusing on evolutionary heuristics, because they seem to have reasonable performance with regard of optimizing WSN. 
 These are modeled natural proces of evolution of species. It is a family os stochastic, population-based heuristics (as opposed to deterministic, single-solution based). 
 
 \section{Single objective evolutionary algorithms}
@@ -198,15 +201,15 @@ A solution $x \in S$ is Pareto optimal if for every $x' \in S$, $F(x')$ does not
 Subset of solutions where no solution from the superset dominate the one in the set is called Pareto optimal set.
 
 \begin{defn}{Pareto optimal set}
-  For given MOP(F,S), the pareto optimal set is defined as $\cal
-P* = {x \in S | \not \exists x' \in S, F(x') \prec F(x)}$
+  For given MOP(F,S), the pareto optimal set is defined as $\cal{
+P}* = {x \in S | \not \exists x' \in S, F(x') \prec F(x)}$
 \end{defn}
 
 Pareto front is the largest Pareto optimal set in the solution space. It is the set of all non-dominated solutions the solution space. 
 
 \begin{defn}{Pareto front}
   For given MOP(F,S), the pareto optimal set is defined as $\cal
-P* = {x \in S | \not \exists x' \in S, F(x') \prec F(x)} $
+{PF} = {x \in S | \not \exists x' \in S, F(x') \prec F(x)} $
 \end{defn}
 
 We will call a subset that contains only solutions that don't dominate each other a Pareto aproximation.
@@ -216,8 +219,6 @@ We will call a subset that contains only solutions that don't dominate each othe
 \end{defn}
 
 Multiobjective heuristics then try to obtain best aproximation of Pareto front. To gauge how good an approximation of Pareto front is, we usualy use two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found pareto set.
-
-[image about approximations]
 
 Calibration of multi objective evolution algorithms is harder than their single criteria counter-parts, mainly because it is hard to reason about the convergence of output without having the real Pareto optimal front in the first place. Pareto optimal sets usually aren't directly comparable, but there are several metrics that can be used to compare them, some of them used in folowing algorithms. One of the more popular metric is the hypervolume indicator. We will discuss using these metrics for calibration in greater detail in later chapters.
 
@@ -239,11 +240,11 @@ We can separate step 4, the nondominated sort into two phases:
 \subsection{Non-dominated sorting}
 Every individual is assigned a rank based on order of nondominated front it belongs to. The first front is the Pareto front of the population:
 
-$$\mathbb{F_1} = {x \in P | \not \exists x' \in P, x' \prec x} $$
+$$\cal{F}_1 = {x \in P | \not \exists x' \in P, x' \prec x} $$
 
-Other can be defined recursively as the paretofront of the remaining population not containing previous fronts $R_i = P - \bigcup\limits_{1\geq j < i} F_j$:
+Other can be defined recursively as the paretofront of the remaining population not containing previous fronts $R_i = P - \bigcup\limits_{1\geq j < i} \cal{F}_j$:
 
-$$\mathbb{F_i} = {x \in R_i | \not \exists x' \in R_i, x' \prec x} $$
+$$\cal{F}_1 = {x \in R_i | \not \exists x' \in R_i, x' \prec x} $$
 
 \subsection{Crowding distance sorting}
 
@@ -588,12 +589,12 @@ Computing an exhaustive search for a subset of our problem can help in several w
   \item for any approximation, we can easily compute how many individuals it dominates and how many individuals dominate is
 \end{itemize}
 
-This is probably the most the most expensive, but on the other hand the most precise way to estimate, how will an evolutionary algorithm behave in a particluar problem domain.
+This is probably the most expensive, but on the other hand the most precise way to estimate, how will an evolutionary algorithm behave in a particluar problem domain.
 
 
 \section{Iteratively}
 
-For iterative improvements we have used different convergence critera. To measure convergence of Pareto aproximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering.
+For iterative improvements we have used different convergence critera. To measure convergence of Pareto aproximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particulary suited for this purpouse.
 
 \section{Measuring convergence}
 
@@ -632,6 +633,9 @@ def distance(o1, o2,maximum):
               in zip(o1,o2,maximum)])
 \end{lstlisting}
 
+\subsection{Average distance indicator}
+Given pareto approximation $A$ and $B$ it calculates the average of distances from all $a \in A$ to the nearest solution $b \in B$. This indicator is not dominance preserving, because euclidean distances will allways be positive. There have been achieved good results in measuring convergence when using this indicator to compare pareto approximation to pareto front\cite{stehl2013opt}.
+
 \section{Measuring diversity}
 Diversity metrics help us avoid pareto approximations, that have too similiar solutions. We used metric based on the the spacing metric taken from Spea2, which we have discussed in greater detail in previous chapter. For the sake of simplicity, we simply average the distance agregate betwee the closest neighbours. We use the term distance-agregate, because Spea2 calculates its metric as a sum of normalized differences between every objective.
 
@@ -648,6 +652,22 @@ def spacing(approximation,range)
    return sum(dist_indi)/len(dist_indi)
 \end{lstlisting}
 
+Similarily we can ustilize the individuals crowding distance from NSGAII. We calculate the value of each individual with regards to the rest of pareto approximation and then create the compound metric by averaging the distances.
+
+\begin{lstlisting}[language=Python,label=space_example,caption=Spacing indicator implementation]
+
+def (approximation,range)
+   split = zip(*approximation)
+   agregate = 0
+   for (objective,r) in zip(split,range):
+      agregate +=sum([(prev-next)/r 
+        for (prev,next) in zip(
+         [prev for prev in objective[:-2]],
+         [nxt for nxt in objective[2:]])])
+   return agregate/len(split)
+\end{lstlisting}
+
+
 \section{Population size and Number of generations}
 These two parameters set the boundaries on minimal and maximal number of evaluations. Lets mark the size of population $N$ and number of generations $G$ Because the whole initial population needs to be evaluated, number of evaluations will at least the size of populations.
 Because at each new generation, at most $N$ new individuals are generated, therefore in one optimization run, at most $N \times G$ evaluations.
@@ -657,71 +677,184 @@ Probability of applying mutation, or crossover directly influence how many new i
 
 With standard mutation operator, the value of $\delta$ parameter can have significant impact on the speed of convergence, because it specifies the bounds of neighbourhood where the individual can mutate. Experimenting with mutation operator implementation can be useful if we hve some aditional domain knowledge that we can use to choose the mutated individual beyond simple uniform randomization on its parameters.
 
+
 \chapter{Experiments}
 To test our framework we have decided to optimize a simple intrusion detection system on a model wireless sensor network based on our laboratory WSN testing setup.
 
 \section{Wireless sensor network}
-Implementation of WSN was reused from previous research (Stetsko 2012), with just a slight modifications to decouple it from previous optimisation framework. Nodes are simulated with MiXiM framework, with test application on each of them, that sends a packet containing arbitrary information through the network to a base station. Network has a static routing tree based . 
+Implementation of WSN was reused from \cite{stehl2013opt}, with just a slight modifications to decouple it from previous optimisation framework. It uses MiXiM simulator that provides complex comunication models, including capabilities for precise simulation of interference on physical layer and various energy consumption models. Simulation this precise is often costly enough to varant the usage of evolutionary heuristics.
 
-We have marked some of the nodes as "droppers", so that instead of forwarding all of the packets through the network, they drop certain percentage. In our case, dropping ratio was set to $0.5$.
+Test application running on each of the nodes periodicaly sends a packet containing arbitrary information through the network to a base station. 
+We have marked some of the nodes as droppers, so that instead of forwarding all of the packets through the network, they drop certain percentage. In our case, dropping ratio was set to $0.5$. Network has a static routing tree, as described in Fig.\ref{netw-route}. The routing was set up so that individual nodes can eavesdrop their neighbours and that there will be some benign nodes that drop packets unintentionally.
 
 \section{Intrusion Detetection System}
 Our nodes implement a simple IDS capable of detecting nodes that seem to be intentionaly dropping packets.
 If we look at the wireless network stack of our node, IDS is part of the medium access controll sublayer.
 There it can eavesdrop on neighbouring nodes and check whether they behave accordingly.
-
-For each neighbour it updates 
-\begin{itemize}
-\item number of packets recieved 
-\item number of packets forwarded.
-\end{itemize}
+For each neighbour it updates the number of packets recieved and the number of packets forwarded.
 
 We wanted to use IDS that is simple, but highly configurable. 
 We have these four parameters to optimize:
 \begin{enumerate}
-\item number of monitored nodes
-\item size of buffer for eavesdropped packets
-\item treshold for minimal number of recieved packets for a node to be considered malicious
-\item treshold for ratio between forwarded and recieved packets for a node to be considered to be malicious
+\item number of monitored nodes $p_n$
+\item size of buffer for eavesdropped packets $p_b$
+\item treshold for minimal number of recieved packets for a node to be considered malicious $p_m$
+\item treshold for ratio between forwarded and recieved packets for a node to be considered to be malicious $p_t$
 \end{enumerate}
-At the end of simulation, based on a preset tresholds and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious nodes is:
 
-$$ M = \{n \in N|r_n \geq r_{min} \land \frac{f_n}{r_n} \geq d_{max} \} $$
+At the end of simulation, based on a preset treshold and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious neighbours of a node $i$ is:
+
+$$ M_i = \{n \in N_i|{r_i}_n \geq p_m \land \frac{{f_i}_n}{{r_i}_n} \geq p_t \} $$
 And the set of benign nodes is:
 
-$$B = \{n \in N|r_n < r_{min} \lor \frac{f_n}{r_n} < d_{max} \} $$
+$$B_i = \{n \in N|{r_i}_n < p_m \lor \frac{{f_i}_n}{{r_i}_n} < p_t \} $$
+You can see, that both sets are disjoint, and their union is the set of neighbours $N_i$. 
 
-You can see, that both sets are disjoint, and their union is the set of neighbours $N$
+We want to minimize these three objective functions:
+\begin{description}
+\item[False negative ratio] that calculates for each malicous node the percentage of its neighbours that claimed it is benign and returns the average.
+$$fn(x) = \frac{1}{|M|}* \sum\limits_{m_k\in M} \frac{|\{i|m_k \in B_i\}|}{|\{i|m_k \in N_i\}|} $$
+\item[False positive ratio] that calculates for each benign node the percentage of its neighbours that claimed it is malicous and returns the average.
+$$fn(x) = \frac{1}{|B|}* \sum\limits_{b_k\in B} \frac{|\{i|b_k \in M_i\}|}{|\{i|m_i \in N_i\}|} $$
+\item[Memory footprint] that agregates the impact of number of monitored nodes and the size of buffer on the memory consumption.
+$$m(x) = 8*p_n + 16*p_b $$
+\end{description}
 
 \section{Setup}
-We want to use our framework to optimize IDS in this boundaries:
+We want to use the framework to optimize the four parameters of our IDS as described in \ref{tab:myfirsttable}. 
+Because this experiment is aimed primarily on showcasing the functionality of our framework, we have created several optimization scenarios based on the rate of network traffic.
 
-Because this experiment is aimed primarily on showcasing the functionality of our framework, 
-we have first calculated a two sample exhaustive searches to gauge the problem space and run calibration on it, that are not as resource intensive.
+First we have calculated two sample exhaustive searches,with period $\Delta_t$ in which each of the nodes sends a packet to be rooted to base station set to $10$ seconds and $5$ seconds. Because simulation of a network with low network traffic is not as source intensive, it allowed us to gauge the problem space and run calibration on it.  
 
-After somparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to several, form computational resources standpoint, expensive problems. With the help of Boinc-assisted evolution we could assess whether MOEA evolution can provide reasonable and consistent optimisation of IDS on WSN.
+\begin{table}
+  \centering
+\begin{tabular}{ l c c c r}
+  & Name & Description & Range & Step \\  
+  \hline
+  \hline                        
+   Parameters & $p_n$ & Max monitored nodes & $\langle 1, 28 \rangle$ & $1$ \\
+    & $p_m$ & Min received packets & $\langle 1, 100 \rangle$ & $1$ \\
+    & $p_t$ & Detection threshold & $\langle 0, 1 \rangle$ & $0.01$ \\
+    & $p_b$ & Buffer size & $\langle 0, 50 \rangle$ & $1$ \\
+  \hline  
+  \hline
+  Scenario & $\Delta_t$ & Period for sending packets\footnote{in seconds} &  $\{ 0.1,0.5,1,5,10\}$  & \\
+\end{tabular}
+  \caption{List of parameters to be optimized for each IDS scenario}
+  \label{tab:myfirsttable}
+\end{table}
 
-All the algorithms will share mutation and cross-over functions:
+\section{Calibration}
 
-\subsubsection{Mutation function}
-Our mutation function had two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from:
+We want to compare the performance of all four algorithms, NSGAII, Spea2, MOGA and IBEA. All the algorithms will share mutation and cross-over functions:
 
-TODO CODE,IMAGE
+\subsection{Mutation function}
+We have used the default mutation function. It has two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from.
 
-\subsubsection{Crosover function}
-Our cross-over function will be the standard cross-over function , with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped)
+\subsection{Crosover function}
+We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped)
 
-\subsubsection{Calibration}
+For algorithms NSGAii, Spea2 and MOGA, calibration was done on fixed number of generations and population size, with optimizing for values $popSize$, $pMut$, $\delta$, and $pCross$:
 
-For algorithms NSGAii and Spea2, calibration was done on fixed number of generations and population size, with optimizing for values $pMut$, $\delta$, and $pCross$. We have used the same set of parameters as in \cite{stehl2013opt}, main difference is usage of different, much smaller network.
+\begin{description}
+  \item[Population size] to be set to following values: $popSize \in \{50,75,100\}$
+\item[Mutation] will be done with probability of $pCross \in \{0.01,0.1,0.25,0.5\}$, with its mutation parameter $\delta \in \{0.05,0.1,0.2\}$
+\item[Crossover] will have probability set $pCross \in \{0.01,0.1,0.25,0.5\}$, with $crosProb = 0.5$
+\item[Number of generations] is be set to $NGen=200$ 
+\end{description}
 
-[TODO TABLE]
+For IBEA we have chosen the $I_{HD}$ indicator, that we use as a comparison metric for other algorithms as well. Because IBEA with $I_{HD}$ requires calibration of reference point $Z$, we haven't used crossover operator with IBEA at all ($pCross=0$). We know that a good reference point is dominated by all solutions, therefore we will use $Z = (f_p,f_n,m), f_p,f_n \in \{0.8,1.1,1.5\}, m \in \{1500,2000,2200\}$, to see the different behavior, when the reverence can dominate some of the individuals, when it is tightly dominated, and where it is worse by a large margin.
 
-For IBEA we have chosen the $I_{HD}$ indicator, that we use as a comparison metric for other two algorithms as well. Because IBEA with $I_{HD}$ requires calibration of reference point $Z$, we haven't used crossover operator with IBEA at all ($pCross=0$).
+Because we have computed the the exhaustive search for both of the scenarios, we know the pareto front $\cal{PF}$ of each their solutions. We have used these metrics, that we have already discussed in previous chapter:
 
-[TODO TABLE for Z]
+\begin{description}
+  \item[$\epsilon_+$ indicator:] computes the smallest distance pareto-approximation has to be translated to dominate the pareto front.
+  \item[HD indicator] computes the difference in hypervolumes between pareto approximation and pareto front.
+  \item[Average distance from $\mathbb{PF}$] computes the average euclidean distances from between every indiviual of pareto aproximation and its closest neighbour from the pareto front
+  \item[Diversification] computes the diversification metric of NSGAII algorithm
+  \item[Spacing] computes the spacing metric of Spea2 for the closest neigbour
+  \item[Number of evaluations] will be used to evaluate cost of runing the optimization
+\end{description}
+ 
+This gives us enough data not only to decide the best algorithm for the task at hand, but to further discuss relevance of diferent convergence metrics.
 
-\section{Results}
+\section{Evolution with aid of BOINC}
+
+After comparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to the three of the more resource intensive scenarios, with $\Delta_t \in \{0.1,0.5,1\}$ seconds. With the help of Boinc-assisted evolution we could assess whether each MOEA evolution algorithm can provide reasonable and consistent optimisation of IDS on WSN.
+
+\tikzstyle{b}=[circle,draw=blue!50,fill=blue!20,thick]
+\tikzstyle{m}=[circle,draw=red!50,fill=red!20,thick]
+\tikzstyle{base}=[rectangle,draw=black!50,fill=black!20,thick]
+
+\begin{figure}[h!]
+  \centering
+\begin{tikzpicture}[thick,yscale=0.5,rotate=90]
+\node[b] (0) at (0.65,0.35) {0};
+\node[b] (1) at (1.50,3.20) {1};
+\node[b] (2) at (3.10,4.50) {2};
+\node[b] (3) at (4.60,3.10) {3};
+\node[b] (4) at (8.00,0.60) {4};
+\node[b] (5) at ( 11.60,3.60) {5};
+\node[b] (6) at ( 13.75,0.50) {6};
+\node[m] (7) at ( 13.40,3.20) {7};
+\node[b] (8) at ( 17.40,0.80) {8};
+\node[b] (9) at ( 18.70,3.00) {9};
+\node[b] (10) at ( 20.60,3.50) {10};
+\node[b] (11) at ( 23.10,0.90) {11};
+\node[b] (12) at ( 24.90,5.00) {12};
+\node[b] (13) at ( 25.00,8.70) {13};
+\node[b] (14) at ( 25.10,1.43) {14};
+\node[m] (15) at ( 27.10,3.10) {15};
+\node[b] (16) at ( 27.10,5.50) {16};
+\node[b] (17) at ( 29.10,0.65) {17};
+\node[b] (18) at ( 29.10,7.10) {18};
+\node[b] (19) at ( 29.40,3.00) {19};
+\node[b] (20) at ( 31.70,4.90) {20};
+\node[b] (21) at ( 31.70,8.70) {21};
+\node[b] (22) at ( 32.20,1.70) {22};
+\node[b] (23) at ( 33.40,2.60) {23};
+\node[b] (24) at ( 33.70,7.10) {24};
+\node[base] (25) at ( 34.30,1.10) {25};
+\node[b] (26) at ( 35.90,1.50) {26};
+\node[m] (27) at ( 36.20,3.70) {27};
+\node[b] (28) at ( 36.20,7.70) {28};
+\node[b] (29) at ( 33.30,0.80) {29};
+
+\draw [->] (0) to (2);
+\draw [->] (1) to (3);
+\draw [->] (2) to (4);
+\draw [->] (3) to (4);
+\draw [->] (4) to (7);
+\draw [->] (5) to (7);
+\draw [->] (6) to (8);
+\draw [->] (7) to (8);
+\draw [->] (8) to (11);
+\draw [->] (9) to (11);
+\draw [->] (10) to (11);
+\draw [->] (11) to (14);
+\draw [->] (12) to (15);
+\draw [->] (13) to (16);
+\draw [->] (14) to (15);
+\draw [->] (15) to (19);
+\draw [->] (16) to (19);
+\draw [->] (17) to (22);
+\draw [->] (18) to (20);
+\draw [->] (19) to (22);
+\draw [->] (20) to (23);
+\draw [->] (21) to (20);
+\draw [->] (22) to (25);
+\draw [->] (23) to (25);
+\draw [->] (24) to (23);
+\draw [->] (26) to (25);
+\draw [->] (27) to (25);
+\draw [->] (28) to (27);
+\end{tikzpicture}
+  \caption{ Topology of the network used in experiments,with grey base station $25$ and red droppers $7$, $15$ and $27$}
+  \label{netw-route}
+\end{figure}
+
+
+\chapter{Results}
 
 
 \bibliographystyle{plain} % sets plain bibliography style

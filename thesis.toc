@@ -39,14 +39,16 @@
 \contentsline {section}{\numberline {4.3}\slshape Measuring convergence}{24}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}\rmfamily Hypervolume indicator}{24}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}\rmfamily Distance indicator}{25}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}\slshape Measuring diversity}{25}{section.4.4}
-\contentsline {section}{\numberline {4.5}\slshape Population size and Number of generations}{26}{section.4.5}
-\contentsline {section}{\numberline {4.6}\slshape Mutation and Crossover}{26}{section.4.6}
-\contentsline {chapter}{\numberline {5}\bfseries Experiments}{27}{chapter.5}
-\contentsline {section}{\numberline {5.1}\slshape Wireless sensor network}{27}{section.5.1}
-\contentsline {section}{\numberline {5.2}\slshape Intrusion Detetection System}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}\slshape Setup}{28}{section.5.3}
-\contentsline {subsubsection}{ Mutation function}{28}{section*.6}
-\contentsline {subsubsection}{ Crosover function}{29}{section*.7}
-\contentsline {subsubsection}{ Calibration}{29}{section*.8}
-\contentsline {section}{\numberline {5.4}\slshape Results}{29}{section.5.4}
+\contentsline {subsection}{\numberline {4.3.3}\rmfamily Average distance indicator}{25}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}\slshape Measuring diversity}{26}{section.4.4}
+\contentsline {section}{\numberline {4.5}\slshape Population size and Number of generations}{27}{section.4.5}
+\contentsline {section}{\numberline {4.6}\slshape Mutation and Crossover}{27}{section.4.6}
+\contentsline {chapter}{\numberline {5}\bfseries Experiments}{28}{chapter.5}
+\contentsline {section}{\numberline {5.1}\slshape Wireless sensor network}{28}{section.5.1}
+\contentsline {section}{\numberline {5.2}\slshape Intrusion Detetection System}{28}{section.5.2}
+\contentsline {section}{\numberline {5.3}\slshape Setup}{30}{section.5.3}
+\contentsline {section}{\numberline {5.4}\slshape Calibration}{30}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}\rmfamily Mutation function}{30}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}\rmfamily Crosover function}{30}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}\slshape Evolution with aid of BOINC}{32}{section.5.5}
+\contentsline {chapter}{\numberline {6}\bfseries Results}{34}{chapter.6}
