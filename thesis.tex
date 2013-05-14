@@ -96,27 +96,27 @@ Wsn,ids,spea2,nsgaii
 \MainMatter
 \chapter{Introduction}
 \label{chap:intro}
-Wireless sensor networks are relativly new concept describing a wirelessly comunicating network of battery powered nodes, that contain some compuational capacity and are able to gather information with attached sensors. Current research hints at applications in monitoring wild-life and gathering information in otherwise unattainable places. They are an interesting topic for security research because of their possible military and inteligence gathering applications, their distributed nature and the constrains on their hardware. 
+Wireless sensor networks are relatively new concept describing a wirelessly communicating network of battery powered nodes, that contain some computational capacity and are able to gather information with attached sensors. Current research hints at applications in monitoring wild-life and gathering information in otherwise unattainable places. They are an interesting topic for security research because of their possible military and intelligence gathering applications, their distributed nature and the constrains on their hardware. 
 
-For example, setting up intrusion detection system on network of nodes so that it satisfies constrains on accuracy, battery life and memory can be a timeconsuming process. With the usage of simulation frameworks, such as MiXiM, effort spent on optimization is directly proportional to invested computational resources, with realistic simulations taking up to several hours of processor time, based on its parameters.
+For example, setting up intrusion detection system on network of nodes so that it satisfies constrains on accuracy, battery life and memory can be a time consuming process. With the usage of simulation frameworks, such as MiXiM, effort spent on optimization is directly proportional to invested computational resources, with realistic simulations taking up to several hours of processor time, based on its parameters.
 
-Achieving high accuracy and low memory footprint are in many cases inversly proportional. This means that the network operator has to chose a tradeoff between desired objectives.  We believe that this process of optimization and evaluation of different tradeoffs could be greatly improved by using multi-criteria algorithms. Multi-criteria algorithms instead of a single solution return a set of candidates covering different tradeoffs between the objectives. This allows for better evaluation of said objectives.
+Achieving high accuracy and low memory footprint are in many cases inversely proportional. This means that the network operator has to chose a trade-off between desired objectives.  We believe that this process of optimization and evaluation of different trade-offs could be greatly improved by using multi-criteria algorithms. Multi-criteria algorithms instead of a single solution return a set of candidates covering different trade-offs between the objectives. This allows for better evaluation of said objectives.
 
-Evolutionary algorithms help immensly with reducing demands for computational resources while optimizing problems. Because evolutionary optimization works by iterating evaluations and modification of a set of candidates, algorithms have been successfully modifed to solve multi-optimization problems.
+Evolutionary algorithms help immensely with reducing demands for computational resources while optimizing problems. Because evolutionary optimization works by iterating evaluations and modification of a set of candidates, algorithms have been successfully modified to solve multi-optimization problems.
 
-We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their aplicability on concepts of multi-criteria optimization in terms of pareto optimality, as well as the main principles of three state of the art multicriteria evolutionary algorithms. 
+We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their applicability on concepts of multi-criteria optimization in terms of Pareto optimality, as well as the main principles of three state of the art multicriteria evolutionary algorithms. 
 
-In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on paradiseo evolutionary framework. Because our framework is partialy written in paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walkthrough of all the configuration entry points of our microframework, complete with examples in Python.
+In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on Paradiseo evolutionary framework. Because our framework is partially written in Paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walk through of all the configuration entry points of our micro-framework, complete with examples in Python.
 
 We discuss calibration of the framework in chapter~\ref{chap:calib}. Because evolutionary algorithms are heuristic in nature, we provide several metrics that can be used to guide the settings. 
 
-In the chapter~\ref{chap:exp} we discuss intrusion detection systems for wireless sensor networks and provide a model example of optimizing such wireles sensor network application, its setup, analysis and calibration of the framework and paralel evaluation on Boinc cluster.
+In the chapter~\ref{chap:exp} we discuss intrusion detection systems for wireless sensor networks and provide a model example of optimizing such wireless sensor network application, its setup, analysis and calibration of the framework and parallel evaluation on Boinc cluster.
 
 We conclude with discussion of the results and a short comparison of used evolutionary algorithms in chapter~\ref{chap:res}.
 
-\chapter{Evolutionary Optimization of Wireles Sensor Networks}
+\chapter{Evolutionary Optimization of Wireless Sensor Networks}
 \label{chap:evolution}
-As the title states, we can afford to be quite specific in the description of our optimization problem. Usually more formal definitions of optimization problems deal with inputs and outputs in terms of words over alphabet and appropriate cost function. We thing that defining our optimization problem in terms of $n$-touples of real numbers represent configuation and evaluation result of a wireles sensor network . 
+As the title states, we can afford to be quite specific in the description of our optimization problem. Usually more formal definitions of optimization problems deal with inputs and outputs in terms of words over alphabet and appropriate cost function. We thing that defining our optimization problem in terms of $n$-touples of real numbers represent configuration and evaluation result of a wireless sensor network . 
 
 \begin{defn}[Optimization problem]
 We define optimization problem as a triplet $(X,Z,f)$,
@@ -125,9 +125,9 @@ $Z \subseteq \mathbb{R}^m$ is the objective space and $f:X \to Z$ is the evaluat
 Without loss of generality it is assumed, that we want to minimize objective.
 \end{defn}
 
-This defintions allows the evaluation function $f$ to output incomparable objective vectors, which is a key concept for multi-criteria optimization. Optimization problem can be easily made compatible with single-criteria algorithms by defining cost-function $c:Z \to \mathbb{R}$, that creates an agregatted metric from the objective vector.
+This definitions allows the evaluation function $f$ to output incomparable objective vectors, which is a key concept for multi-criteria optimization. Optimization problem can be easily made compatible with single-criteria algorithms by defining cost-function $c:Z \to \mathbb{R}$, that creates an aggregated metric from the objective vector.
 
-Because of the nature of wireles comunication, where interference in shared medium has to be taken into account,it is hard to predict how will a change in configuration impact the result. Therefore thorow and expesive simulation is required for every configuraiton that we would want to evaluate. This renders the usage of simple exhaustive search for optimization purouses impractical. Optimization problems that have problem space that is expensive to search, are good fit for heuristic approaches\cite{talbi2009metaheuristics}. 
+Because of the nature of wireless communication, where interference in shared medium has to be taken into account,it is hard to predict how will a change in configuration impact the result. Therefore thorough and expensive simulation is required for every configuration that we would want to evaluate. This renders the usage of simple exhaustive search for optimization purposes impractical. Optimization problems that have problem space that is expensive to search, are good fit for heuristic approaches\cite{talbi2009metaheuristics}. 
 
 \section{Basic principles of metaheuristics}
 
@@ -137,27 +137,27 @@ There are two basic principles that are used when designing a metaheuristic\cite
 \subsection{Diversification}
 An algorithm should explore as much of the search space as possible. This principle is called diversification.
 
-Random search can be considered an extreme application of difersification, where in every round we generate next solution randomly without using any information from previous (good) solutions. Less extreme example is the family of population based heuristics, where in each iteration we are trying to improve a set of candidates, called a population.
+Random search can be considered an extreme application of diversification, where in every round we generate next solution randomly without using any information from previous (good) solutions. Less extreme example is the family of population based heuristics, where in each iteration we are trying to improve a set of candidates, called a population.
 
 Problem spaces with many local optima are less likely to cause problems for algorithms that have strong diversification component.
 
 \subsection{Intensification} 
 An algorithm should exploit information from the solutions it previously found. This principle is called intensification, because it covers the notion of trying to intensify a good solution to find a better one.
 
-Local search can be considered an extreme application of intensification, where next instance to evaluate is allways selected deterministicaly, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
+Local search can be considered an extreme application of intensification, where next instance to evaluate is always selected deterministicaly, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
 
 Algorithms with strong intensification component are usually more efficient with regards to number of unique evaluations.
 
 
-Because of their nature, heuristic approaches are hard to evaluate and reason about, therefore they are often considered to be a method of last resort. Decision to use heuristics laizily on problems where more deterministic approaches (such as using a SAT-solver or linear programming) would be more efficient may become a costly one. Heuristic approaches are usually considered whe we need to solve our problem in order of magnitude faster than possible using conventional approaches, while sacrificing guarantees on optimality.
+Because of their nature, heuristic approaches are hard to evaluate and reason about, therefore they are often considered to be a method of last resort. Decision to use heuristics lazily on problems where more deterministic approaches (such as using a SAT-solver or linear programming) would be more efficient may become a costly one. Heuristic approaches are usually considered when we need to solve our problem in order of magnitude faster than possible using conventional approaches, while sacrificing guarantees on optimality.
 
-In our case, we are constrained by number of configuration evaluations we are able to perform in a given timeframe. 
+In our case, we are constrained by number of configuration evaluations we are able to perform in a given time frame. 
 We are focusing on evolutionary heuristics, because they seem to have reasonable performance with regard of optimizing WSN.\cite{stehl2013opt}
-These are modeled natural proces of evolution of species. It is a family os stochastic, population-based heuristics (as opposed to deterministic, single-solution based). 
+These are modeled natural process of evolution of species. It is a family of stochastic, population-based heuristics (as opposed to deterministic, single-solution based). 
 
 \section{Single objective evolutionary algorithms}
 
-Evolutionary algorithms are based of the fact, that natural proces of evolution can be considered an algorithm solving an optimization problem of adapting a species to its environment. 
+Evolutionary algorithms are based of the fact, that natural process of evolution can be considered an algorithm solving an optimization problem of adapting a species to its environment. 
 
 \subsection{Evolutionary algorithm}
 Basic principles behind evolutionary algorithms can be shown on this template\cite{talbi2009metaheuristics}: 
@@ -165,30 +165,30 @@ Basic principles behind evolutionary algorithms can be shown on this template\ci
 	\item[Step 0: Initialization:] generate initial population of individuals and calculate their fitness. Population of individuals is a set of configurations. Their environment is the optimization problem.
     \item[Step 1: Variation:] apply mutation and crossover parameters on the individuals to generate new offsprings. Variation is there to explore the search space, where: 
         \begin{description}
-            \item[Mutation] of individual usualy consists of randomly selecting some configuration from its neghbourhood as its ofspring.
-            \item[Crosover] usualy consists of creating an offspring by permutation of two individuals. 
+            \item[Mutation] of individual usually consists of randomly selecting some configuration from its neighborhood as its offspring.
+            \item[Crossover] usually consists of creating an offspring by permutation of two individuals. 
         \end{description}
         This step provides diversification for evolution heuristic.
-	\item[Step 2: Fitness assigment:] calculate the fittness values of the offspring in population
-	\item[Step 3: Enviromental selection:] select the best individuals of a population to "survive" to the next generation. Enviromental selection choses individuals based on their fitness score. This should provide convergence to configurations that are more optimal. This step provides intensification for evolutionary heuristic.
-	\item[Step 4: Termination:] check if termination criterium holds (usually based on number of generations), if it does, return the result and stop, if it doesn't, increment the generation counter and proceed with step 1.
+	\item[Step 2: Fitness assignment:] calculate the fitness values of the offspring in population
+	\item[Step 3: Environmental selection:] select the best individuals of a population to "survive" to the next generation. Environmental selection chooses individuals based on their fitness score. This should provide convergence to configurations that are more optimal. This step provides intensification for evolutionary heuristic.
+	\item[Step 4: Termination:] check if termination criterion holds (usually based on number of generations), if it does, return the result and stop, if it doesn't, increment the generation counter and proceed with step 1.
 \end{description}
 
-In algorithms, there are variations on this template, for example, instead of first creating the new generation and then selecting the best individuals for next iteration, \emph{enviromental selection} can precede \emph{variation}. In this case selection creates a subset of population called mating pool. Variation generates the rest of the population using only individuals from mating pool. Some algorithms use this kind of mating selection as an inplicit step of variation, with enviromental selection applied later on. 
+In algorithms, there are variations on this template, for example, instead of first creating the new generation and then selecting the best individuals for next iteration, \emph{environmental selection} can precede \emph{variation}. In this case selection creates a subset of population called mating pool. Variation generates the rest of the population using only individuals from mating pool. Some algorithms use this kind of mating selection as an implicit step of variation, with environmental selection applied later on. 
 
-The template is then realized into an actual algorithm by defining all the steps. In our case, initialization is done by unifomly selecting configurations from decision space, selection and variation steps are selected by the framework based on the evolutionary algorithm. 
+The template is then realized into an actual algorithm by defining all the steps. In our case, initialization is done by uniformly selecting configurations from decision space, selection and variation steps are selected by the framework based on the evolutionary algorithm. 
 
 Crossover and mutation functions on the other hand are to be calibrated for each optimization problem on case by case basis.
 
 \section{Multiobjective evolution algorithms}
-Problem that we are trying to optimize is unfortunately illsuited for single objective evolution. Objectives such as memory consumption and IDS accuracy are ortoghonal, therefore it is hard to determine single criteria that would satisfactory cover both of them. A usual solution is to provide some sort of weighted average. In this case,because output of our algorithm would be only a single solution, we would need to know emphasis on different criteria before we run our optimization. 
+Problem that we are trying to optimize is unfortunately ill-suited for single objective evolution. Objectives such as memory consumption and IDS accuracy are orthogonal, therefore it is hard to determine single criteria that would satisfactory cover both of them. A usual solution is to provide some sort of weighted average. In this case,because output of our algorithm would be only a single solution, we would need to know emphasis on different criteria before we run our optimization. 
 
-Better approach is to recognize multi-objective nature of our problem, and use algorithms that return a set of candidates covering different tradeoffs between the objectives. 
+Better approach is to recognize multi-objective nature of our problem, and use algorithms that return a set of candidates covering different trade-offs between the objectives. 
 
-Multi objective algorithms are based on idea of Pareto optimality and domination. We say that solution A dominates solution B, if A has no objective "worse" than B and at least one objective "better". We say that A is pareto-optimal, if there is no other solution that would dominate A. This means that no objective of A can be improved without deterioration of another objective. 
+Multi objective algorithms are based on idea of Pareto optimality and domination. We say that solution A dominates solution B, if A has no objective "worse" than B and at least one objective "better". We say that A is Pareto-optimal, if there is no other solution that would dominate A. This means that no objective of A can be improved without deterioration of another objective. 
 
 \begin{defn}{Pareto dominance}
-An objective vector $u = (u_1,\cdots,u_n)$ is said to dominate $v = (v_1,\cdots,v_n)$ (denoted by $u \prec v$) if and only if no component of $v$ is smaller\footnote{we assume minimization} than the coresponding component of $u$ and at least one component of $u$ is strictly smaller:
+An objective vector $u = (u_1,\cdots,u_n)$ is said to dominate $v = (v_1,\cdots,v_n)$ (denoted by $u \prec v$) if and only if no component of $v$ is smaller\footnote{we assume minimization} than the corresponding component of $u$ and at least one component of $u$ is strictly smaller:
 
 $$ \forall i \in \langle 1,n\rangle: u_i \leq v_i \land \exists i \in \langle 1,n\rangle: u_i < v_i $$
 \end{defn}
@@ -200,104 +200,104 @@ A solution $x \in S$ is Pareto optimal if for every $x' \in S$, $F(x')$ does not
 Subset of solutions where no solution from the superset dominate the one in the set is called Pareto optimal set.
 
 \begin{defn}{Pareto optimal set}
-  For given MOP(F,S), the pareto optimal set is defined as ${\cal{
+  For given MOP(F,S), the Pareto optimal set is defined as ${\cal{
 P}^*} = {x \in S | \not \exists x' \in S, F(x') \prec F(x)}$
 \end{defn}
 
 Pareto front is the largest Pareto optimal set in the solution space. It is the set of all non-dominated solutions the solution space. 
 
 \begin{defn}{Pareto front}
-  For given MOP(F,S), the pareto optimal set is defined as ${\cal
+  For given MOP(F,S), the Pareto optimal set is defined as ${\cal
 {PF}} = {x \in S | \not \exists x' \in S, F(x') \prec F(x)} $
 \end{defn}
 
-We will call a subset that contains only solutions that don't dominate each other a Pareto aproximation.
+We will call a subset that contains only solutions that don't dominate each other a Pareto approximation.
 
-\begin{defn}{Pareto aproximation}
-  For given MOP(F,S), we call set $A \subset S$ a  pareto aproximation if $\forall x \in A \not \exists x' \in A, F(x') \prec F(x)$
+\begin{defn}{Pareto approximation}
+  For given MOP(F,S), we call set $A \subset S$ a  Pareto approximation if $\forall x \in A \not \exists x' \in A, F(x') \prec F(x)$
 \end{defn}
 
-Multiobjective heuristics then try to obtain best aproximation of Pareto front. To gauge how good an approximation of Pareto front is, we usualy use two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found pareto set.
+Multiobjective heuristics then try to obtain best approximation of Pareto front. To gauge how good an approximation of Pareto front is, we usually use two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found Pareto set.
 
-Calibration of multi objective evolution algorithms is harder than their single criteria counter-parts, mainly because it is hard to reason about the convergence of output without having the real Pareto optimal front in the first place. Pareto optimal sets usually aren't directly comparable, but there are several metrics that can be used to compare them, some of them used in folowing algorithms. One of the more popular metric is the hypervolume indicator. We will discuss using these metrics for calibration in greater detail in chapter~\ref{chap:calib}.
+Calibration of multi objective evolution algorithms is harder than their single criteria counter-parts, mainly because it is hard to reason about the convergence of output without having the real Pareto optimal front in the first place. Pareto optimal sets usually aren't directly comparable, but there are several metrics that can be used to compare them, some of them used in following algorithms. One of the more popular metric is the hyper-volume indicator. We will discuss using these metrics for calibration in greater detail in chapter~\ref{chap:calib}.
 
-\section{NsgaII}
-Second generation of the nondominated sorting genetic algorithm\cite{deb2002fast} is currently the most popular multiobjective heuristic. It improved on its previous iteration in several ways, most notable is the exclusion of sharing parameter $\delta_{share}$, that previously needed to be specified to maintain good diversity in final population.
+\section{NSGAII}
+Second generation of the non-dominated sorting genetic algorithm\cite{deb2002fast} is currently the most popular multiobjective heuristic. It improved on its previous iteration in several ways, most notable is the exclusion of sharing parameter $\delta_{share}$, that previously needed to be specified to maintain good diversity in final population.
 
 \begin{description}
 	\item[Step 0: Initialization:] Generate an initial population $P_0$ 
-	\item[Step 1: Fitness assigment:] calculate the fittness values of individuals $P_0$
+	\item[Step 1: Fitness assignment:] calculate the fitness values of individuals $P_0$
 	\item[Step 2: Variation:] Generate temporary population $P'_t$ by applying crossover and mutation operators on $P_t$
-	\item[Step 3: Fitness assigment:] calculate the fitness of $P'_t$
-	\item[Step 4: Nondominated sort:] sort the $P_t \cup P'_t$, first by domination rank, second by crowding metric
-	\item[Step 5: Enviromental selection:] create $P_{t+1}$ as the first $N$ individuals of the sorted $P_t \cup P'_t$
-	\item[Step 6: Termination:] If $t \geq T$, or other stopping criterion is satisfied, return nondominated individuals from $P_{t+1}$, else increment $t$ and continue with step 2.
+	\item[Step 3: Fitness assignment:] calculate the fitness of $P'_t$
+	\item[Step 4: Non-dominated sort:] sort the $P_t \cup P'_t$, first by domination rank, second by crowding metric
+	\item[Step 5: Environmental selection:] create $P_{t+1}$ as the first $N$ individuals of the sorted $P_t \cup P'_t$
+	\item[Step 6: Termination:] If $t \geq T$, or other stopping criterion is satisfied, return non-dominated individuals from $P_{t+1}$, else increment $t$ and continue with step 2.
 \end{description}
 
-We can separate step 4, the nondominated sort into two phases:
+We can separate step 4, the non-dominated sort into two phases:
 
 \subsection{Non-dominated sorting}
-Every individual is assigned a rank based on order of nondominated front it belongs to. The first front is the Pareto front of the population:
+Every individual is assigned a rank based on order of non-dominated front it belongs to. The first front is the Pareto front of the population:
 
 $${\cal{F}}_1 = {x \in P | \not \exists x' \in P, x' \prec x} $$
 
-Other can be defined recursively as the paretofront of the remaining population not containing previous fronts $R_i = P - \bigcup\limits_{1\leq j < i} {\cal{F}}_j$:
+Other can be defined recursively as the Pareto front of the remaining population not containing previous fronts $R_i = P - \bigcup\limits_{1\leq j < i} {\cal{F}}_j$:
 
 $${\cal{F}}_1 = {x \in R_i | \not \exists x' \in R_i, x' \prec x} $$
 
 \subsection{Crowding distance sorting}
 
-Individuals in the same rank are then sorted by their crowding distance. First crowding distance per objective of each individual is calculated.Agregated crowding distance of the individual is then the sum through all the objectives.
+Individuals in the same rank are then sorted by their crowding distance. First crowding distance per objective of each individual is calculated.Aggregated crowding distance of the individual is then the sum through all the objectives.
 
-Let ${\cal P}_m$ be a nondominated set ordered by objective $m$, and ${\cal P}_m[i]$ the value of objective $m$ of individual $i$, then we can recursively. define individuals crowding distance $C_i$:
+Let ${\cal P}_m$ be a non-dominated set ordered by objective $m$, and ${\cal P}_m[i]$ the value of objective $m$ of individual $i$, then we can recursively. define individuals crowding distance $C_i$:
 
 $$C_i = \sum\limits_{m} C_{i_m} $$, where $$C_{i_m} = \frac{{\cal P}_m[i+1] - {\cal P}_m[i-1]}{f^{max}_m - f^{min}_m}$$
 
-It has to be noted, that for agregation to work, each $C_{i_m}$ is normalized to be a fraction between $0$ and $1$. 
+It has to be noted, that for aggregation to work, each $C_{i_m}$ is normalized to be a fraction between $0$ and $1$. 
 
-We can see that first sorting helps with general convergence to real Pareto front, while second improves diversity in the nondominated part of the population. To get the result we just need to extract non-dominated results from the final population. 
+We can see that first sorting helps with general convergence to real Pareto front, while second improves diversity in the non-dominated part of the population. To get the result we just need to extract non-dominated results from the final population. 
 
 \section{Spea2}
 In Strength Pareto Evolutionary Algorithm\cite{zitzler2001spea2}, unlike previous NSGAII, stores non-dominated individuals in archive separate from the rest of the population. Therefore after new population is generated, new contents of archive are determined in two passes, first using procedure to ensure convergence and then procedure to ensure diversity.
 
 Let us denote:
 
-$P_t$ to be the population in generation $t$,$\overline{P_t}$ the coresponding archive of nondominated individuals, $N$ the population size,$\overline N$ the archive size and $T$ the maximum number of generations.
+$P_t$ to be the population in generation $t$,$\overline{P_t}$ the corresponding archive of non-dominated individuals, $N$ the population size,$\overline N$ the archive size and $T$ the maximum number of generations.
 
 The overall algorithm then is as follows:
 
 \begin{description}
 	\item[Step 1: Initialization:] Generate an initial population $P_0$ and create the empty archive $\overline{P_0}$, set $t=0$
-	\item[Step 2: Fitness assigment:] calculate the fittness values of individuals in $P_t \cup \overline{P_t}$
-	\item[Step 3: Enviromental selection:] Copy all nondominated individuals in $P_t \cup \overline{P_t}$ to $\overline{P_{t+1}}$. If size of $\overline{P_{t+1}}$ exceeds $\overline N$, then remove exceeding individuals with worst fitness, otherwise, if size of $\overline{P_{t+1}}$ is less than $\overline N$, fill $\overline{P_{t+1}}$ with dominated individuals in  with the best fitness $P_t \cup \overline{P_t}$
-	\item[Step 3: Termination:] if $t \geq T$ or another stopping criterion is satisfied, then stop and return the result as the nondominated individuals from $\overline{P_{t+1}}$
+	\item[Step 2: Fitness assignment:] calculate the fitness values of individuals in $P_t \cup \overline{P_t}$
+	\item[Step 3: Environmental selection:] Copy all non-dominated individuals in $P_t \cup \overline{P_t}$ to $\overline{P_{t+1}}$. If size of $\overline{P_{t+1}}$ exceeds $\overline N$, then remove exceeding individuals with worst fitness, otherwise, if size of $\overline{P_{t+1}}$ is less than $\overline N$, fill $\overline{P_{t+1}}$ with dominated individuals in  with the best fitness $P_t \cup \overline{P_t}$
+	\item[Step 3: Termination:] if $t \geq T$ or another stopping criterion is satisfied, then stop and return the result as the non-dominated individuals from $\overline{P_{t+1}}$
 	\item[Step 5: Mating selection:] generate the mating pool $M$
 	\item[Step 6: Variation:] apply crossover and mutation operators to the mating pool and set $P_{t+1}$ to the resulting population. Increment generation counter and go to Step 1.
 \end{description}
 
-The final result then contains just the nondominated individuals of the archive.
+The final result then contains just the non-dominated individuals of the archive.
 
-\subsection{Fitness assigment}
-	Fitness of an individual is an agregated metric composed of strength of individual and density estimation. Strength of an individual $i$ is the number of individuals from $P_t \cup \overline{P_t}$ it dominates:
+\subsection{Fitness assignment}
+	Fitness of an individual is an aggregated metric composed of strength of individual and density estimation. Strength of an individual $i$ is the number of individuals from $P_t \cup \overline{P_t}$ it dominates:
 
 $$ S(i) = |\{j| j \in P_t \cup \overline{P_t} \land i \prec j\}| $$
 
-Raw fitness of $i$ is then agregated from all strengths of individuals that dominate $i$:
+Raw fitness of $i$ is then aggregated from all strengths of individuals that dominate $i$:
 
 $$ R(i) = \sum\limits_{j \in P_t \cup \overline{P_t},j \prec i} S(j)$$
 
-To distinguish between individuals that do not dominate each other a density metric based on the distance of $k$-th nearest neighbour of $i$, denoted $\delta^k_i$. As a common setting, $k$ equal to the square root of the sample size is used. Thus density is defined by:
+To distinguish between individuals that do not dominate each other a density metric based on the distance of $k$-th nearest neighbor of $i$, denoted $\delta^k_i$. As a common setting, $k$ equal to the square root of the sample size is used. Thus density is defined by:
 
 $$D(i) = \frac{1}{\delta^k_i + 2} $$
 
-Because of the two added in the denominator  $0 < D(i) < 1$. Agregate fitness of an individual is then the sum of its raw fitness and density:
+Because of the two added in the denominator  $0 < D(i) < 1$. Aggregate fitness of an individual is then the sum of its raw fitness and density:
 
 $$F(i) = R(i) + D(i) $$
 
-Because the raw fitness has integer values, sorting individuals by the fitness metric yelds similar results to the two pass sorting of NSGAii.
+Because the raw fitness has integer values, sorting individuals by the fitness metric yields similar results to the two pass sorting of NSGAII.
 
-\subsection{Enviromental selection}
-Enviromental selecton step depends on the number of nondominated individuals in the union. This is the set of individuals with fitness lower than one:
+\subsection{Environmental selection}
+Environmental selection step depends on the number of non-dominated individuals in the union. This is the set of individuals with fitness lower than one:
 
 $$P'_{t+1} =\{i | i \in P_t \cup \overline{P_t} \land F(i)<1\}$$
 
@@ -308,73 +308,73 @@ If $|P'_{t+1}| > \overline N$ a trimming procedure is used that is based on the 
 Iteratively, individual that has minimum distance to another individual is chosen to be removed. If there are several individuals with minimum distance, tie is broken by considering their second smallest distances and so forth. 
 
 \subsection{Spea2+}
-Spea2+ a modification of Spea2, that lays aditional heuristic on top of it. The main changes are:
+Spea2+ a modification of Spea2, that lays additional heuristic on top of it. The main changes are:
 \begin{enumerate}
 	\item there are two archives, one maintaining diversity in solution space, the other one maintaining diversity in decision space
-	\item mating selection for cross-over is done based on individuals neighbouring each other in solution space
-	\item instead of binary tournament to select the mating population, it uses the whole archive of nondominated solutions
+	\item mating selection for cross-over is done based on individuals neighboring each other in solution space
+	\item instead of binary tournament to select the mating population, it uses the whole archive of non-dominated solutions
 \end{enumerate}
-It seems, that in some problem domains Spea2+ outperforms both NSGAII and Spea2, unfortunately, paradiseo doesn't provide direct implementation in its current version.
+It seems, that in some problem domains Spea2+ outperforms both NSGAII and Spea2, unfortunately, Paradiseo doesn't provide direct implementation in its current version.
 
 \section{MOGA}
-Multi objective genetic algorithm is the oldest algorithm we have included. It originated the template used by NSGA and later on NSGAII. The main difference is in the calculation of convergence nad diversity metrics.
+Multi objective genetic algorithm is the oldest algorithm we have included. It originated the template used by NSGA and later on NSGAII. The main difference is in the calculation of convergence and diversity metrics.
 
 \begin{description}
 	\item[Step 0: Initialization:] Generate an initial population $P_0$ 
-	\item[Step 1: Fitness assigment:] calculate the fittness values of individuals $P_0$
+	\item[Step 1: Fitness assignment:] calculate the fitness values of individuals $P_0$
 	\item[Step 2: Variation:] Generate temporary population $P'_t$ by applying crossover and mutation operators on $P_t$
 	\item[Step 3: Domination ranking:] for each individual count number of solutions that dominate it
-	\item[Step 4: Diversity assigment:] is calculated for each individual based on number of individuals in its neighbourhood
-	\item[Step 5: Enviromental selection:] create $P_{t+1}$ as the first $N$ individuals of the sorted $P_t \cup P'_t$
-	\item[Step 6: Termination:] If $t \geq T$, or other stopping criterion is satisfied, return nondominated individuals from $P_{t+1}$, else ncrement $t$ and continue with step 2.
+	\item[Step 4: Diversity assignment:] is calculated for each individual based on number of individuals in its neighborhood
+	\item[Step 5: Environmental selection:] create $P_{t+1}$ as the first $N$ individuals of the sorted $P_t \cup P'_t$
+	\item[Step 6: Termination:] If $t \geq T$, or other stopping criterion is satisfied, return non-dominated individuals from $P_{t+1}$, else increment $t$ and continue with step 2.
 \end{description}
 
-Convergence metric in step 3 and diversity preserving metric in step 4 warant a closer look:
+Convergence metric in step 3 and diversity preserving metric in step 4 warrant a closer look:
 
 \subsection{Domination ranking}
-Similarily to NSGAII, population is first sorted into ranks based on the number of solutions that dominate given individual. While in NSGAII the individual was sorted into a rank based on a layer it belonged to, in MOGA each individual is directly assigned the count of individuals that dominate it.
+Similarly to NSGAII, population is first sorted into ranks based on the number of solutions that dominate given individual. While in NSGAII the individual was sorted into a rank based on a layer it belonged to, in MOGA each individual is directly assigned the count of individuals that dominate it.
 
 $$f(i) = |\{j|j \in P \land j \succ i\}|$$
 
 \subsection{Sharing diversity metric}
 This metric counts how crowded is the space around the select individual, based on the $\delta_{share}$ metric.
 
-If individual $i$ has neghbour $j$ at euclidean distance $|i-j|$, it adds to compound sharing metric by
+If individual $i$ has neighbor $j$ at euclidean distance $|i-j|$, it adds to compound sharing metric by
 $$Sh(|i-j|) = \begin{cases} 
     1 - (\frac{d}{\delta_{share}})^\alpha & \text{if}  d < \delta_{share}\\
     0 & \text{else}
 \end{cases}$$
 
-For each individual we sum the sharing coeficients of those that share its domination ranking.
+For each individual we sum the sharing coefficients of those that share its domination ranking.
 
 $$ S(i) = \sum\limits_{j \in P \land f(j) =f(i) \land i \neq j} Sh(|i-j|) $$
 
-As we can see, only neighbours closer than $\delta_{share}$ can make the fitness of $i$ worse. Value of $\delta_{share}$ therefore has great influence on the resulting pareto-approximation. Because of this complexity that $\delta_{share}$ brings to configuration of the algorithm, MOGA is rarely used.
+As we can see, only neighbors closer than $\delta_{share}$ can make the fitness of $i$ worse. Value of $\delta_{share}$ therefore has great influence on the resulting Pareto-approximation. Because of this complexity that $\delta_{share}$ brings to configuration of the algorithm, MOGA is rarely used.
 
 \subsection{MOGA+}
 
-The original NSGA algorithm had similiar problem with calibration of the $\delta_{share}$ parameter. This was aleviated by NSGAII's crowding distance sorting algorithm. Because NSGA and MOGA are so similar, we have decided to add another algorithm, that would use the original convergence metric of MOGA and newer diversity metric of NSGAII. This have helped us in comparing these different algorithms.
+The original NSGA algorithm had similar problem with calibration of the $\delta_{share}$ parameter. This was alleviated by NSGAII's crowding distance sorting algorithm. Because NSGA and MOGA are so similar, we have decided to add another algorithm, that would use the original convergence metric of MOGA and newer diversity metric of NSGAII. This have helped us in comparing these different algorithms.
 
 \section{Ibea}
-Both NsgaII and Spea2 differ mostly in their aproach to characterize the convergence to Pareto front and diversity. 
-Indicator-Based evolutionary algorithm takes more abstract approach, based on a concept of binary quality indicators.
-Indicator is a function, that takes two pareto sets of the same domain and outputs some quantification of a difference between the two.
+Both NSGAII and Spea2 differ mostly in their approach to characterize the convergence to Pareto front and diversity. 
+Indicator-Based evolutionary algorithm\cite{zitzler2004indicator} takes more abstract approach, based on a concept of binary quality indicators.
+Indicator is a function, that takes two Pareto sets of the same domain and outputs some quantification of a difference between the two.
 
 Zitzler and Kunzli proposed two indicators:
 
 
 \subsection{$\epsilon$-indicator}   
-Additive $\epsilon$-indicator that quantifies the minimal distance first pareto set has to be moved in each dimension in objective space such that the second pareto set is weakly dominated.Formal definition:
+Additive $\epsilon$-indicator that quantifies the minimal distance first Pareto set has to be moved in each dimension in objective space such that the second Pareto set is weakly dominated.Formal definition:
 
 $$I_{\epsilon^+}(A,B) = min_\epsilon\{\epsilon |\forall x_1 \in A, \forall x_2 \in B, \forall m \in M: P_m[x_i] + \epsilon < P_m[x_2] \} $$
 
 If $A$ dominates $B$, resulting indicator will be negative.
 
-\subsection{Hypervolume based indicator}   
-Hypervolume-distance indicator, that quantifies how much volume is dominated by the first pareto set but not dominated by the second, with respect to predefined reference point $Z$. 
-Hypervolume $H(A)$ of a pareto aproximation $A$ is the total volume of $n$-dimensional space that is "contained" between the individual results and the reference point $Z$. That is, hypervolume of a set is the total volume of space dominated by the sets individuals.
+\subsection{Hyper-volume based indicator}   
+Hyper-volume-distance indicator, that quantifies how much volume is dominated by the first Pareto set but not dominated by the second, with respect to predefined reference point $Z$. 
+Hyper-volume $H(A)$ of a Pareto approximation $A$ is the total volume of $n$-dimensional space that is "contained" between the individual results and the reference point $Z$. That is, hyper-volume of a set is the total volume of space dominated by the sets individuals.
 
-Hypervolume indicator then compares two pareto aproximations:
+Hyper-volume indicator then compares two Pareto approximations:
 
 $$I_{HD}(A,B) = 
 \begin{cases} 
@@ -382,7 +382,7 @@ $$I_{HD}(A,B) =
     H(B \cup A) - H(A) & \text{else}
 \end{cases}$$
 
-Hypervolume is considered to be the best single value indicator of how good a pareto aproximation is, because it agregates both convergence and diversity metrics. Primarily it is a convergence metric, though if the paretofront of the solution space is is linear in nature, hypervolume indicator will lead to optimal diversity of aproximations as well. \cite{auger2009theory} 
+Hyper-volume is considered to be the best single value indicator of how good a Pareto approximation is, because it aggregates both convergence and diversity metrics. Primarily it is a convergence metric, though if the Pareto front of the solution space is is linear in nature, hyper-volume indicator will lead to optimal diversity of approximations as well. \cite{auger2009theory} 
 
 Both of these indicators are dominance preserving. 
 
@@ -393,7 +393,7 @@ A binary quality indicator is denoted as dominance preserving if $\forall x_1,x_
 \item $x_1 \prec x_2 \Rightarrow I({x_3},{x_1}) > I({x_3},{x_2})$
 \end{enumerate}
 \end{defn}
-Because any single individual can be considered a pareto set of size one, IBEA uses given indicator to quantify fitness of an individual:
+Because any single individual can be considered a Pareto set of size one, IBEA uses given indicator to quantify fitness of an individual:
 
 $$F(x_1) = \sum\limits{x_2 \in P - {x_1}} a(I(x_1,x_2),k)$$,
     where $a(i,k) = -e^{-\frac{i}{k}}$ is function that amplifies fitness of dominating individuals.
@@ -401,37 +401,37 @@ $$F(x_1) = \sum\limits{x_2 \in P - {x_1}} a(I(x_1,x_2),k)$$,
 Algorithm then goes as follows:
 \begin{description}
 	\item[Step 1: Initialization:] Generate an initial population $P_0$, set $t=0$
-	\item[Step 2: Fitness assigment:] calculate the fittness values of individuals in $P_t$ based on the chosen indicator
-	\item[Step 3: Enviromental selection:] iterate the folowing steps untill $|P_t|< N$: 
+	\item[Step 2: Fitness assignment:] calculate the fitness values of individuals in $P_t$ based on the chosen indicator
+	\item[Step 3: Environmental selection:] iterate the following steps until $|P_t|< N$: 
        \begin{enumerate}
         \item find $x \in P_t$ that has minimal fitness and remove it from $P_t$
         \item recalculate the fitness of the remaining population, 
        \end{enumerate}
-	\item[Step 3: Termination:] if $t \geq T$ or another stopping criterion is satisfied, then stop and return the result as the nondominated individuals from $P_{t+1}$
+	\item[Step 3: Termination:] if $t \geq T$ or another stopping criterion is satisfied, then stop and return the result as the non-dominated individuals from $P_{t+1}$
 	\item[Step 5: Mating selection:] generate the temporary mating pool $M$a with binary tournament selection on $P$
 	\item[Step 6: Variation:] apply crossover and mutation operators to the mating pool and set $P_{t+1}$ to the resulting population. Increment generation counter and go to Step 2.
 \end{description}
 
-Paradiseo implementation of IBEA uses adaptive scaling of the amplification function parameter, therefore calibration of the $k$ is not as important. On the other hand, chosing appropriate indicator is crucial.
+Paradiseo implementation of IBEA uses adaptive scaling of the amplification function parameter, therefore calibration of the $k$ is not as important. On the other hand, choosing appropriate indicator is crucial.
 
 
 \section{Choosing the algorithm}
 Design of both of these algorithms give some guarantees on convergence to Pareto front. Both of them are incremental improvements on their predecessor. 
 
-Right now, NSGAII is considered to be the standard benchmark for MOEA algorithms,both Spea2,Spea2+, and IBEA are being compared against it in their origintating papers . It is the oldest of the three and therefore the most widely used one. Because there are no algorithm specific variables, it has the easiest calibration.
+Right now, NSGAII is considered to be the standard benchmark for MOEA algorithms,both Spea2,Spea2+, and IBEA are being compared against it in their originating papers . It is the oldest of the three and therefore the most widely used one. Because there are no algorithm specific variables, it has the easiest calibration.
        
-       While Spea2 is newer, it doesn't mean it is better in every instance. It has to be noted, that even comparison between these two algorithms with regards to optimizing IDS for WSN came out inconclusive.\cite{stehl2013opt} On the other hand, several papers claim they achieved better result with Spea2 than NSGAII. Similiary to NSGAII it doesn't have any algorithm specific configuration.  
+       While Spea2 is newer, it doesn't mean it is better in every instance. It has to be noted, that even comparison between these two algorithms with regards to optimizing IDS for WSN came out inconclusive.\cite{stehl2013opt} On the other hand, several papers claim they achieved better result with Spea2 than NSGAII. Similarly to NSGAII it doesn't have any algorithm specific configuration.  
 
-Of the more interesting concepts that IBEA uses is the hyper-volume distance indicator, which might provide an interesting alternative to heuristics used inmore popular NSGA and SPEA. Unfortunately experimental results in (citacion) show, that $I_{HD}$ based IBEA is very sensitive to miscalibration of reference point $Z$. If provided with good reference point, it consistently outperformed the other tho algorithms, but optimal value of $Z$ varied greatly based on the problem set. We will tallk more about hyper-volume as a metric of pareto set convergence in chapter~\ref{chap:calib}.
+Of the more interesting concepts that IBEA uses is the hyper-volume distance indicator, which might provide an interesting alternative to heuristics used in more popular NSGA and SPEA. Unfortunately experimental results show\cite{zitzler2004indicator}, that $I_{HD}$ based IBEA is very sensitive to miscalibration of reference point $Z$. If provided with good reference point, it consistently outperformed the other tho algorithms, but optimal value of $Z$ varied greatly based on the problem set. We will discuss the hyper-volume as a metric of Pareto set convergence in chapter~\ref{chap:calib}.
 
 
 \chapter{Our Framework}
 \label{chap:framework}
 Using multi-criteria evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks\cite{stehl2013opt}. Therfore we have decided to create a micro-framework, that would simplify the setup of evolutionary optimization for particular problem.
-Our combines the paradiseo framework and system for distributed computation boinc with python as a glue language. Emphasis is on ease of configuration, ability to evaluate population in parallel and having good facilities for result analysis.
+Our combines the Paradiseo framework and system for distributed computation boinc with python as a glue language. Emphasis is on ease of configuration, ability to evaluate population in parallel and having good facilities for result analysis.
 
 \section{Paradiseo MOEO}
-ParadisEO is a highly configurable framework for metaheuristics written in C++.\cite{liefooghe2007paradiseo} 
+ParadisEO is a highly configurable framework for metaheuristics written in C++.\cite{liefooghe2007Paradiseo} 
 
 Out of the seven algorithms provided in Paradiseo, we include three of them: NSGAII, SPEA2 and IBEA. We do not include the predecessors, NSGA and SPEA, because in general, they have worse performance. SEEA, or simple elitist evolutionary algorithm is best suited for problems with inexpensive evaluation functions, where the most time consuming process is the selection, but evaluating WSN configuration is seldom cheap. Should for any reason be an algorithm not included in our micro-framework be better suited than the ones that are, it is easy to add one. Main modifications required are to enable parallel evaluation for the algorithm.
 
@@ -476,15 +476,15 @@ defaultGenContinuator(_maxGen), continuator(defaultGenContinuator)
 If we use constructor that ends evaluation after certain number of generation, it first initializes defaultGenContinuator with number of generations, and then passes it as a continuator to use. 
 
 \subsection{Population object}
-Population in Paradiseo is in its core an ordered vector of individuals. Because our individuals are represented by vectors of real numbers, we will describe the moeoRealVector implementation. Each individual has its value, and contains variables for fitness and diversity metrics. It should be noted, that moeoRealVector doesn't contain any bounds on specific parameters of individals configuration. In paradiseo, we define boundaries externaly, with specification in initialization function and crossover and mutation functions. 
+Population in Paradiseo is in its core an ordered vector of individuals. Because our individuals are represented by vectors of real numbers, we will describe the moeoRealVector implementation. Each individual has its value, and contains variables for fitness and diversity metrics. It should be noted, that moeoRealVector doesn't contain any bounds on specific parameters of individals configuration. In Paradiseo, we define boundaries externaly, with specification in initialization function and crossover and mutation functions. 
 
-\subsection{Fitness and diversity assigment}
+\subsection{Fitness and diversity assignment}
 
-Class moeoDominanceDepthFitnessAssignment is used to sort the population into nondominated ranks, by updating the fitness variable of each individual. Class moeoFrontByFrontCrowdingDiversityAssignment is similarily used to set the diversity variable. The replace operator uses these to evaluate the children of the old population and creating the new generation.
+Class moeoDominanceDepthFitnessAssignment is used to sort the population into non-dominated ranks, by updating the fitness variable of each individual. Class moeoFrontByFrontCrowdingDiversityAssignment is similarily used to set the diversity variable. The replace operator uses these to evaluate the children of the old population and creating the new generation.
 
 \subsection{Creation of new generation}
 
-Breed operator is a standard eoBreed class that gets supplied with transform-object that agregates mutation and cross-over functions. Similiarily, the popEval function just evaluates all the new individuals in populations and assignes them objective values. The specifics of the algorithm are hiden in the replace operator of moeoElitistReplacement class:
+Breed operator is a standard eoBreed class that gets supplied with transform-object that aggregates mutation and cross-over functions. Similiarily, the popEval function just evaluates all the new individuals in populations and assignes them objective values. The specifics of the algorithm are hiden in the replace operator of moeoElitistReplacement class:
 \begin{enumerate}
 \item recalculate fitness and diversity
 \item sort the population with standard moeoFitnessThenDiversityComparator
@@ -494,7 +494,7 @@ Breed operator is a standard eoBreed class that gets supplied with transform-obj
 As you can see, this implementation slightly differs from the sketch of algorithm provided in chapter~\ref{chap:evolution}, namely that the NSGAII in paper never exceeded the population size.
 
 \subsection{Stopping criteria}
-Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multicriteria optimization problems we usualy don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
+Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multicriteria optimization problems we usually don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
 
 We chose python for these reasons:
 \begin{enumerate}
@@ -508,7 +508,7 @@ That allows us to include analysis of every optimization run into the executable
 We strive to make the integration with ParadisEO simple and extensible. 
 \end{enumerate}
 
-Our microframework consists of a single executable and a configuration file in python. Configuration itself consists of definig selected entry points, in particular the number and bounds of input parameters, the number of objectves to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for sheduling evaluations in parallel on boinc. We provide reporting function entry-point as well, to automatically colect and analyze results of the algorithm run.
+Our micro-framework consists of a single executable and a configuration file in python. Configuration itself consists of definig selected entry points, in particular the number and bounds of input parameters, the number of objectves to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for sheduling evaluations in parallel on boinc. We provide reporting function entry-point as well, to automatically colect and analyze results of the algorithm run.
 
 \section{Entry points}
 
@@ -525,13 +525,13 @@ Then there is the problem of visualizing and evaluating more than 3-dimensional 
 
 \subsection{Evaluation function}
 
-To simplify configuration, inputs and outputs of evaluation function are allways an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successfull with using just a simple rounding techniques. We wanted to avoid usage of binary strings as input vectors.
+To simplify configuration, inputs and outputs of evaluation function are always an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successfull with using just a simple rounding techniques. We wanted to avoid usage of binary strings as input vectors.
 
 Many evolutionary algorithms support them and if we were using them we wouldn't need to concern ourselves with implementation details of mutation and crossover functions. On the other hand, with generalized mutation functions on binary strings, there are no guarantees that mutated individual will even be valid. CITATION In our opinion, vectors of reals are esier to reason about, and their convergence may provide valuable insight to structure of the problem.
 
 \subsection{Boinc Assisted Evolution}
 
-Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol, or by using SMP on multi-core machine\cite{liefooghe2007paradiseo}. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastracture and is usually hard to retro-fit on already written program. 
+Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol, or by using SMP on multi-core machine\cite{liefooghe2007Paradiseo}. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastracture and is usually hard to retro-fit on already written program. 
 
 Boinc on the other hand  can simply utilize machines already preasent to form a simple computational grid. With its simple archhitecture consisting of Management server and several worker nodes it can be deployed in most settings. Its simple architecture prohibits cooperation between worker nodes, but that doesn't concern us while evaluating individuals.
 
@@ -601,7 +601,7 @@ Integrating python with C++ by passing strings is not particulary elegant. We ha
 
 We have chosen the first Schaffer's bi-objective problem SCH1, to provide an example of minimal python file.
 
-The goal of the SCH1 problem is to minimize the folowing two objectives objectives of a function with single parameter $x$:
+The goal of the SCH1 problem is to minimize the following two objectives objectives of a function with single parameter $x$:
 
 $$f(x) = [x^2,(x-2)^2]$$
 
@@ -632,10 +632,10 @@ def report(inp,rep):
 We can think of calibration on an evolutionary algorithm as a meta-optimization problem with two objectives, 
 
 \begin{enumerate}
-\item maximizing the fittness of result
+\item maximizing the fitness of result
 \item minimizing the number of evaluations
 \end{enumerate}
-With single-objective algorithms, optimizing for these two objectives is easy, because both of them are usualy represented by numbers.
+With single-objective algorithms, optimizing for these two objectives is easy, because both of them are usually represented by numbers.
 With multi-objective problems, resuls are Pareto sets, which are often not directly comparable.
 
 Quality of a multiobjective result can be judged based on several criteria:
@@ -647,7 +647,7 @@ Quality of a multiobjective result can be judged based on several criteria:
 
 
 \section{Exhaustive search}
-Because the main reason we use multi-objective algorithms is to avoid the need to do the expensive computation of true pareto front,
+Because the main reason we use multi-objective algorithms is to avoid the need to do the expensive computation of true Pareto front,
 we could calibrate it on a easier variant of the problem. Underlying assumption is, that the particular variant of the problem will have similar solution space. We will show such an exampe in chapter ~\ref{chap:exp}.
 
 Computing an exhaustive search for a subset of our problem can help in several ways:
@@ -662,16 +662,16 @@ This is probably the most expensive, but on the other hand the most precise way 
 
 \section{Iteratively}
 
-For iterative improvements we have used different convergence critera. To measure convergence of Pareto aproximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particulary suited for this purpouse. Of course, if we have $\mathbb{PF}$ of our problem aviable, we can use these indicators to compare aproximations directly to $\mathbb{PF}$.
+For iterative improvements we have used different convergence critera. To measure convergence of Pareto approximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particulary suited for this purpouse. Of course, if we have $\mathbb{PF}$ of our problem aviable, we can use these indicators to compare approximations directly to $\mathbb{PF}$.
 
 \section{Measuring convergence}
 
-\subsection{Hypervolume indicator}
-One of the more popular is maximizing the hypervolume of the objective space dominated by the resulting approximation. Hypervolume indicator is based on idea of measuring the volume that a given individual dominates based on some reference point in the solution-space. This works with assumption that the solution-space is homogenous, compact, and that we can specify a reasonable reference point. A good reference point is a solution that is dominated by all the other individuals. \cite{auger2009theory}. We usualy don't know how will this individual look like, by guessing this reference point we are expresing certain biases (or expectations) on the shape of the solution space as well.
+\subsection{Hyper-volume indicator}
+One of the more popular is maximizing the hyper-volume of the objective space dominated by the resulting approximation. Hyper-volume indicator is based on idea of measuring the volume that a given individual dominates based on some reference point in the solution-space. This works with assumption that the solution-space is homogenous, compact, and that we can specify a reasonable reference point. A good reference point is a solution that is dominated by all the other individuals. \cite{auger2009theory}. We usually don't know how will this individual look like, by guessing this reference point we are expresing certain biases (or expectations) on the shape of the solution space as well.
 
-Computation of a hypervolume difference between two individuals as used in IBEA algorithm can be implemented as follows:
-\begin{lstlisting}[language=Python,label=hv_example,caption=Hypervolume implementation]
-def hypervolume(o1, o2,R,bounds):
+Computation of a hyper-volume difference between two individuals as used in IBEA algorithm can be implemented as follows:
+\begin{lstlisting}[language=Python,label=hv_example,caption=Hyper-volume implementation]
+def hyper-volume(o1, o2,R,bounds):
        v1 = o1.pop()
        v2 = o2.pop()
        max = R.pop()
@@ -684,16 +684,16 @@ def hypervolume(o1, o2,R,bounds):
                return = 0;
        if v1 < v2:
           max_o2 = list(o2).pop().put(R.peek())
-          return ( hypervolume(o1, o2,R,range) * (v2 - v1) / r ) 
-                 + ( hypervolume(o1, max_o2, R,range) * (max - v2) / r );
+          return ( hyper-volume(o1, o2,R,range) * (v2 - v1) / r ) 
+                 + ( hyper-volume(o1, max_o2, R,range) * (max - v2) / r );
        else:
-          result = hypervolume(_o1, _o2,R,range) * (max - v2) / r;
+          result = hyper-volume(_o1, _o2,R,range) * (max - v2) / r;
 \end{lstlisting}
 
 Here, the $o1$ and $o2$ are two lists of reals, representing the compared individuals, while $R$ provides the reference point and $bounds$ keeps the list of ranges for each objective, to help normalize the resulting value.
 
 \subsection{Distance indicator}
-Distance indicator $I_{\epsilon^{+}}: Z \times Z \to  \mathbb{R}$ is one of possible choices for indicator that IBEA algorithm uses for comparing two pareto-approximations. $I_{\epsilon^{+}}$ gives the minimum distance, by which Pareto set approximaiton needs to or can be translated in each dimension in objective space, such that the other approximation is weakly dominated. If we know, that all objectives will have minimal value of 0, implementation of this metric may look like this:
+Distance indicator $I_{\epsilon^{+}}: Z \times Z \to  \mathbb{R}$ is one of possible choices for indicator that IBEA algorithm uses for comparing two Pareto-approximations. $I_{\epsilon^{+}}$ gives the minimum distance, by which Pareto set approximaiton needs to or can be translated in each dimension in objective space, such that the other approximation is weakly dominated. If we know, that all objectives will have minimal value of 0, implementation of this metric may look like this:
 
 \begin{lstlisting}[language=Python,label=eps_example,caption=Distance indicator implementation]
 def distance(o1, o2,maximum):
@@ -702,10 +702,10 @@ def distance(o1, o2,maximum):
 \end{lstlisting}
 
 \subsection{Average distance indicator}
-Given pareto approximation $A$ and $B$ it calculates the average of distances from all $a \in A$ to the nearest solution $b \in B$. This indicator is not dominance preserving, because euclidean distances will allways be positive. There have been achieved good results in measuring convergence when using this indicator to compare pareto approximation to pareto front\cite{stehl2013opt}.
+Given Pareto approximation $A$ and $B$ it calculates the average of distances from all $a \in A$ to the nearest solution $b \in B$. This indicator is not dominance preserving, because euclidean distances will always be positive. There have been achieved good results in measuring convergence when using this indicator to compare Pareto approximation to Pareto front\cite{stehl2013opt}.
 
 \section{Measuring diversity}
-Diversity metrics help us avoid pareto approximations, that have too similiar solutions. We used metric based on the the spacing metric taken from Spea2, which we have discussed in greater detail in chapter~\ref{chap:evolution}. For the sake of simplicity, we simply average the distance agregate betwee the closest neighbours. We use the term distance-agregate, because Spea2 calculates its metric as a sum of normalized differences between every objective.
+Diversity metrics help us avoid Pareto approximations, that have too similar solutions. We used metric based on the the spacing metric taken from Spea2, which we have discussed in greater detail in chapter~\ref{chap:evolution}. For the sake of simplicity, we simply average the distance agregate betwee the closest neighbors. We use the term distance-agregate, because Spea2 calculates its metric as a sum of normalized differences between every objective.
 
 \begin{lstlisting}[language=Python,label=space_example,caption=Spacing indicator implementation]
 def distance_agregate(indi,nb,range):
@@ -714,13 +714,13 @@ def distance_agregate(indi,nb,range):
 def spacing(approximation,range)
    dist_indi = []
    for indi in approximation:
-	neighbour_dist = [distance_agregate(indi,nb,range) 
+	neighbor_dist = [distance_agregate(indi,nb,range) 
 		for nb in approximation]
-	dist_indi.append(min(neighbour_dist))
+	dist_indi.append(min(neighbor_dist))
    return sum(dist_indi)/len(dist_indi)
 \end{lstlisting}
 
-Similarily we can ustilize the individuals crowding distance from NSGAII. We calculate the value of each individual with regards to the rest of pareto approximation and then create the compound metric by averaging the distances.
+Similarly we can ustilize the individuals crowding distance from NSGAII. We calculate the value of each individual with regards to the rest of Pareto approximation and then create the compound metric by averaging the distances.
 
 \begin{lstlisting}[language=Python,label=space_example,caption=Spacing indicator implementation]
 def (approximation,range)
@@ -742,7 +742,7 @@ Because at each new generation, at most $N$ new individuals are generated, there
 \section{Mutation and Crossover}
 Probability of applying mutation, or crossover directly influence how many new individual evaluations are there to be computed. By calibrating this parameter we aim to find the optimal balace between diversification and computational cost of evaluating one generation. More importantly, the implementation of mutation and crossover specify how are these new individuals generated. 
 
-With standard mutation operator, the value of $\delta$ parameter can have significant impact on the speed of convergence, because it specifies the bounds of neighbourhood where the individual can mutate. Experimenting with mutation operator implementation can be useful if we hve some aditional domain knowledge that we can use to choose the mutated individual beyond simple uniform randomization on its parameters.
+With standard mutation operator, the value of $\delta$ parameter can have significant impact on the speed of convergence, because it specifies the bounds of neighborhood where the individual can mutate. Experimenting with mutation operator implementation can be useful if we hve some additional domain knowledge that we can use to choose the mutated individual beyond simple uniform randomization on its parameters.
 
 
 \chapter{Experiments}
@@ -750,16 +750,16 @@ With standard mutation operator, the value of $\delta$ parameter can have signif
 To test our framework we have decided to optimize a simple intrusion detection system on a model wireless sensor network based on our laboratory WSN testing setup.
 
 \section{Wireless sensor network}
-Implementation of WSN was reused from \cite{stehl2013opt}, with just a slight modifications to decouple it from previous optimisation framework. It uses MiXiM simulator that provides complex comunication models, including capabilities for precise simulation of interference on physical layer and various energy consumption models. Simulation this precise is often costly enough to varant the usage of evolutionary heuristics.
+Implementation of WSN was reused from \cite{stehl2013opt}, with just a slight modifications to decouple it from previous optimisation framework. It uses MiXiM simulator that provides complex communication models, including capabilities for precise simulation of interference on physical layer and various energy consumption models. Simulation this precise is often costly enough to varant the usage of evolutionary heuristics.
 
 Test application running on each of the nodes periodicaly sends a packet containing arbitrary information through the network to a base station. 
-We have marked some of the nodes as droppers, so that instead of forwarding all of the packets through the network, they drop certain percentage. In our case, dropping ratio was set to $0.5$. Network has a static routing tree, as described in Fig.\ref{netw-route}. The routing was set up so that individual nodes can eavesdrop their neighbours and that there will be some benign nodes that drop packets unintentionally.
+We have marked some of the nodes as droppers, so that instead of forwarding all of the packets through the network, they drop certain percentage. In our case, dropping ratio was set to $0.5$. Network has a static routing tree, as described in Fig.\ref{netw-route}. The routing was set up so that individual nodes can eavesdrop their neighbors and that there will be some benign nodes that drop packets unintentionally.
 
 \section{Intrusion Detetection System}
 Our nodes implement a simple IDS capable of detecting nodes that seem to be intentionaly dropping packets.
 If we look at the wireless network stack of our node, IDS is part of the medium access controll sublayer.
-There it can eavesdrop on neighbouring nodes and check whether they behave accordingly.
-For each neighbour it updates the number of packets recieved and the number of packets forwarded.
+There it can eavesdrop on neighboring nodes and check whether they behave accordingly.
+For each neighbor it updates the number of packets recieved and the number of packets forwarded.
 
 We wanted to use IDS that is simple, but highly configurable. 
 We have these four parameters to optimize:
@@ -770,21 +770,21 @@ We have these four parameters to optimize:
 \item treshold for ratio between forwarded and recieved packets for a node to be considered to be malicious $p_t$
 \end{enumerate}
 
-At the end of simulation, based on a preset treshold and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious neighbours of a node $i$ is:
+At the end of simulation, based on a preset treshold and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious neighbors of a node $i$ is:
 
 $$ M_i = \{n \in N_i|{r_i}_n \geq p_m \land \frac{{f_i}_n}{{r_i}_n} \geq p_t \} $$
 And the set of benign nodes is:
 
 $$B_i = \{n \in N|{r_i}_n < p_m \lor \frac{{f_i}_n}{{r_i}_n} < p_t \} $$
-You can see, that both sets are disjoint, and their union is the set of neighbours $N_i$. 
+You can see, that both sets are disjoint, and their union is the set of neighbors $N_i$. 
 
 We want to minimize these three objective functions:
 \begin{description}
-\item[False negative ratio] that calculates for each malicous node the percentage of its neighbours that claimed it is benign and returns the average.
+\item[False negative ratio] that calculates for each malicous node the percentage of its neighbors that claimed it is benign and returns the average.
 $$fn(x) = \frac{1}{|M|}* \sum\limits_{m_k\in M} \frac{|\{i|m_k \in B_i\}|}{|\{i|m_k \in N_i\}|} $$
-\item[False positive ratio] that calculates for each benign node the percentage of its neighbours that claimed it is malicous and returns the average.
+\item[False positive ratio] that calculates for each benign node the percentage of its neighbors that claimed it is malicous and returns the average.
 $$fn(x) = \frac{1}{|B|}* \sum\limits_{b_k\in B} \frac{|\{i|b_k \in M_i\}|}{|\{i|m_i \in N_i\}|} $$
-\item[Memory footprint] that agregates the impact of number of monitored nodes and the size of buffer on the memory consumption.
+\item[Memory footprint] that aggregates the impact of number of monitored nodes and the size of buffer on the memory consumption.
 $$m(x) = 8*p_n + 16*p_b $$
 \end{description}
 
@@ -817,12 +817,12 @@ First we have calculated two sample exhaustive searches,with period $\Delta_t$ i
 We want to compare the performance of all four algorithms, NSGAII, Spea2, MOGA and IBEA. All the algorithms will share mutation and cross-over functions:
 
 \subsection{Mutation function}
-We have used the default mutation function. It has two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighbourhood around the old value, that the new value will come from.
+We have used the default mutation function. It has two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighborhood around the old value, that the new value will come from.
 
-\subsection{Crosover function}
+\subsection{Crossover function}
 We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped)
 
-For algorithms NSGAii, Spea2 and MOGA, calibration was done on fixed number of generations and population size, with optimizing for values $popSize$, $pMut$, $\delta$, and $pCross$:
+For algorithms NSGAII, Spea2 and MOGA, calibration was done on fixed number of generations and population size, with optimizing for values $popSize$, $pMut$, $\delta$, and $pCross$:
 
 \begin{description}
   \item[Population size] to be set to following values: $popSize \in \{50,75,100\}$
@@ -833,12 +833,12 @@ For algorithms NSGAii, Spea2 and MOGA, calibration was done on fixed number of g
 
 For IBEA we have chosen the $I_{HD}$ indicator, that we use as a comparison metric for other algorithms as well. Because IBEA with $I_{HD}$ requires calibration of reference point $Z$, we haven't used crossover operator with IBEA at all ($pCross=0$). We know that a good reference point is dominated by all solutions, therefore we will use $Z = (f_p,f_n,m), f_p,f_n \in \{0.8,1.1,1.5\}, m \in \{1500,2000,2200\}$, to see the different behavior, when the reverence can dominate some of the individuals, when it is tightly dominated, and where it is worse by a large margin.
 
-Because we have computed the the exhaustive search for both of the scenarios, we know the pareto front $\cal{PF}$ of each their solutions. We have used these metrics, that we have already discussed in chapter~\ref{chap:evolution}:
+Because we have computed the the exhaustive search for both of the scenarios, we know the Pareto front $\cal{PF}$ of each their solutions. We have used these metrics, that we have already discussed in chapter~\ref{chap:evolution}:
 
 \begin{description}
-  \item[$\epsilon_+$ indicator:] computes the smallest distance pareto-approximation has to be translated to dominate the pareto front.
-  \item[HD indicator] computes the difference in hypervolumes between pareto approximation and pareto front.
-  \item[Average distance from $\mathbb{PF}$] computes the average euclidean distances from between every indiviual of pareto aproximation and its closest neighbour from the pareto front
+  \item[$\epsilon_+$ indicator:] computes the smallest distance Pareto-approximation has to be translated to dominate the Pareto front.
+  \item[HD indicator] computes the difference in hypervolumes between Pareto approximation and Pareto front.
+  \item[Average distance from $\mathbb{PF}$] computes the average euclidean distances from between every indiviual of Pareto approximation and its closest neighbor from the Pareto front
   \item[Diversification] computes the diversification metric of NSGAII algorithm
   \item[Spacing] computes the spacing metric of Spea2 for the closest neigbour
   \item[Number of evaluations] will be used to evaluate cost of runing the optimization

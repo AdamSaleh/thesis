@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  14 MAY 2013 09:01
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  14 MAY 2013 09:45
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -812,6 +812,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  144.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [4]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -888,8 +893,8 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
  162.
 
 
-Overfull \hbox (4.34569pt too wide) in paragraph at lines 173--174
-[]\T1/lmr/m/n/12 select the best in-di-vid-u-als of a pop-
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
  []
 
 [5]
@@ -931,8 +936,9 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
  183.
 
 
-Overfull \vbox (8.4166pt too high) has occurred while \output is active []
-
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
 
 [6]
 
@@ -971,6 +977,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  224.
+
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
 
 [7]
 
@@ -1047,6 +1058,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  248.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [8]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -1085,6 +1101,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  260.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [9]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -1122,6 +1143,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  280.
+
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
 
 [10]
 
@@ -1198,6 +1224,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  310.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [11]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -1237,6 +1268,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
  319.
 
 
+Overfull \hbox (6.38869pt too wide) in paragraph at lines 327--328
+[]\T1/lmr/m/n/12 is cal-cu-lated for each in-di-vid-ual based
+ []
+
+
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\<def>-command' on input line 334.
 
@@ -1272,6 +1308,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  334.
+
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
 
 [12]
 
@@ -1385,6 +1426,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  358.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [13]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -1472,10 +1518,14 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  373.
 
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
+
 [14]
-Overfull \hbox (16.61005pt too wide) in paragraph at lines 405--407
-[]\T1/lmr/m/n/12 iterate the folow-ing steps un-till $\OMS/lmsy/m/n/12 j\OML/lm
-m/m/it/12 P[]\OMS/lmsy/m/n/12 j \OML/lmm/m/it/12 <
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
  []
 
 [15]
@@ -1515,6 +1565,11 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  418.
+
+
+Overfull \hbox (1.35907pt too wide) has occurred while \output is active
+ \T1/lmr/m/sc/12 2. Evolutionary Optimization of Wireless Sensor Networks
+ []
 
 [16]
 Chapter 3.
@@ -1698,12 +1753,6 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  481.
-
-
-Overfull \hbox (2.88904pt too wide) in paragraph at lines 483--484
-\T1/lmr/m/n/12 each in-di-vid-ual. Class moe-oFront-ByFrontCrowd-ing-Di-ver-sit
-yAs-sign-ment
- []
 
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
@@ -2472,8 +2521,8 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
  695.
 
 
-Overfull \hbox (0.79788pt too wide) in paragraph at lines 696--697
-\T1/lmr/m/n/12 tor that IBEA al-go-rithm uses for com-par-ing two pareto-approx
+Overfull \hbox (1.938pt too wide) in paragraph at lines 696--697
+\T1/lmr/m/n/12 tor that IBEA al-go-rithm uses for com-par-ing two Pareto-approx
 imations.
  []
 
@@ -2891,8 +2940,8 @@ m/m/it/12 ; \OT1/lmr/m/n/12 0\OML/lmm/m/it/12 :\OT1/lmr/m/n/12 1\OML/lmm/m/it/1
  []
 
 
-Overfull \hbox (5.61224pt too wide) in paragraph at lines 840--841
-[]\T1/lmr/m/n/12 computes the dif-fer-ence in hy-per-vol-umes be-tween pareto
+Overfull \hbox (6.75237pt too wide) in paragraph at lines 840--841
+[]\T1/lmr/m/n/12 computes the dif-fer-ence in hy-per-vol-umes be-tween Pareto
  []
 
 
@@ -2956,13 +3005,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 11600 strings out of 256216
- 172030 string characters out of 1917072
- 284677 words of memory out of 1500000
- 14296 multiletter control sequences out of 10000+200000
+ 11602 strings out of 256216
+ 172063 string characters out of 1917072
+ 284720 words of memory out of 1500000
+ 14297 multiletter control sequences out of 10000+200000
  80509 words of font info for 68 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 48i,13n,99p,736b,2063s stack positions out of 5000i,500n,6000p,200000b,15000s
+ 48i,13n,99p,737b,2063s stack positions out of 5000i,500n,6000p,200000b,15000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -2983,9 +3032,9 @@ re/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmsy8.pfb></usr/share/texmf/fonts/type1/bluesky/ams/msbm10.pfb></usr/share/t
 exmf/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf/fonts/type1/urw/couri
 er/ucrro8a.pfb>
-Output written on thesis.pdf (45 pages, 515097 bytes).
+Output written on thesis.pdf (45 pages, 516745 bytes).
 PDF statistics:
- 891 PDF objects out of 1000 (max. 8388607)
- 264 named destinations out of 1000 (max. 131072)
+ 895 PDF objects out of 1000 (max. 8388607)
+ 265 named destinations out of 1000 (max. 131072)
  505 words of extra memory for PDF output out of 10000 (max. 10000000)
 
