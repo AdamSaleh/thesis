@@ -104,7 +104,7 @@ Achieving high accuracy and low memory footprint are in many cases inversely pro
 
 Evolutionary algorithms help immensely with reducing demands for computational resources while optimizing problems. Because evolutionary optimization works by iterating evaluations and modification of a set of candidates, algorithms have been successfully modified to solve multi-optimization problems.
 
-We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their applicability on concepts of multi-criteria optimization in terms of Pareto optimality, as well as the main principles of three state of the art multicriteria evolutionary algorithms. 
+We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their applicability on concepts of multi-criteria optimization in terms of Pareto optimality, as well as the main principles of three state of the art multi-criteria evolutionary algorithms. 
 
 In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on Paradiseo evolutionary framework. Because our framework is partially written in Paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walk through of all the configuration entry points of our micro-framework, complete with examples in Python.
 
@@ -129,10 +129,10 @@ This definitions allows the evaluation function $f$ to output incomparable objec
 
 Because of the nature of wireless communication, where interference in shared medium has to be taken into account,it is hard to predict how will a change in configuration impact the result. Therefore thorough and expensive simulation is required for every configuration that we would want to evaluate. This renders the usage of simple exhaustive search for optimization purposes impractical. Optimization problems that have problem space that is expensive to search, are good fit for heuristic approaches\cite{talbi2009metaheuristics}. 
 
-\section{Basic principles of metaheuristics}
+\section{Basic principles of meta-heuristics}
 
 Most of the heuristics used are variants on search through problem space, with different approaches to avoid undesirable local optima.
-There are two basic principles that are used when designing a metaheuristic\cite{talbi2009metaheuristics}:
+There are two basic principles that are used when designing a meta-heuristic\cite{talbi2009metaheuristics}:
 
 \subsection{Diversification}
 An algorithm should explore as much of the search space as possible. This principle is called diversification.
@@ -144,7 +144,7 @@ Problem spaces with many local optima are less likely to cause problems for algo
 \subsection{Intensification} 
 An algorithm should exploit information from the solutions it previously found. This principle is called intensification, because it covers the notion of trying to intensify a good solution to find a better one.
 
-Local search can be considered an extreme application of intensification, where next instance to evaluate is always selected deterministicaly, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
+Local search can be considered an extreme application of intensification, where next instance to evaluate is always selected deterministically, based on the previous solution. Local search and its variants belong to a family of single-solution based heuristics, where in each iteration we are basing our search of the problem-space of single solution.
 
 Algorithms with strong intensification component are usually more efficient with regards to number of unique evaluations.
 
@@ -180,7 +180,7 @@ The template is then realized into an actual algorithm by defining all the steps
 
 Crossover and mutation functions on the other hand are to be calibrated for each optimization problem on case by case basis.
 
-\section{Multiobjective evolution algorithms}
+\section{Multi-objective evolution algorithms}
 Problem that we are trying to optimize is unfortunately ill-suited for single objective evolution. Objectives such as memory consumption and IDS accuracy are orthogonal, therefore it is hard to determine single criteria that would satisfactory cover both of them. A usual solution is to provide some sort of weighted average. In this case,because output of our algorithm would be only a single solution, we would need to know emphasis on different criteria before we run our optimization. 
 
 Better approach is to recognize multi-objective nature of our problem, and use algorithms that return a set of candidates covering different trade-offs between the objectives. 
@@ -197,7 +197,7 @@ $$ \forall i \in \langle 1,n\rangle: u_i \leq v_i \land \exists i \in \langle 1,
 A solution $x \in S$ is Pareto optimal if for every $x' \in S$, $F(x')$ does not dominate $F(x)$, that is $$ \forall x' \in S, F(x) \not \prec F(x') $$
 \end{defn}
 
-Subset of solutions where no solution from the superset dominate the one in the set is called Pareto optimal set.
+Subset of solutions where no solution from the super-set dominate the one in the set is called Pareto optimal set.
 
 \begin{defn}{Pareto optimal set}
   For given MOP(F,S), the Pareto optimal set is defined as ${\cal{
@@ -217,12 +217,12 @@ We will call a subset that contains only solutions that don't dominate each othe
   For given MOP(F,S), we call set $A \subset S$ a  Pareto approximation if $\forall x \in A \not \exists x' \in A, F(x') \prec F(x)$
 \end{defn}
 
-Multiobjective heuristics then try to obtain best approximation of Pareto front. To gauge how good an approximation of Pareto front is, we usually use two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found Pareto set.
+Multi-objective heuristics then try to obtain best approximation of Pareto front. To gouge how good an approximation of Pareto front is, we usually use two criteria, first to measure convergence to Pareto optimal front and second to measure diversity in found Pareto set.
 
 Calibration of multi objective evolution algorithms is harder than their single criteria counter-parts, mainly because it is hard to reason about the convergence of output without having the real Pareto optimal front in the first place. Pareto optimal sets usually aren't directly comparable, but there are several metrics that can be used to compare them, some of them used in following algorithms. One of the more popular metric is the hyper-volume indicator. We will discuss using these metrics for calibration in greater detail in chapter~\ref{chap:calib}.
 
 \section{NSGAII}
-Second generation of the non-dominated sorting genetic algorithm\cite{deb2002fast} is currently the most popular multiobjective heuristic. It improved on its previous iteration in several ways, most notable is the exclusion of sharing parameter $\delta_{share}$, that previously needed to be specified to maintain good diversity in final population.
+Second generation of the non-dominated sorting genetic algorithm\cite{deb2002fast} is currently the most popular multi-objective heuristic. It improved on its previous iteration in several ways, most notable is the exclusion of sharing parameter $\delta_{share}$, that previously needed to be specified to maintain good diversity in final population.
 
 \begin{description}
 	\item[Step 0: Initialization:] Generate an initial population $P_0$ 
@@ -418,7 +418,7 @@ Paradiseo implementation of IBEA uses adaptive scaling of the amplification func
 \section{Choosing the algorithm}
 All of these algorithms give some guarantees on convergence to Pareto front. Two of them are incremental improvements on their predecessor. 
 
-MOGA is the oldest algorithm of the four, but while it uses deprecated deversity metric, its convergence metric can not be entirely dismissed as inferior to the rest.
+MOGA is the oldest algorithm of the four, but while it uses deprecated diversity metric, its convergence metric can not be entirely dismissed as inferior to the rest.
 
 Right now, NSGAII is considered to be the standard benchmark for MOEA algorithms,both Spea2,Spea2+, and IBEA are being compared against it in their originating papers . It is the oldest of the three and therefore the most widely used one. Because there are no algorithm specific variables, it has the easiest calibration.
        
@@ -438,9 +438,9 @@ While measuring number of evaluation is straight-forward, we can chose from seve
 IBEA algorithm provides us with two indicators, that can be used to compare Pareto approximations. We provided a third metric, that could be looked at as a different variation on $\epsilon_+$ indicator.
 
 \subsection{Hyper-volume indicator}
-One of the more popular indicators in current research is measuring the hyper-volume of the space dominated by the resulting Pareto approximation. Hyper-volume indicator is based on idea of calculating the volume of objective-space that given Pareto aproximation dominates, but is dominated by some reference point $R$. This works with assumption that the results in objective-space are spread homogenously, and that we can specify a reasonable reference point. A good reference point is a solution that is dominated by all the other individuals. \cite{auger2009theory}. Because we usually don't know how will this individual looks like, by guessing this reference point we are expresing certain biases (or expectations) on the shape of the solution space as well.
+One of the more popular indicators in current research is measuring the hyper-volume of the space dominated by the resulting Pareto approximation. Hyper-volume indicator is based on idea of calculating the volume of objective-space that given Pareto approximation dominates, but is dominated by some reference point $R$. This works with assumption that the results in objective-space are spread homogeneously, and that we can specify a reasonable reference point. A good reference point is a solution that is dominated by all the other individuals. \cite{auger2009theory}. Because we usually don't know how will this individual looks like, by guessing this reference point we are expressing certain biases (or expectations) on the shape of the solution space as well.
 
-Hypervolume gained popularity as a research topic in part because of chalenges in its implementation. Early algorithms were based purely on the inclusion-exclusion principle\cite{wu2001metrics}. Several more efficient iplementations were proposed since then, our is based on QHV algorithm\cite{russo2012quick}, that uses divide and conquer to calculate hypervolume more efficiently. Our algorithm is significantly simplified. For each individual it calculates the hypervolume it covers and then substracts parts of the volume that are dominated by rest of the set. Then recursively calculates hypervolume for the resto of the set.
+Hyper-volume gained popularity as a research topic in part because of challenges in its implementation. Early algorithms were based purely on the inclusion-exclusion principle\cite{wu2001metrics}. Several more efficient implementations were proposed since then, our is based on QHV algorithm\cite{russo2012quick}, that uses divide and conquer to calculate hyper-volume more efficiently. Our algorithm is significantly simplified. For each individual it calculates the hyper-volume it covers and then subtracts parts of the volume that are dominated by rest of the set. Then recursively calculates hyper-volume for the rest of the set.
 
 \begin{lstlisting}[language=Python,label=eps_example,caption=Hypervolume indicator implementation]
 def inclHV(p,R):
@@ -459,7 +459,7 @@ def hv(front,R):
   return exclHV(f[0],f[1:],R) + hv(f[1:],R)
 \end{lstlisting}
 
-Sorting in \emph{hv} function ensures, that we process individuals in order. Function \emph{dominatedbit} calculates volume of the space enclosed between $p$ and $R$, that is dominated by the rest of the $front$. First it iterates over \emph{front} and for each individual $i$ calculates the closest intersection between space dominated by $i$ and $p$. Because we asume minimization, this can be achieved by simply selecting the maximum from each objective. Then it filters out dominated intersection and returns the hypervolume.
+Sorting in \emph{hv} function ensures, that we process individuals in order. Function \emph{dominatedbit} calculates volume of the space enclosed between $p$ and $R$, that is dominated by the rest of the $front$. First it iterates over \emph{front} and for each individual $i$ calculates the closest intersection between space dominated by $i$ and $p$. Because we assume minimization, this can be achieved by simply selecting the maximum from each objective. Then it filters out dominated intersection and returns the hyper-volume.
 
 \begin{lstlisting}[language=Python,label=eps_example,caption=Calculation of intersecting hypervolumes]
 def dominatedbit(p0,front,R):
@@ -474,7 +474,7 @@ def dominatedbit(p0,front,R):
 Original algorithm\cite{russo2012quick} uses memoization to further improve the performance. Because we do not use this indicator as a part of evolution algorithm itself, but only to evaluate fitness of final results, we have deemed further optimization unnecessary. 
 
 \subsection{Distance indicator}
-Distance indicator $I_{\epsilon^{+}}: Z \times Z \to  \mathbb{R}$ is another possible choice for indicator that IBEA algorithm uses for comparing two Pareto-approximations. $I_{\epsilon^{+}}$ gives the minimum distance, by which Pareto set approximaiton needs to be translated in some dimension in objective space, such that the other approximation is weakly dominated. If we know, that all objectives will have minimal value of 0, implementation of this metric may look like this:
+Distance indicator $I_{\epsilon^{+}}: Z \times Z \to  \mathbb{R}$ is another possible choice for indicator that IBEA algorithm uses for comparing two Pareto-approximations. $I_{\epsilon^{+}}$ gives the minimum distance, by which Pareto set approximation needs to be translated in some dimension in objective space, such that the other approximation is weakly dominated. If we know, that all objectives will have minimal value of 0, implementation of this metric may look like this:
 
 \begin{lstlisting}[language=Python,label=eps_example,caption=Distance indicator implementation]
 def distance(o1, o2,maximum):
@@ -496,16 +496,16 @@ def distance(o1, o2, range):
 where \emph{ndistance} calculates normalized distance between two solutions, based on the range of each objective.
 
 \section{Measuring diversity}
-Diversity metrics help us avoid Pareto approximations, that have too similar solutions. First metric we used metric based on the the spacing metric taken from Spea2, which we have discussed in greater detail in chapter~\ref{chap:evolution}. Spea2 uses the distance of $k$-th closest neigbour as a part of fitness of its individuals. For the sake of simplicity, we set $k=1$. Instead of euclidean distance between the two neighbours, it calculates its metric as a sum of normalized differences between every objective. 
+Diversity metrics help us avoid Pareto approximations, that have too similar solutions. First metric we used metric based on the the spacing metric taken from Spea2, which we have discussed in greater detail in chapter~\ref{chap:evolution}. Spea2 uses the distance of $k$-th closest neighbor as a part of fitness of its individuals. For the sake of simplicity, we set $k=1$. Instead of euclidean distance between the two neighbors, it calculates its metric as a sum of normalized differences between every objective. 
 
 \begin{lstlisting}[language=Python,label=space_example,caption=Spacing indicator implementation]
-def distance_agregate(indi,nb,range):
+def distance_aggregate(indi,nb,range):
   sum([(i-n)/r for (i,n,r) in zip(indi,nb,range)])
 
 def spacing(approximation,range)
    dist_indi = []
    for indi in approximation:
-	neighbor_dist = [distance_agregate(indi,nb,range) 
+	neighbor_dist = [distance_aggregate(indi,nb,range) 
 		for nb in approximation]
 	dist_indi.append(min(neighbor_dist))
    return sum(dist_indi)/len(dist_indi)
@@ -516,25 +516,25 @@ Similarly we can utilize the crowding distance metric from NSGAII. We calculate 
 \begin{lstlisting}[language=Python,label=space_example,caption=Spacing indicator implementation]
 def (approximation,range)
    split = zip(*approximation)
-   agregate = 0
+   aggregate = 0
    for (objective,r) in zip(split,range):
-      agregate +=sum([(prev-next)/r 
+      aggregate +=sum([(prev-next)/r 
         for (prev,next) in zip(
          [prev for prev in objective[:-2]],
          [nxt for nxt in objective[2:]])])
-   return agregate/len(split)
+   return aggregate/len(split)
 \end{lstlisting}
 
 \section{Parameters}
 
-When not counting algorithm specific parameters, such as sharing parameter $\delta_{share}$ of MOGA, or reference point $R$ in $I_{HD}$-based IBEA, there are four parameters that can be used to calibrate evolutionary algorithms: \emph{population size}, \emph{number of generations}, \emph{probability of mutation} and \emph{probability of cross-over}. In adition, implementations of mutation and cross-over operators usually provide additional parameters to specify the ammount of change mutated (or crossed-over) individual undertakes.
+When not counting algorithm specific parameters, such as sharing parameter $\delta_{share}$ of MOGA, or reference point $R$ in $I_{HD}$-based IBEA, there are four parameters that can be used to calibrate evolutionary algorithms: \emph{population size}, \emph{number of generations}, \emph{probability of mutation} and \emph{probability of cross-over}. In addition, implementations of mutation and cross-over operators usually provide additional parameters to specify the amount of change mutated (or crossed-over) individual undertakes.
 
 \subsection{Population size and Number of generations}
 These two parameters set the boundaries on minimal and maximal number of evaluations. Lets mark the size of population $N$ and number of generations $G$ Because the whole initial population needs to be evaluated, number of evaluations will at least the size of populations.
 Because at each new generation, at most $N$ new individuals are generated, therefore in one optimization run, at most $N \times G$ evaluations.
 
 \subsection{Mutation and Crossover}
-Probability of applying mutation, or crossover directly influence how many new individual evaluations are there to be computed. By calibrating this parameter we aim to find the optimal balace between diversification and computational cost of evaluating one generation. More importantly, the implementation of mutation and crossover specify how are these new individuals generated. 
+Probability of applying mutation, or crossover directly influence how many new individual evaluations are there to be computed. By calibrating this parameter we aim to find the optimal balance between diversification and computational cost of evaluating one generation. More importantly, the implementation of mutation and crossover specify how are these new individuals generated. 
 
 \subsubsection{Uniform mutation} 
 Uniform mutation changes each parameter $p$ with range $R_p$of the individual $I$ to value uniformly chosen from $(I_p - R_p*d,I_p + R_p*d)$. Each of the parameters is mutated with probability $p$.
@@ -572,30 +572,30 @@ def mutate(x):
 With these mutation operators, the value of parameter $d$\footnote{or $sigma$ in the case of normal mutation} can have significant impact on the speed of convergence, because it specifies the bounds of neighborhood where the individual can mutate. In certain situations we might consider experimenting with the implementation of the mutation operator, especially if we have had some additional domain knowledge that we could use to choose the mutated individual beyond normalized randomization on its parameters.
 
 \section{Calibration with a search sample}
-Because the main reason we use multi-objective algorithms is to avoid the need to do the expensive computation of true Pareto front, we could calibrate it on a easier variant of the problem. Underlying assumption is, that the particular variant of the problem will have similar solution space. We will show such an exampe in chapter ~\ref{chap:exp}.
+Because the main reason we use multi-objective algorithms is to avoid the need to do the expensive computation of true Pareto front, we could calibrate it on a easier variant of the problem. Underlying assumption is, that the particular variant of the problem will have similar solution space. We will show such an example in chapter ~\ref{chap:exp}.
 
 Computing an exhaustive search for a subset of our problem can help in several ways:
 \begin{itemize}
-  \item we can check our assumptions about the shape and homogenity of solution space
+  \item we can check our assumptions about the shape and homogeneity of solution space
   \item we can use the Pareto front as a reference point
   \item for any approximation, we can easily compute how many individuals it dominates and how many individuals dominate is
 \end{itemize}
 
-This is probably the most expensive, but on the other hand the most precise way to estimate, how will an evolutionary algorithm behave in a particluar problem domain.
+This is probably the most expensive, but on the other hand the most precise way to estimate, how will an evolutionary algorithm behave in a particular problem domain.
 
 \section{Iterative calibration}
 
-To measure convergence of Pareto approximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particulary suited for this purpouse. Of course, if we have $\mathbb{PF}$ of our problem aviable, we can use these indicators to compare approximations directly to $\mathbb{PF}$.
+To measure convergence of Pareto approximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particularly suited for this purpose. Of course, if we have $\mathbb{PF}$ of our problem available, we can use these indicators to compare approximations directly to $\mathbb{PF}$.
 
 \chapter{Intrusion Detection System on Wireless Sensor Network}
 
-Because we have chosen Wireles Sensor Netwoks, and more specificaly Intrusion detection Systems as the focus of our optimization framework, before we delve into implementation details of the framework itself, we define our model optimization problem.
+Because we have chosen Wireless Sensor Networks, and more specifically Intrusion detection Systems as the focus of our optimization framework, before we delve into implementation details of the framework itself, we define our model optimization problem.
 In chapter chap:framework On this model IDS we base our experimental scenarios in chapter~\ref{chap:exp} and examples of usage of our framework in chapter~\ref{chap:framework}.
 
 \section{Wireless sensor network}
-Implementation of WSN was reused from \cite{Stetsko12}, with just a slight modifications to decouple it from previous optimisation framework. It uses MiXiM simulator based on the OMNeT++ platform. MiXiM provides complex communication models, including capabilities for precise simulation of interference on physical layer and various energy consumption models. Simulation this precise is often costly enough to varant the usage of evolutionary heuristics.
+Implementation of WSN was reused from \cite{Stetsko12}, with just a slight modifications to decouple it from previous optimization framework. It uses MiXiM simulator based on the OMNeT++ platform. MiXiM provides complex communication models, including capabilities for precise simulation of interference on physical layer and various energy consumption models. Simulation this precise is often costly enough to warrant the usage of evolutionary heuristics.
 
-Our model network is losely based on the setup of physical WSN in our lab. We simulate a WSN consisting of sensor nodes equipped with CC2420 transciever.
+Our model network is loosely based on the setup of physical WSN in our lab. We simulate a WSN consisting of sensor nodes equipped with CC2420 transceiver.
 
 The settings of different simulation models follows are taken verbatim from\cite{stehl2013opt}, except for the network topology and routing in the network layer:
 \begin{itemize}
@@ -603,32 +603,32 @@ The settings of different simulation models follows are taken verbatim from\cite
 
 \item \textit{Network topology } -- Static topology was based on the topology of the physical WSN set up in LABAK FI MUNI.
 
-\item \textit{Network layer} -- The network layer uses static routing tree created by hand, to allow for inefficient routing of packets in between of certain nodes. This way the network contains nodes that are uninentionaly dropping packets, providing a chalenge for our IDS.
+\item \textit{Network layer} -- The network layer uses static routing tree created by hand, to allow for inefficient routing of packets in between of certain nodes. This way the network contains nodes that are unintentionally dropping packets, providing a challenge for our IDS.
 
 \item \textit{Data link layer} -- Protocol CSMA-CA according to the IEEE 802.15.4 standard is used.
 
 \item \textit{Physical layer} -- The radio model represents the CC2420 transceiver that is compliant to the IEEE 802.15.4 standard used by MICAz and TelosB sensor nodes. The sending power is set up to -25 dBm (0.00316227766017 mW) for all sensor nodes.
 \end{itemize}
 
-Test application running on each of the nodes periodicaly sends a packet containing arbitrary information through the network to a base station. 
+Test application running on each of the nodes periodically sends a packet containing arbitrary information through the network to a base station. 
 We have marked some of the nodes as droppers, so that instead of forwarding all of the packets through the network, they drop certain percentage. In our case, dropping ratio was set to $0.5$. Network has a static routing tree, as described in Fig.\ref{netw-route}. The routing was set up so that individual nodes can eavesdrop their neighbors and that there will be some benign nodes that drop packets unintentionally.
 
-\section{Intrusion Detetection System}
-Our nodes implement a simple IDS capable of detecting nodes that seem to be intentionaly dropping packets.
-If we look at the wireless network stack of our node, IDS is part of the medium access controll sublayer.
+\section{Intrusion Detection System}
+Our nodes implement a simple IDS capable of detecting nodes that seem to be intentionally dropping packets.
+If we look at the wireless network stack of our node, IDS is part of the medium access control sublayer.
 There it can eavesdrop on neighboring nodes and check whether they behave accordingly.
-For each neighbor it updates the number of packets recieved and the number of packets forwarded.
+For each neighbor it updates the number of packets received and the number of packets forwarded.
 
 We wanted to use IDS that is simple, but highly configurable. 
 We have these four parameters to optimize:
 \begin{enumerate}
 \item number of monitored nodes $p_n$
 \item size of buffer for eavesdropped packets $p_b$
-\item treshold for minimal number of recieved packets for a node to be considered malicious $p_m$
-\item treshold for ratio between forwarded and recieved packets for a node to be considered to be malicious $p_t$
+\item threshold for minimal number of received packets for a node to be considered malicious $p_m$
+\item threshold for ratio between forwarded and received packets for a node to be considered to be malicious $p_t$
 \end{enumerate}
 
-At the end of simulation, based on a preset treshold and ratio between forwarded and reieved packed it decides whether node is malicious or benign. More specificialy, the set of malicious neighbors of a node $i$ is:
+At the end of simulation, based on a preset threshold and ratio between forwarded and relieved packed it decides whether node is malicious or benign. More specifically, the set of malicious neighbors of a node $i$ is:
 
 $$ M_i = \{n \in N_i|{r_i}_n \geq p_m \land \frac{{f_i}_n}{{r_i}_n} \geq p_t \} $$
 And the set of benign nodes is:
@@ -638,9 +638,9 @@ You can see, that both sets are disjoint, and their union is the set of neighbor
 
 We want to minimize these three objective functions:
 \begin{description}
-\item[False negative ratio] that calculates for each malicous node the percentage of its neighbors that claimed it is benign and returns the average.
+\item[False negative ratio] that calculates for each malicious node the percentage of its neighbors that claimed it is benign and returns the average.
 $$fn(x) = \frac{1}{|M|}* \sum\limits_{m_k\in M} \frac{|\{i|m_k \in B_i\}|}{|\{i|m_k \in N_i\}|} $$
-\item[False positive ratio] that calculates for each benign node the percentage of its neighbors that claimed it is malicous and returns the average.
+\item[False positive ratio] that calculates for each benign node the percentage of its neighbors that claimed it is malicious and returns the average.
 $$fn(x) = \frac{1}{|B|}* \sum\limits_{b_k\in B} \frac{|\{i|b_k \in M_i\}|}{|\{i|m_i \in N_i\}|} $$
 \item[Memory footprint] that aggregates the impact of number of monitored nodes and the size of buffer on the memory consumption.
 $$m(x) = 8*p_n + 16*p_b $$
@@ -713,13 +713,13 @@ $$m(x) = 8*p_n + 16*p_b $$
 \draw [->] (27) to (25);
 \draw [->] (28) to (27);
 \end{tikzpicture}
-  \caption{ Topology of the network used in experiments,with grey base station $25$ and red droppers $7$, $15$ and $27$}
+  \caption{ Topology of the network used in experiments,with gray base station $25$ and red droppers $7$, $15$ and $27$}
   \label{netw-route}
 \end{figure}
 
 \chapter{Our Framework}
 \label{chap:framework}
-Using multi-criteria evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks\cite{stehl2013opt}. Therfore we have decided to create a micro-framework, that would simplify the setup of evolutionary optimization for a particular problem.
+Using multi-criteria evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks\cite{stehl2013opt}. Therefore we have decided to create a micro-framework, that would simplify the setup of evolutionary optimization for a particular problem.
 Our micro-framework combines the Paradiseo framework and system for distributed computation Boinc with python as a glue language. Emphasis is on ease of configuration, ability to evaluate population in parallel and having good facilities for result analysis.
 
 \section{Paradiseo MOEO}
@@ -727,12 +727,12 @@ ParadisEO is a highly configurable framework for metaheuristics written in C++.\
 
 Out of the seven algorithms provided in Paradiseo, we include four of them: MOGA, NSGAII, SPEA2 and IBEA. We do not include NSGA and SPEA algorithms, because in general, they have worse performance than their successors. SEEA, or simple elitist evolutionary algorithm is best suited for problems with inexpensive evaluation functions, where the most time consuming process is the selection. Should for any reason be an algorithm not included in our micro-framework be better suited than the ones that are, it is easy to add one.
 
-Even if the algorithm we'd wanted to use wasn't present in Paradiseo framework, due to its whitebox nature and modular design and large library of integrated metrics it could be easily added.
+Even if the algorithm we'd wanted to use wasn't present in Paradiseo framework, due to its white-box nature and modular design and large library of integrated metrics it could be easily added.
 
 \subsection{Object-oriented design of MOEA}
 
 Every multi-objective evolutionary algorithm in Paradiseo extends the moeoEA. 
-The implementation of such algorith is best explained on a  moeoNSGAII class, probably the most popular multi-objective algorithm. 
+The implementation of such algorithm is best explained on a  moeoNSGAII class, probably the most popular multi-objective algorithm. 
 Because moeoEA implements the unary functor interface, to define new algorithm it is sufficient to define the the operator().
 
 \begin{lstlisting}[language=C++,label=evolution,caption=NSGAII algorithm in Paradiseo]
@@ -749,7 +749,7 @@ virtual void operator () (eoPop <MOEOT> &_pop){
 }
 \end{lstlisting}
 
-As you can see, the algorithm itself is a template defined by implementation of the fitnessAssigment,diversityAssignment,breed,popEval, replace and continuator functor object and eoPop population object. Therefore most of the implementation iself is done in definig various classes that implement. We can showcase how this composing works on an example of a continuator:
+As you can see, the algorithm itself is a template defined by implementation of the fitnessAssigment,diversityAssignment,breed,popEval, replace and continuator functor object and eoPop population object. Therefore most of the implementation itself is done in defining various classes that implement. We can showcase how this composing works on an example of a continuator:
 
 \begin{lstlisting}[language=C++,label=composition,caption=Object composition in Paradiseo]
 /** a continuator based on the number of generations*/
@@ -764,15 +764,15 @@ defaultGenContinuator(_maxGen), continuator(defaultGenContinuator)
 If we use constructor that ends evaluation after certain number of generation, it first initializes defaultGenContinuator with number of generations, and then passes it as a continuator to use. 
 
 \subsection{Population object}
-Population in Paradiseo is in its core an ordered vector of individuals. Because our individuals are represented by vectors of real numbers, we will describe the moeoRealVector implementation. Each individual has its value, and contains variables for fitness and diversity metrics. It should be noted, that moeoRealVector doesn't contain any bounds on specific parameters of individals configuration. In Paradiseo, we define boundaries externaly, with specification in initialization function and crossover and mutation functions. 
+Population in Paradiseo is in its core an ordered vector of individuals. Because our individuals are represented by vectors of real numbers, we will describe the moeoRealVector implementation. Each individual has its value, and contains variables for fitness and diversity metrics. It should be noted, that moeoRealVector doesn't contain any bounds on specific parameters of individuals configuration. In Paradiseo, we define boundaries externally, with specification in initialization function and crossover and mutation functions. 
 
 \subsection{Fitness and diversity assignment}
 
-Class moeoDominanceDepthFitnessAssignment is used to sort the population into non-dominated ranks, by updating the fitness variable of each individual. Class moeoFrontByFrontCrowdingDiversityAssignment is similarily used to set the diversity variable. The replace operator uses these to evaluate the children of the old population and creating the new generation.
+Class moeoDominanceDepthFitnessAssignment is used to sort the population into non-dominated ranks, by updating the fitness variable of each individual. Class moeoFrontByFrontCrowdingDiversityAssignment is similarly used to set the diversity variable. The replace operator uses these to evaluate the children of the old population and creating the new generation.
 
 \subsection{Creation of new generation}
 
-Breed operator is a standard eoBreed class that gets supplied with transform-object that aggregates mutation and cross-over functions. Similiarily, the popEval function just evaluates all the new individuals in populations and assignes them objective values. The specifics of the algorithm are hiden in the replace operator of moeoElitistReplacement class:
+Breed operator is a standard eoBreed class that gets supplied with transform-object that aggregates mutation and cross-over functions. Similarly, the popEval function just evaluates all the new individuals in populations and assigns them objective values. The specifics of the algorithm are hidden in the replace operator of moeoElitistReplacement class:
 \begin{enumerate}
 \item recalculate fitness and diversity
 \item sort the population with standard moeoFitnessThenDiversityComparator
@@ -782,7 +782,7 @@ Breed operator is a standard eoBreed class that gets supplied with transform-obj
 As you can see, this implementation slightly differs from the sketch of algorithm provided in chapter~\ref{chap:evolution}, namely that the NSGAII in paper\cite{deb2002fast} never exceeded the population size.
 
 \subsection{Stopping criteria}
-Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multicriteria optimization problems we usually don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
+Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multi-criteria optimization problems we usually don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
 
 \section{Embedded Python}
 
@@ -792,13 +792,13 @@ We chose python for these reasons:
 Most often you will want to optimize already written application with minimal changes. Python is well suited for running external applications, specifying their inputs and parsing their outputs.
  
 \item it has good facilities for statistical analysis.
-That allows us to include analysis of every optimization run into the executable itself. Having automatically generated experimental log has proven invaluable especialy in callibration of algorithms for our spepcific problem.
+That allows us to include analysis of every optimization run into the executable itself. Having automatically generated experimental log has proven invaluable especially in calibration of algorithms for our specific problem.
 
 \item it is easily integrated with C++.
 We strive to make the integration with ParadisEO simple and extensible. 
 \end{enumerate}
 
-Our micro-framework consists of a single executable and a configuration file in python. Configuration itself consists of definig selected entry points, in particular the number and bounds of input parameters, the number of objectves to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for sheduling evaluations in parallel on boinc. We provide reporting function entry-point as well, to automatically colect and analyze results of the algorithm run.
+Our micro-framework consists of a single executable and a configuration file in python. Configuration itself consists of defining selected entry points, in particular the number and bounds of input parameters, the number of objectives to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for scheduling evaluations in parallel on Boinc. We provide reporting function entry-point as well, to automatically collect and analyze results of the algorithm run.
 
 \section{Using of our framework}
 
@@ -808,23 +808,23 @@ Our micro-framework consists of a single executable and a configuration file in 
 For inputs you specify their bounds, which are then used to initialize the population and to supply constraints for mutation and crossover parameters
 
 \subsection{Objectives}
-Because we focus on multiobjective evolution, you need to specify number of objectives. To simplify configuration,minimization of all the objectives is hardcoded.
+Because we focus on multi-objective evolution, you need to specify number of objectives. To simplify configuration,minimization of all the objectives is hard-coded.
 
-It is advisable to keep the number of objectives limited, because number of solutions on the Pareto optimal dramaticaly increase with new objectives. At minimum, Pareto front of $(n+1)$ objective problem will contain all the solutions of a Pareto front of $n$-objective problem. \cite{talbi2009metaheuristics}
+It is advisable to keep the number of objectives limited, because number of solutions on the Pareto optimal dramatically increase with new objectives. At minimum, Pareto front of $(n+1)$ objective problem will contain all the solutions of a Pareto front of $n$-objective problem. \cite{talbi2009metaheuristics}
 
 \subsection{Evaluation function}
 
-To simplify configuration, inputs and outputs of evaluation function are always an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimisation problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successfull with using just a simple rounding techniques. In addition their convergence may provide valuable insight to structure of the problem.
+To simplify configuration, inputs and outputs of evaluation function are always an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimization problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successful with using just a simple rounding techniques. In addition their convergence may provide valuable insight to structure of the problem.
 
 \subsection{Mutation and Crossover}
-This directly influences the intensification of heuristic. There are several popular mutation and crossover functions for individuals based on bounded vector of real numbers. These are based on their implementation in Paradiseo. To provide conveniece, if mutation function is not specified, uniform mutation will be used and similiarily, if no crossover function is provided, pariwise-replacement crossover will be used. 
+This directly influences the intensification of heuristic. There are several popular mutation and crossover functions for individuals based on bounded vector of real numbers. These are based on their implementation in Paradiseo. To provide convenience, if mutation function is not specified, uniform mutation will be used and similarly, if no crossover function is provided, pairwise-replacement crossover will be used. 
 
-Mutation is in esence some function $m:X \to X$ that on input of individual outputs another individual.
+Mutation is in essence some function $m:X \to X$ that on input of individual outputs another individual.
 
 Paradiseo contains several other mutations, that can be used with individuals based on vectors of reals:
 
 \subsection{Cross over}
-Crossover is some function $c:X \times X \to X \times X$ that on input of tuple of parent individuals outputs a tuple of children individuals. 
+Crossover is some function $c:X \times X \to X \times X$ that on input of touple of parent individuals outputs a touple of children individuals. 
 \begin{lstlisting}[language=Python,label=cross_example,caption=Crossover example]
 def mutate(x_1,y_1,x_2,y_2):
   return ((x_1,y_2),(x_2,y_1))
@@ -834,10 +834,10 @@ def mutate(x_1,y_1,x_2,y_2):
 
 Reporting function takes two arguments, both strings. First string is the char * args string passed to the executable. Second string is the console printout or the Paradiseo result-archive.
 
-This way, we could integrate the creation of experimental log directly into our executable, computing different . This helps especialy with calibration of evolution algorithm parameters.
+This way, we could integrate the creation of experimental log directly into our executable, computing different . This helps especially with calibration of evolution algorithm parameters.
 We provide examples of different metrics and indicators that help with evaluation of result in next section.
 
-Integrating python with C++ by passing strings is not particulary elegant. We have chosen this particular implementation, because it is easiest to extend and debug.
+Integrating python with C++ by passing strings is not particularly elegant. We have chosen this particular implementation, because it is easiest to extend and debug.
 
 \section{Example problem}
 
@@ -870,7 +870,7 @@ def report(inp,rep):
 \end{lstlisting}
 
 \subsection{Boinc Assisted Evolution}
-Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol, or by using SMP on multi-core machine\cite{liefooghe2007Paradiseo}. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastracture and is usually hard to retro-fit on already written program. 
+Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol, or by using SMP on multi-core machine\cite{liefooghe2007Paradiseo}. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastructure and is usually hard to retro-fit on already written program. 
 
 
 Boinc on the other hand  can simply utilize machines already present to form a simple computational grid. With its simple architecture consisting of Management server and several worker nodes it can be deployed in most settings. Its simple architecture prohibits cooperation between worker nodes, but that doesn't concern us while evaluating individuals.
@@ -880,12 +880,12 @@ We have decided to give the evolution algorithms ability to use a simple schedul
 \begin{description}
 \item[send:] this is the function, that framework uses to start evaluating a configuration. In our case it creates new work-unit on Boinc with configuration specified by input parameters.
 \item[completed:] this is the function, that framework uses to check an evaluation of a particular configuration has finished. In our case, this is done by periodically polling the Boinc management server.
-\item[collect:] this function has the same signature as \emph{evaluate} function discussed previously. On recieving configuration parameters it tries to retrieve result of the workunit in question and returns tuple of objectives we are trying to optimize.
+\item[collect:] this function has the same signature as \emph{evaluate} function discussed previously. On receiving configuration parameters it tries to retrieve result of the work-unit in question and returns touple of objectives we are trying to optimize.
 \end{description}
 
-Even though the evaluations themselves will be done in parallel, we have avoided paralell code in our framework itself. While running experiments, it is often usefull to log various auxiliary data, such as number of evaluations or an average running time of an evaluation. In threaded environment, it would have lead to locking data-structures and that in turn could lead to dead-locks.
+Even though the evaluations themselves will be done in parallel, we have avoided parallel code in our framework itself. While running experiments, it is often useful to log various auxiliary data, such as number of evaluations or an average running time of an evaluation. In threaded environment, it would have lead to locking data-structures and that in turn could lead to dead-locks.
 
-As an example we provide optimization problem that we have originaly used to test our code. It contains more boiler-plate code than the more academic SCH1 problem showed in listing, but is more representative of actual use case for our framework.
+As an example we provide optimization problem that we have originally used to test our code. It contains more boiler-plate code than the more academic SCH1 problem showed in listing, but is more representative of actual use case for our framework.
 
 \begin{lstlisting}[language=Python,label=boinc_example,caption=Example usage of boinc]
 boinc_api.setSsh("127.0.0.1")
@@ -937,7 +937,7 @@ To test our framework we have decided to optimize a simple intrusion detection s
 We want to use the framework to optimize the four parameters of our IDS as described in \ref{tab:myfirsttable}. 
 Because this experiment is aimed primarily on showcasing the functionality of our framework, we have created several optimization scenarios based on the rate of network traffic.
 
-First we have calculated two sample exhaustive searches,with period $\Delta_t$ in which each of the nodes sends a packet to be rooted to base station set to $10$ seconds and $5$ seconds. Because simulation of a network with low network traffic is not as source intensive, it allowed us to gauge the problem space and run calibration on it.  
+First we have calculated two sample exhaustive searches,with period $\Delta_t$ in which each of the nodes sends a packet to be rooted to base station set to $10$ seconds and $5$ seconds. Because simulation of a network with low network traffic is not as source intensive, it allowed us to gouge the problem space and run calibration on it.  
 
 \begin{table}
   \centering
@@ -965,7 +965,7 @@ We want to compare the performance of all four algorithms, NSGAII, Spea2, MOGA a
 We have used the default mutation function. It has two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighborhood around the old value, that the new value will come from.
 
 \subsection{Crossover function}
-We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuials will be swapped)
+We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuals will be swapped)
 
 For algorithms NSGAII, Spea2 and MOGA, calibration was done on fixed number of generations and population size, with optimizing for values $popSize$, $pMut$, $\delta$, and $pCross$:
 
@@ -982,18 +982,18 @@ Because we have computed the the exhaustive search for both of the scenarios, we
 
 \begin{description}
   \item[$\epsilon_+$ indicator:] computes the smallest distance Pareto-approximation has to be translated to dominate the Pareto front.
-  \item[HD indicator] computes the difference in hypervolumes between Pareto approximation and Pareto front.
-  \item[Average distance from $\mathbb{PF}$] computes the average euclidean distances from between every indiviual of Pareto approximation and its closest neighbor from the Pareto front
+  \item[HD indicator] computes the difference in hyper-volumes between Pareto approximation and Pareto front.
+  \item[Average distance from $\mathbb{PF}$] computes the average euclidean distances from between every individual of Pareto approximation and its closest neighbor from the Pareto front
   \item[Diversification] computes the diversification metric of NSGAII algorithm
-  \item[Spacing] computes the spacing metric of Spea2 for the closest neigbour
-  \item[Number of evaluations] will be used to evaluate cost of runing the optimization
+  \item[Spacing] computes the spacing metric of Spea2 for the closest neighbor
+  \item[Number of evaluations] will be used to evaluate cost of running the optimization
 \end{description}
  
-This gives us enough data not only to decide the best algorithm for the task at hand, but to further discuss relevance of diferent convergence metrics.
+This gives us enough data not only to decide the best algorithm for the task at hand, but to further discuss relevance of different convergence metrics.
 
 \section{Evolution with aid of BOINC}
 
-After comparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to the three of the more resource intensive scenarios, with $\Delta_t \in \{0.1,0.5,1\}$ seconds. With the help of Boinc-assisted evolution we could assess whether each MOEA evolution algorithm can provide reasonable and consistent optimisation of IDS on WSN.
+After comparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to the three of the more resource intensive scenarios, with $\Delta_t \in \{0.1,0.5,1\}$ seconds. With the help of Boinc-assisted evolution we could assess whether each MOEA evolution algorithm can provide reasonable and consistent optimization of IDS on WSN.
 
 \section{Results}
 

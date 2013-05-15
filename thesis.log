@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  16 MAY 2013 00:06
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2012.12.8)  16 MAY 2013 00:41
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -739,12 +739,6 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
  132.
 
 
-Overfull \hbox (31.29497pt too wide) in paragraph at lines 134--136
-\T1/lmr/m/n/12 There are two ba-sic prin-ci-ples that are used when de-sign-ing
- a metaheuristic[[]]: 
- []
-
-
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\<def>-command' on input line 137.
 
@@ -781,7 +775,10 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  137.
 
-[3
+
+Underfull \vbox (badness 2351) has occurred while \output is active []
+
+ [3
 
 ]
 
@@ -821,6 +818,7 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  144.
 
+[4]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\<def>-command' on input line 158.
@@ -858,10 +856,6 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\@EverySelectfont@AtNextHook' on input line
  158.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
 
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\<def>-command' on input line 162.
@@ -1982,6 +1976,12 @@ Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 [23]
 Chapter 4.
 
+Overfull \hbox (48.32993pt too wide) in paragraph at lines 592--594
+\T1/lmr/m/n/12 work it-self, we de-fine our model op-ti-miza-tion prob-lem. In 
+chap-ter chap:framework
+ []
+
+
 Package hyperref Warning: Token not allowed in a PDFDocEncoded string,
 (hyperref)                removing `\<def>-command' on input line 595.
 
@@ -2936,8 +2936,8 @@ m/m/it/12 ; \OT1/lmr/m/n/12 0\OML/lmm/m/it/12 :\OT1/lmr/m/n/12 1\OML/lmm/m/it/1
  []
 
 
-Overfull \hbox (6.75237pt too wide) in paragraph at lines 985--986
-[]\T1/lmr/m/n/12 computes the dif-fer-ence in hy-per-vol-umes be-tween Pareto
+Overfull \hbox (10.66904pt too wide) in paragraph at lines 985--986
+[]\T1/lmr/m/n/12 computes the dif-fer-ence in hyper-volumes be-tween Pareto
  []
 
 [38]
@@ -3031,12 +3031,12 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  11684 strings out of 256216
- 173306 string characters out of 1917072
- 283310 words of memory out of 1500000
+ 173308 string characters out of 1917072
+ 283303 words of memory out of 1500000
  14327 multiletter control sequences out of 10000+200000
  80509 words of font info for 68 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
- 47i,13n,99p,795b,2048s stack positions out of 5000i,500n,6000p,200000b,15000s
+ 47i,13n,99p,798b,2048s stack positions out of 5000i,500n,6000p,200000b,15000s
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -3057,7 +3057,7 @@ re/texmf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/tex
 mf/fonts/type1/bluesky/ams/msbm10.pfb></usr/share/texmf/fonts/type1/urw/courier
 /ucrr8a.pfb></usr/share/texmf/fonts/type1/urw/courier/ucrro8a.pfb>
-Output written on thesis.pdf (48 pages, 545785 bytes).
+Output written on thesis.pdf (48 pages, 545888 bytes).
 PDF statistics:
  993 PDF objects out of 1000 (max. 8388607)
  317 named destinations out of 1000 (max. 131072)

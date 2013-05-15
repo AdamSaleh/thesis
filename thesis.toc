@@ -1,12 +1,12 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}\bfseries Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}\bfseries Evolutionary Optimization}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}\slshape Basic principles of metaheuristics}{3}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}\rmfamily Diversification}{3}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.1}\slshape Basic principles of meta-heuristics}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}\rmfamily Diversification}{4}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}\rmfamily Intensification}{4}{subsection.2.1.2}
 \contentsline {section}{\numberline {2.2}\slshape Single objective evolutionary algorithms}{5}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}\rmfamily Evolutionary algorithm}{5}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}\slshape Multiobjective evolution algorithms}{6}{section.2.3}
+\contentsline {section}{\numberline {2.3}\slshape Multi-objective evolution algorithms}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}\slshape NSGAII}{8}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}\rmfamily Non-dominated sorting}{8}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}\rmfamily Crowding distance sorting}{9}{subsection.2.4.2}
@@ -38,7 +38,7 @@
 \contentsline {section}{\numberline {3.5}\slshape Iterative calibration}{23}{section.3.5}
 \contentsline {chapter}{\numberline {4}\bfseries Intrusion Detection System on Wireless Sensor Network}{24}{chapter.4}
 \contentsline {section}{\numberline {4.1}\slshape Wireless sensor network}{24}{section.4.1}
-\contentsline {section}{\numberline {4.2}\slshape Intrusion Detetection System}{25}{section.4.2}
+\contentsline {section}{\numberline {4.2}\slshape Intrusion Detection System}{25}{section.4.2}
 \contentsline {chapter}{\numberline {5}\bfseries Our Framework}{28}{chapter.5}
 \contentsline {section}{\numberline {5.1}\slshape Paradiseo MOEO}{28}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}\rmfamily Object-oriented design of MOEA}{28}{subsection.5.1.1}
