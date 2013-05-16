@@ -41,26 +41,25 @@
 \contentsline {section}{\numberline {4.2}\slshape Intrusion Detection System}{25}{section.4.2}
 \contentsline {chapter}{\numberline {5}\bfseries Our Framework}{28}{chapter.5}
 \contentsline {section}{\numberline {5.1}\slshape Paradiseo MOEO}{28}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}\rmfamily Object-oriented design of MOEA}{28}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}\rmfamily Population object}{29}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.1}\rmfamily Design of ParadisEO MOEA}{28}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}\rmfamily Population object}{30}{subsection.5.1.2}
 \contentsline {subsection}{\numberline {5.1.3}\rmfamily Fitness and diversity assignment}{30}{subsection.5.1.3}
 \contentsline {subsection}{\numberline {5.1.4}\rmfamily Creation of new generation}{30}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}\rmfamily Stopping criteria}{30}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.5}\rmfamily Stopping criteria}{31}{subsection.5.1.5}
 \contentsline {section}{\numberline {5.2}\slshape Embedded Python}{31}{section.5.2}
 \contentsline {section}{\numberline {5.3}\slshape Using of our framework}{32}{section.5.3}
 \contentsline {section}{\numberline {5.4}\slshape Entry points}{32}{section.5.4}
 \contentsline {subsection}{\numberline {5.4.1}\rmfamily Input parameters}{32}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}\rmfamily Objectives}{32}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}\rmfamily Evaluation function}{32}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}\rmfamily Mutation and Crossover}{32}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}\rmfamily Cross over}{33}{subsection.5.4.5}
-\contentsline {subsection}{\numberline {5.4.6}\rmfamily Reporting}{33}{subsection.5.4.6}
-\contentsline {section}{\numberline {5.5}\slshape Example problem}{33}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}\rmfamily Boinc Assisted Evolution}{34}{subsection.5.5.1}
-\contentsline {chapter}{\numberline {6}\bfseries Experiments}{37}{chapter.6}
-\contentsline {section}{\numberline {6.1}\slshape Setup}{37}{section.6.1}
-\contentsline {section}{\numberline {6.2}\slshape Calibration}{37}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}\rmfamily Mutation function}{38}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}\rmfamily Crossover function}{38}{subsection.6.2.2}
-\contentsline {section}{\numberline {6.3}\slshape Evolution with aid of BOINC}{39}{section.6.3}
-\contentsline {section}{\numberline {6.4}\slshape Results}{39}{section.6.4}
+\contentsline {subsection}{\numberline {5.4.2}\rmfamily Objectives}{33}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}\rmfamily Evaluation function}{33}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}\rmfamily Mutation and Crossover}{34}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}\rmfamily Reporting}{34}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}\slshape Example problem}{35}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}\rmfamily Boinc Assisted Evolution}{35}{subsection.5.5.1}
+\contentsline {chapter}{\numberline {6}\bfseries Experiments}{38}{chapter.6}
+\contentsline {section}{\numberline {6.1}\slshape Setup}{38}{section.6.1}
+\contentsline {section}{\numberline {6.2}\slshape Calibration}{38}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}\rmfamily Mutation function}{39}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}\rmfamily Crossover function}{39}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.3}\slshape Evolution with aid of BOINC}{40}{section.6.3}
+\contentsline {section}{\numberline {6.4}\slshape Results}{40}{section.6.4}

@@ -88,7 +88,7 @@ I would like to thank my supervisor ...
 \end{ThesisAbstract}
  
 \begin{ThesisKeyWords}
-Wsn,ids,spea2,nsgaii
+Wsn,ids,Spea2,NSGAII
 \end{ThesisKeyWords}
 
 \tableofcontents % prints table of contents
@@ -106,17 +106,17 @@ Evolutionary algorithms help immensely with reducing demands for computational r
 
 We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their applicability on concepts of multi-criteria optimization in terms of Pareto optimality, as well as the main principles of three state of the art multi-criteria evolutionary algorithms. 
 
-In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on Paradiseo evolutionary framework. Because our framework is partially written in Paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walk through of all the configuration entry points of our micro-framework, complete with examples in Python.
+In the chapter~\ref{chap:WSN} we discuss intrusion detection systems for wireless sensor networks.
 
 We discuss calibration of the framework in chapter~\ref{chap:calib}. Because evolutionary algorithms are heuristic in nature, we provide several metrics that can be used to guide the settings. 
 
-In the chapter~\ref{chap:exp} we discuss intrusion detection systems for wireless sensor networks and provide a model example of optimizing such wireless sensor network application, its setup, analysis and calibration of the framework and parallel evaluation on Boinc cluster.
+In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on Paradiseo evolutionary framework. Because our framework is partially written in Paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walk through of all the configuration entry points of our micro-framework, complete with examples in Python.
 
-We conclude with discussion of the results and a short comparison of used evolutionary algorithms in chapter~\ref{chap:res}.
+And in chapter~\ref{chap:exp} provide a model example of optimizing such wireless sensor network application, its setup, analysis and calibration of the framework and parallel evaluation on Boinc cluster. We conclude with discussion of the results and a short comparison of used evolutionary algorithms.
 
 \chapter{Evolutionary Optimization}
 \label{chap:evolution}
-As the title states, we can afford to be quite specific in the description of our optimization problem. Usually more formal definitions of optimization problems deal with inputs and outputs in terms of words over alphabet and appropriate cost function. We thing that defining our optimization problem in terms of $n$-touples of real numbers represent configuration and evaluation result of a wireless sensor network . 
+As the title states, we can afford to be quite specific in the description of our optimization problem. Usually more formal definitions of optimization problems deal with inputs and outputs in terms of words over alphabet and appropriate cost function. We thing that defining our optimization problem in terms of $n$-tuples of real numbers represent configuration and evaluation result of a wireless sensor network . 
 
 \begin{defn}[Optimization problem]
 We define optimization problem as a triplet $(X,Z,f)$,
@@ -588,7 +588,7 @@ This is probably the most expensive, but on the other hand the most precise way 
 To measure convergence of Pareto approximations to the Pareto optimal set, we can either specify a global reference point, with respect to which all approximations are measured, or we specify a comparison function that can provide ordering. Indicator functions from IBEA algorithm are particularly suited for this purpose. Of course, if we have $\mathbb{PF}$ of our problem available, we can use these indicators to compare approximations directly to $\mathbb{PF}$.
 
 \chapter{Intrusion Detection System on Wireless Sensor Network}
-
+\label{chap:WSN}
 Because we have chosen Wireless Sensor Networks, and more specifically Intrusion detection Systems as the focus of our optimization framework, before we delve into implementation details of the framework itself, we define our model optimization problem.
 In chapter chap:framework On this model IDS we base our experimental scenarios in chapter~\ref{chap:exp} and examples of usage of our framework in chapter~\ref{chap:framework}.
 
@@ -719,21 +719,20 @@ $$m(x) = 8*p_n + 16*p_b $$
 
 \chapter{Our Framework}
 \label{chap:framework}
-Using multi-criteria evolutionary algorithms is a viable and efficient way of optimizing Wireless Sensor networks\cite{stehl2013opt}. Therefore we have decided to create a micro-framework, that would simplify the setup of evolutionary optimization for a particular problem.
-Our micro-framework combines the Paradiseo framework and system for distributed computation Boinc with python as a glue language. Emphasis is on ease of configuration, ability to evaluate population in parallel and having good facilities for result analysis.
+Using multi-criteria evolutionary algorithms is a viable and efficient way of optimizing wireless sensor networks\cite{stehl2013opt}. Therefore we have decided to create a micro-framework, that would simplify the setup of evolutionary optimization for a particular problem.
+Our micro-framework combines the Paradiseo framework and system for distributed computation Boinc with Python as a glue language. Emphasis is on ease of configuration, ability to evaluate population in parallel and having good facilities for analyzing the result.
+
+We provide the tarball of our framework containing sources, sample configuration and binaries for the Linux operating system\cite{tarball}.
 
 \section{Paradiseo MOEO}
-ParadisEO is a highly configurable framework for metaheuristics written in C++.\cite{liefooghe2007Paradiseo} 
+ParadisEO is a highly configurable framework for metaheuristics written in C++. We have chosen it because of its modularity and good library of multi-criteria algorithms.\cite{liefooghe2007Paradiseo} 
 
-Out of the seven algorithms provided in Paradiseo, we include four of them: MOGA, NSGAII, SPEA2 and IBEA. We do not include NSGA and SPEA algorithms, because in general, they have worse performance than their successors. SEEA, or simple elitist evolutionary algorithm is best suited for problems with inexpensive evaluation functions, where the most time consuming process is the selection. Should for any reason be an algorithm not included in our micro-framework be better suited than the ones that are, it is easy to add one.
+Out of the seven algorithms provided in Paradiseo, we include four of them: MOGA, NSGAII, SPEA2 and IBEA. We do not include NSGA and SPEA algorithms, because in general, they have worse performance than their successors.\cite{deb2002fast}\cite{zitzler2001spea2} SEEA, or simple elitist evolutionary algorithm is best suited for problems with inexpensive evaluation functions, where the most time consuming process is the selection. This clearly is not the case with wireless sensor networks. Should for any reason be an algorithm not included in our micro-framework better suited than the ones that are, it is easy to add one. Even if the algorithm we'd wanted to use wasn't present in Paradiseo framework, due to its white-box nature and modular design and large library of integrated metrics it could be easily added. 
 
-Even if the algorithm we'd wanted to use wasn't present in Paradiseo framework, due to its white-box nature and modular design and large library of integrated metrics it could be easily added.
+\subsection{Design of ParadisEO MOEA}
+ParadisEO heavily relies on meta-templating features of C++ and operator overloading, the resulting framework is then more composition than inheritance based. This results in elegant, but sometimes deceptive syntax, where for example \lstinline{popEval(empty_pop, _pop);} might look like a function call, but in reality it is using the \lstinline{operator()} method of previously declared \lstinline{popEval} object. For this reason we include a short overview of the frameworks design.
 
-\subsection{Object-oriented design of MOEA}
-
-Every multi-objective evolutionary algorithm in Paradiseo extends the moeoEA. 
-The implementation of such algorithm is best explained on a  moeoNSGAII class, probably the most popular multi-objective algorithm. 
-Because moeoEA implements the unary functor interface, to define new algorithm it is sufficient to define the the operator().
+Every multi-objective evolutionary algorithm in Paradiseo extends the moeoEA class. The implementation of such algorithm is best explained on a  moeoNSGAII class, probably the most popular multi-objective algorithm.Because moeoEA implements the unary functor interface, to define new algorithm we could change the definition of the the operator().
 
 \begin{lstlisting}[language=C++,label=evolution,caption=NSGAII algorithm in Paradiseo]
 virtual void operator () (eoPop <MOEOT> &_pop){
@@ -785,11 +784,12 @@ As you can see, this implementation slightly differs from the sketch of algorith
 Continuator operator provides the basic stopping criteria. The default implementation is based on limiting maximum number of generations\footnote{As hinted by the class-name \emph{defaultGenContinuator}}, but in theory, continuator can use population fitness or another metric to decide whether to proceed with another step. This feature is often utilized in evolutionary implementation of decision problem algorithms, because it can help evaluate whether population contains enough information to carry out the decision. In multi-criteria optimization problems we usually don't have a definition of "good enough" solution, but if we had, we could use it to further limit the number of expensive evaluations.
 
 \section{Embedded Python}
+Originally, to use some of Paradiseo MOEA algorithms, we would need to implement objects defining the decision space, specifying the number of objectives and evaluation function. We have decided, that scripting language would suit this task better than C++. 
 
-We chose python for these reasons:
+We chose Python for these reasons:
 \begin{enumerate}
 \item it is an efficient glue language. 
-Most often you will want to optimize already written application with minimal changes. Python is well suited for running external applications, specifying their inputs and parsing their outputs.
+Most often we want to optimize already written application with minimal changes. Python is well suited for running external applications, specifying their inputs and parsing their outputs.
  
 \item it has good facilities for statistical analysis.
 That allows us to include analysis of every optimization run into the executable itself. Having automatically generated experimental log has proven invaluable especially in calibration of algorithms for our specific problem.
@@ -798,50 +798,83 @@ That allows us to include analysis of every optimization run into the executable
 We strive to make the integration with ParadisEO simple and extensible. 
 \end{enumerate}
 
-Our micro-framework consists of a single executable and a configuration file in python. Configuration itself consists of defining selected entry points, in particular the number and bounds of input parameters, the number of objectives to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for scheduling evaluations in parallel on Boinc. We provide reporting function entry-point as well, to automatically collect and analyze results of the algorithm run.
-
 \section{Using of our framework}
+
+Our micro-framework consists of a single executable and a configuration file in Python. Configuration itself consists of defining selected entry points, in particular the number and bounds of input parameters, the number of objectives to optimize, definitions of cross-over and mutation functions and either the definition of evaluation function, or functions for scheduling evaluations in parallel on Boinc. We provide reporting function entry-point as well, to automatically collect and analyze results of the algorithm run.
 
 \section{Entry points}
 
+While describing each entry point we try provide an illustrative  source code sample, based on one of our early tests of our framework. We have optimized an earlier version of our IDS, that didn't yet include an customizable buffer. We try to find optimal settings of detection threshold and number of monitored neighbors that minimizes the false positives and false negatives ratio. While we do not discuss the results of this experiment, we provide the code as a template in the source tarball of our framework\cite{tarball}.
+
 \subsection{Input parameters}
-For inputs you specify their bounds, which are then used to initialize the population and to supply constraints for mutation and crossover parameters
+For inputs you specify their bounds, which are then used to initialize the population and to supply constraints for mutation and crossover parameters.
+\begin{lstlisting}[language=Python,label=inp_example,caption=Inputs]
+def nParams():
+	return 2 #specifying two parameters
+
+td=[{"min":1    , "max":28}, # bounds of first 
+    {"min":0.01 , "max":1.0:},# bounds of second
+
+# specifying entry points
+def minimumBounds(i):
+	return td[i]["min"] 
+def maximumBounds(i):
+	return td[i]["max"]
+\end{lstlisting}
 
 \subsection{Objectives}
 Because we focus on multi-objective evolution, you need to specify number of objectives. To simplify configuration,minimization of all the objectives is hard-coded.
 
 It is advisable to keep the number of objectives limited, because number of solutions on the Pareto optimal dramatically increase with new objectives. At minimum, Pareto front of $(n+1)$ objective problem will contain all the solutions of a Pareto front of $n$-objective problem. \cite{talbi2009metaheuristics}
-
+\begin{lstlisting}[language=Python,label=obj_example,caption=Objectives]
+def nObjectives():
+	return 3
+\end{lstlisting}
 \subsection{Evaluation function}
 
-To simplify configuration, inputs and outputs of evaluation function are always an $n$-touple of floating point numbers. We believe this is general enough, and that most WSN optimization problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successful with using just a simple rounding techniques. In addition their convergence may provide valuable insight to structure of the problem.
+To simplify configuration, inputs and outputs of evaluation function are always an $n$-tuple of floating point numbers. We believe this is general enough, and that most WSN optimization problems can be fitted to this constraint. Only problem might pose translation of combinatorial problems to continuous ones, fortunately so far we have been quite successful with using just a simple rounding techniques. In addition their convergence may provide valuable insight to structure of the problem.
+
+Because the function is specified in Python we can easily run external binaries.
+\begin{lstlisting}[language=Python,label=obj_example,caption=Evaluation]
+def evaluate(monitoredNodes,forwarderThreshold):
+   fname = createConfigFile(monitoredNodes,forwarderThreshold)
+   os.system("./basicIDS -n \".;/opt/MiXiM/src;\" " + fname)
+   fp = parseFalsePositives("./results/TestLab-0.sca")
+   fn = parseFalseNegatives("./results/TestLab-0.sca")
+   return (fp,fn)
+\end{lstlisting}
+
+It should be noted, that it is insufficient to specify only one parameter of the evaluation function and then treat it as a vector, all the parameters have to be specified separately.
 
 \subsection{Mutation and Crossover}
-This directly influences the intensification of heuristic. There are several popular mutation and crossover functions for individuals based on bounded vector of real numbers. These are based on their implementation in Paradiseo. To provide convenience, if mutation function is not specified, uniform mutation will be used and similarly, if no crossover function is provided, pairwise-replacement crossover will be used. 
+This directly influences the intensification of heuristic. There are several popular mutation and crossover functions for individuals based on bounded vector of real numbers. To provide convenience, if mutation function is not specified, uniform mutation will be used and similarly, if no crossover function is provided, pairwise-replacement crossover will be used.
 
-Mutation is in essence some function $m:X \to X$ that on input of individual outputs another individual.
+Paradiseo contains several other mutations, that can be used with individuals based on vectors of reals, we have discussed them in greater detail in chapter~\ref{chap:calib}.
 
-Paradiseo contains several other mutations, that can be used with individuals based on vectors of reals:
+Again there is a small difference between our entry points for mutation and cross-over and examples used in chapter~\ref{chap:calib}. Our entry points do not operate on vectors but on specific parameters, similarly to evaluation entry point.
 
-\subsection{Cross over}
-Crossover is some function $c:X \times X \to X \times X$ that on input of touple of parent individuals outputs a touple of children individuals. 
-\begin{lstlisting}[language=Python,label=cross_example,caption=Crossover example]
-def mutate(x_1,y_1,x_2,y_2):
-  return ((x_1,y_2),(x_2,y_1))
+\begin{lstlisting}[language=Python,label=obj_example,caption=Mutation and Crossover]
+def mutation(monitoredNodes,forwarderThreshold):
+   return (random.gaus(monitoredNodes,5)),
+           random.gaus(forwarderThreshold,0.1))
+
+def crossover(nodes_1,threshold_1,nodes_2,threshold_2):
+   return ((nodes_1,threshold_2),
+           (nodes_2,threshold_1))
 \end{lstlisting}
 
 \subsection{Reporting}
 
-Reporting function takes two arguments, both strings. First string is the char * args string passed to the executable. Second string is the console printout or the Paradiseo result-archive.
+Reporting function takes two arguments, both strings. First string is the \lstinline{char * args} string passed to the executable. Second string is the console printout or the Paradiseo result-archive.
 
 This way, we could integrate the creation of experimental log directly into our executable, computing different . This helps especially with calibration of evolution algorithm parameters.
 We provide examples of different metrics and indicators that help with evaluation of result in next section.
 
-Integrating python with C++ by passing strings is not particularly elegant. We have chosen this particular implementation, because it is easiest to extend and debug.
+Integrating Python with C++ by passing strings is not particularly elegant. We have chosen this particular implementation, because it is easiest to extend and debug.
 
 \section{Example problem}
 
-We have chosen the first Schaffer's bi-objective problem SCH1, to provide an example of minimal python file.
+We have chosen the first Schaffer's bi-objective problem SCH1, to provide an example of minimal Python file.
 
 The goal of the SCH1 problem is to minimize the following two objectives objectives of a function with single parameter $x$:
 
@@ -872,20 +905,19 @@ def report(inp,rep):
 \subsection{Boinc Assisted Evolution}
 Because evolution is population-based heuristic, it is well suited for parallel evaluation of its individuals. ParadisEO already has two methods included, either by use of MPI protocol, or by using SMP on multi-core machine\cite{liefooghe2007Paradiseo}. Unfortunately, SMP module of ParadisEO is not yet stable on all platforms, and MPI has specific demands on infrastructure and is usually hard to retro-fit on already written program. 
 
-
 Boinc on the other hand  can simply utilize machines already present to form a simple computational grid. With its simple architecture consisting of Management server and several worker nodes it can be deployed in most settings. Its simple architecture prohibits cooperation between worker nodes, but that doesn't concern us while evaluating individuals.
 
-We have decided to give the evolution algorithms ability to use a simple scheduler for creating Boinc work units, plugable from python. In our micro-framework it consists of three functions, \emph{send}, \emph{completed} and \emph{collect}.
+We have decided to give the evolution algorithms ability to use a simple scheduler for creating Boinc work units, plugable from Python. In our micro-framework it consists of three functions, \emph{send}, \emph{completed} and \emph{collect}.
 
 \begin{description}
 \item[send:] this is the function, that framework uses to start evaluating a configuration. In our case it creates new work-unit on Boinc with configuration specified by input parameters.
 \item[completed:] this is the function, that framework uses to check an evaluation of a particular configuration has finished. In our case, this is done by periodically polling the Boinc management server.
-\item[collect:] this function has the same signature as \emph{evaluate} function discussed previously. On receiving configuration parameters it tries to retrieve result of the work-unit in question and returns touple of objectives we are trying to optimize.
+\item[collect:] this function has the same signature as \emph{evaluate} function discussed previously. On receiving configuration parameters it tries to retrieve result of the work-unit in question and returns tuple of objectives we are trying to optimize.
 \end{description}
 
 Even though the evaluations themselves will be done in parallel, we have avoided parallel code in our framework itself. While running experiments, it is often useful to log various auxiliary data, such as number of evaluations or an average running time of an evaluation. In threaded environment, it would have lead to locking data-structures and that in turn could lead to dead-locks.
 
-As an example we provide optimization problem that we have originally used to test our code. It contains more boiler-plate code than the more academic SCH1 problem showed in listing, but is more representative of actual use case for our framework.
+As an example we provide optimization problem that we have originally used to test our code. It contains more boiler-plate code than the academic SCH1 problem showed in listing~\ref{min_example}, but is more representative of actual use case for our framework.
 
 \begin{lstlisting}[language=Python,label=boinc_example,caption=Example usage of boinc]
 boinc_api.setSsh("127.0.0.1")
@@ -965,7 +997,7 @@ We want to compare the performance of all four algorithms, NSGAII, Spea2, MOGA a
 We have used the default mutation function. It has two parameters,probability that individual will be mutated $pMut$ and relative $\delta$ neighborhood around the old value, that the new value will come from.
 
 \subsection{Crossover function}
-We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that params of the two individuals will be swapped)
+We have used the default cross-over function as well, with parameters $pCross$ (probability that two individuals will be crossed over) and $crossProb$ (probability that parameters of the two individuals will be swapped)
 
 For algorithms NSGAII, Spea2 and MOGA, calibration was done on fixed number of generations and population size, with optimizing for values $popSize$, $pMut$, $\delta$, and $pCross$:
 
