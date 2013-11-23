@@ -1,16 +1,21 @@
 \relax 
-\ifx\hyper@anchor\@undefined
-\global \let \oldcontentsline\contentsline
-\gdef \contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
-\global \let \oldnewlabel\newlabel
-\gdef \newlabel#1#2{\newlabelxx{#1}#2}
-\gdef \newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
-\AtEndDocument{\let \contentsline\oldcontentsline
-\let \newlabel\oldnewlabel}
-\else
-\global \let \hyper@last\relax 
-\fi
-
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
@@ -18,152 +23,161 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}\bfseries  Introduction}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:intro}{{1}{1}{Introduction\relax }{chapter.1}{}}
+\newlabel{chap:intro}{{1}{1}{Introduction}{chapter.1}{}}
 \citation{talbi2009metaheuristics}
 \citation{talbi2009metaheuristics}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}\bfseries  Evolutionary Optimization}{3}{chapter.2}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:evolution}{{2}{3}{Evolutionary Optimization\relax }{chapter.2}{}}
+\newlabel{chap:evolution}{{2}{3}{Evolutionary Optimization}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}\slshape   Basic principles of meta-heuristics}{3}{section.2.1}}
 \citation{stehl2013opt}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}\rmfamily   Diversification}{4}{subsection.2.1.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}\rmfamily   Intensification}{4}{subsection.2.1.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}\slshape   Evolutionary heuristics}{4}{section.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}\slshape   Single objective evolutionary algorithms}{4}{section.2.3}}
 \citation{talbi2009metaheuristics}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}\slshape   Single objective evolutionary algorithms}{5}{section.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}\rmfamily   Evolutionary algorithm}{5}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}\slshape   Multi-objective evolution algorithms}{6}{section.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}\rmfamily   Evolutionary algorithm}{5}{subsection.2.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}\slshape   Multi-objective evolution algorithms}{6}{section.2.4}}
 \citation{deb2002fast}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}\slshape   NSGAII}{8}{section.2.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}\rmfamily   Non-dominated sorting}{8}{subsection.2.4.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}\slshape   NSGAII}{7}{section.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}\rmfamily   Non-dominated sorting}{8}{subsection.2.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}\rmfamily   Crowding distance sorting}{8}{subsection.2.5.2}}
 \citation{zitzler2001spea2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}\rmfamily   Crowding distance sorting}{9}{subsection.2.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}\slshape   Spea2}{9}{section.2.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}\rmfamily   Fitness assignment}{10}{subsection.2.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}\rmfamily   Environmental selection}{11}{subsection.2.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}\rmfamily   Spea2+}{11}{subsection.2.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}\slshape   MOGA}{12}{section.2.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}\slshape   Spea2}{9}{section.2.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}\rmfamily   Fitness assignment}{10}{subsection.2.6.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}\rmfamily   Environmental selection}{11}{subsection.2.6.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}\slshape   MOGA}{11}{section.2.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}\rmfamily   Domination ranking}{12}{subsection.2.7.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}\rmfamily   Sharing diversity metric}{12}{subsection.2.7.2}}
 \citation{zitzler2004indicator}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.1}\rmfamily   Domination ranking}{13}{subsection.2.6.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.2}\rmfamily   Sharing diversity metric}{13}{subsection.2.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6.3}\rmfamily   MOGA+}{13}{subsection.2.6.3}}
 \citation{auger2009theory}
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}\slshape   Ibea}{14}{section.2.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}\rmfamily   $\epsilon $-indicator}{14}{subsection.2.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}\rmfamily   Hyper-volume based indicator}{14}{subsection.2.7.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}\slshape   Ibea}{13}{section.2.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}\rmfamily   $\epsilon $-indicator}{13}{subsection.2.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}\rmfamily   Hyper-volume based indicator}{13}{subsection.2.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.3}\rmfamily   IBEA algorithm template}{14}{subsection.2.8.3}}
 \citation{stehl2013opt}
 \citation{zitzler2004indicator}
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}\slshape   Choosing the algorithm}{16}{section.2.8}}
-\citation{auger2009theory}
-\citation{wu2001metrics}
-\citation{russo2012quick}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}\bfseries  Calibration}{17}{chapter.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.9}\slshape   Choosing the algorithm}{15}{section.2.9}}
+\citation{stehl2013opt}
+\citation{tarball}
+\citation{liefooghe2007Paradiseo}
+\citation{deb2002fast}
+\citation{zitzler2001spea2}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}\bfseries  Our Framework}{17}{chapter.3}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:calib}{{3}{17}{Calibration\relax }{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}\slshape   Measuring convergence}{17}{section.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}\rmfamily   Hyper-volume indicator}{17}{subsection.3.1.1}}
-\citation{russo2012quick}
-\newlabel{eps_example}{{3.1}{18}{Hyper-volume indicator\relax }{lstlisting.3.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Hypervolume indicator implementation}{18}{lstlisting.3.1}}
-\newlabel{eps_example}{{3.2}{18}{Hyper-volume indicator\relax }{lstlisting.3.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Calculation of intersecting hypervolumes}{18}{lstlisting.3.2}}
-\citation{stehl2013opt}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}\rmfamily   Distance indicator}{19}{subsection.3.1.2}}
-\newlabel{eps_example}{{3.3}{19}{Distance indicator\relax }{lstlisting.3.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}Distance indicator implementation}{19}{lstlisting.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}\rmfamily   Average distance indicator}{19}{subsection.3.1.3}}
-\newlabel{eps_example}{{3.4}{19}{Average distance indicator\relax }{lstlisting.3.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}Distance indicator implementation}{19}{lstlisting.3.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}\slshape   Measuring diversity}{20}{section.3.2}}
-\newlabel{space_example}{{3.5}{20}{Measuring diversity\relax }{lstlisting.3.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}Spacing indicator implementation}{20}{lstlisting.3.5}}
-\newlabel{space_example}{{3.6}{20}{Measuring diversity\relax }{lstlisting.3.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}Spacing indicator implementation}{20}{lstlisting.3.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}\slshape   Parameters}{21}{section.3.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}\rmfamily   Population size and Number of generations}{21}{subsection.3.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}\rmfamily   Mutation and Crossover}{21}{subsection.3.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{ Uniform mutation}{21}{section*.6}}
-\newlabel{mutate_example}{{3.7}{21}{Uniform mutation\relax }{lstlisting.3.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}Uniform mutation example}{21}{lstlisting.3.7}}
-\@writefile{toc}{\contentsline {subsubsection}{ Deterministic uniform mutation}{22}{section*.7}}
-\newlabel{mutate_example}{{3.8}{22}{Deterministic uniform mutation\relax }{lstlisting.3.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Deterministic uniform mutation example}{22}{lstlisting.3.8}}
-\@writefile{toc}{\contentsline {subsubsection}{ Normal mutation}{22}{section*.8}}
-\newlabel{mutate_example}{{3.9}{22}{Normal mutation\relax }{lstlisting.3.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}Normal mutation example}{22}{lstlisting.3.9}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}\slshape   Calibration with a search sample}{23}{section.3.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}\slshape   Iterative calibration}{23}{section.3.5}}
+\newlabel{chap:framework}{{3}{17}{Our Framework}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}\slshape   Paradiseo MOEO}{17}{section.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}\rmfamily   Design of ParadisEO MOEo}{18}{subsection.3.1.1}}
+\newlabel{evolution}{{3.1}{18}{NSGAII algorithm in Paradiseo}{lstlisting.3.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}NSGAII algorithm in Paradiseo}{18}{lstlisting.3.1}}
+\newlabel{composition}{{3.2}{19}{Object composition in Paradiseo}{lstlisting.3.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Object composition in Paradiseo}{19}{lstlisting.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}\rmfamily   Population object}{19}{subsection.3.1.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}\rmfamily   Fitness and diversity assignment}{19}{subsection.3.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}\rmfamily   Creation of new generation}{19}{subsection.3.1.4}}
+\citation{deb2002fast}
+\citation{sch1tutorial}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.5}\rmfamily   Stopping criteria}{20}{subsection.3.1.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}\slshape   Example problem}{20}{section.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}\rmfamily   Setting desired objectives}{21}{subsection.3.2.1}}
+\newlabel{composition}{{3.3}{21}{Objectective initialization}{lstlisting.3.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.3}Objectective initialization}{21}{lstlisting.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}\rmfamily   Definition of individual}{21}{subsection.3.2.2}}
+\newlabel{composition}{{3.4}{22}{Individual initialization}{lstlisting.3.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.4}Individual initialization}{22}{lstlisting.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}\rmfamily   Evaluation of the population}{22}{subsection.3.2.3}}
+\newlabel{composition}{{3.5}{22}{Individual initialization}{lstlisting.3.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.5}Individual initialization}{22}{lstlisting.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}\rmfamily   Initializing and running the evolution}{23}{subsection.3.2.4}}
+\newlabel{composition}{{3.6}{23}{Individual initialization}{lstlisting.3.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.6}Individual initialization}{23}{lstlisting.3.6}}
+\newlabel{composition}{{3.7}{23}{Individual initialization}{lstlisting.3.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.7}Individual initialization}{23}{lstlisting.3.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}\rmfamily   Mutation and Crossover}{24}{subsection.3.2.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.6}\rmfamily   Mutation}{24}{subsection.3.2.6}}
+\newlabel{mutate}{{3.8}{24}{Individual mutation}{lstlisting.3.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.8}Individual mutation}{24}{lstlisting.3.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.7}\rmfamily   Crossover}{25}{subsection.3.2.7}}
+\newlabel{cross}{{3.9}{25}{Individuals crossover}{lstlisting.3.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.9}Individuals crossover}{25}{lstlisting.3.9}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}\slshape   Embedded Python}{26}{section.3.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}\slshape   Using our framework}{26}{section.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}\rmfamily   Example problem in python}{26}{subsection.3.4.1}}
+\newlabel{min_example}{{3.10}{27}{Minimal working example}{lstlisting.3.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.10}Minimal working example}{27}{lstlisting.3.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}\rmfamily   Command line arguments}{27}{subsection.3.4.2}}
+\citation{talbi2009metaheuristics}
+\newlabel{min_example}{{3.11}{28}{Minimal working example}{lstlisting.3.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.11}Minimal working example}{28}{lstlisting.3.11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}\slshape   Entry points}{28}{section.3.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}\rmfamily   Input parameters}{28}{subsection.3.5.1}}
+\newlabel{inp_example}{{3.12}{28}{Inputs}{lstlisting.3.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.12}Inputs}{28}{lstlisting.3.12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}\rmfamily   Objectives}{28}{subsection.3.5.2}}
+\newlabel{obj_example}{{3.13}{29}{Objectives}{lstlisting.3.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.13}Objectives}{29}{lstlisting.3.13}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}\rmfamily   Evaluation function}{29}{subsection.3.5.3}}
+\newlabel{obj_example}{{3.14}{29}{Evaluation}{lstlisting.3.14}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.14}Evaluation}{29}{lstlisting.3.14}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}\rmfamily   Parallel evaluation of population}{29}{subsection.3.5.4}}
+\newlabel{obj_example}{{3.15}{29}{Evaluation}{lstlisting.3.15}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.15}Evaluation}{29}{lstlisting.3.15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.5}\rmfamily   Reporting}{30}{subsection.3.5.5}}
+\newlabel{obj_example}{{3.16}{30}{Evaluation}{lstlisting.3.16}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.16}Evaluation}{30}{lstlisting.3.16}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}\slshape   Boinc integration}{31}{section.3.6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Lab setup of BOINC cluster\relax }}{31}{figure.caption.6}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{boinc1}{{3.1}{31}{Lab setup of BOINC cluster\relax }{figure.caption.6}{}}
+\citation{tarball}
+\newlabel{boinc_pop}{{3.17}{32}{Boinc Evaluation}{lstlisting.3.17}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.17}Boinc Evaluation}{32}{lstlisting.3.17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.1}\rmfamily   Schedule}{32}{subsection.3.6.1}}
+\newlabel{boinc_pop}{{3.18}{33}{Boinc Evaluation}{lstlisting.3.18}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.18}Boinc Evaluation}{33}{lstlisting.3.18}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.2}\rmfamily   Completed}{33}{subsection.3.6.2}}
+\newlabel{boinc_pop}{{3.19}{33}{Boinc Evaluation}{lstlisting.3.19}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.19}Boinc Evaluation}{33}{lstlisting.3.19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.3}\rmfamily   Collect}{33}{subsection.3.6.3}}
+\newlabel{boinc_pop}{{3.20}{33}{Boinc Evaluation}{lstlisting.3.20}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.20}Boinc Evaluation}{33}{lstlisting.3.20}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6.4}\rmfamily   Connection}{34}{subsection.3.6.4}}
 \citation{Stetsko12}
 \citation{stehl2013opt}
 \citation{R01}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}\bfseries  Intrusion Detection System on Wireless Sensor Network}{24}{chapter.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}\bfseries  Intrusion Detection System for Wireless Sensor Network}{35}{chapter.4}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:WSN}{{4}{24}{Intrusion Detection System on Wireless Sensor Network\relax }{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}\slshape   Wireless sensor network}{24}{section.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}\slshape   Intrusion Detection System}{25}{section.4.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces  Topology of the network used in experiments,with gray base station $25$ and red droppers $7$, $15$ and $27$}}{27}{figure.4.1}}
-\newlabel{netw-route}{{4.1}{27}{Intrusion Detection System\relax }{figure.4.1}{}}
-\citation{stehl2013opt}
-\citation{tarball}
-\citation{liefooghe2007Paradiseo}
-\citation{deb2002fast}
-\citation{zitzler2001spea2}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}\bfseries  Our Framework}{28}{chapter.5}}
+\newlabel{chap:WSN}{{4}{35}{Intrusion Detection System for Wireless Sensor Network}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}\slshape   Wireless sensor network settings}{35}{section.4.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}\slshape   Intrusion Detection System}{36}{section.4.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces IDS ilustration\relax }}{37}{figure.caption.7}}
+\newlabel{boinc2}{{4.1}{37}{IDS ilustration\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}\slshape   Network topology}{38}{section.4.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces  Topology of the network used in experiments,with gray base station $25$ and red droppers $7$, $15$ and $27$\relax }}{38}{figure.caption.8}}
+\newlabel{netw-route}{{4.2}{38}{Topology of the network used in experiments,with gray base station $25$ and red droppers $7$, $15$ and $27$\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Unreliable IDS\relax }}{38}{figure.caption.9}}
+\newlabel{boinc3}{{4.3}{38}{Unreliable IDS\relax }{figure.caption.9}{}}
+\citation{auger2009theory}
+\citation{wu2001metrics}
+\citation{russo2012quick}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}\bfseries  Calibration}{40}{chapter.5}}
 \@writefile{lof}{\addvspace {4\p@ }}
 \@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:framework}{{5}{28}{Our Framework\relax }{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}\slshape   Paradiseo MOEO}{28}{section.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}\rmfamily   Design of ParadisEO MOEA}{28}{subsection.5.1.1}}
-\newlabel{evolution}{{5.1}{29}{Design of ParadisEO MOEA\relax }{lstlisting.5.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}NSGAII algorithm in Paradiseo}{29}{lstlisting.5.1}}
-\newlabel{composition}{{5.2}{29}{Design of ParadisEO MOEA\relax }{lstlisting.5.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}Object composition in Paradiseo}{29}{lstlisting.5.2}}
-\citation{deb2002fast}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}\rmfamily   Population object}{30}{subsection.5.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}\rmfamily   Fitness and diversity assignment}{30}{subsection.5.1.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.4}\rmfamily   Creation of new generation}{30}{subsection.5.1.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.5}\rmfamily   Stopping criteria}{31}{subsection.5.1.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}\slshape   Embedded Python}{31}{section.5.2}}
-\citation{tarball}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}\slshape   Using of our framework}{32}{section.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}\slshape   Entry points}{32}{section.5.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}\rmfamily   Input parameters}{32}{subsection.5.4.1}}
-\newlabel{inp_example}{{5.3}{32}{Input parameters\relax }{lstlisting.5.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.3}Inputs}{32}{lstlisting.5.3}}
-\citation{talbi2009metaheuristics}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}\rmfamily   Objectives}{33}{subsection.5.4.2}}
-\newlabel{obj_example}{{5.4}{33}{Objectives\relax }{lstlisting.5.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.4}Objectives}{33}{lstlisting.5.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.3}\rmfamily   Evaluation function}{33}{subsection.5.4.3}}
-\newlabel{obj_example}{{5.5}{33}{Evaluation function\relax }{lstlisting.5.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.5}Evaluation}{33}{lstlisting.5.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.4}\rmfamily   Mutation and Crossover}{34}{subsection.5.4.4}}
-\newlabel{obj_example}{{5.6}{34}{Mutation and Crossover\relax }{lstlisting.5.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.6}Mutation and Crossover}{34}{lstlisting.5.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.5}\rmfamily   Reporting}{34}{subsection.5.4.5}}
-\citation{liefooghe2007Paradiseo}
-\@writefile{toc}{\contentsline {section}{\numberline {5.5}\slshape   Example problem}{35}{section.5.5}}
-\newlabel{min_example}{{5.7}{35}{Example problem\relax }{lstlisting.5.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.7}Minimal working example}{35}{lstlisting.5.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}\rmfamily   Boinc Assisted Evolution}{35}{subsection.5.5.1}}
-\newlabel{boinc_example}{{5.8}{36}{Boinc Assisted Evolution\relax }{lstlisting.5.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.8}Example usage of boinc}{36}{lstlisting.5.8}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}\bfseries  Experiments}{38}{chapter.6}}
-\@writefile{lof}{\addvspace {4\p@ }}
-\@writefile{lot}{\addvspace {4\p@ }}
-\newlabel{chap:exp}{{6}{38}{Experiments\relax }{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}\slshape   Setup}{38}{section.6.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}\slshape   Calibration}{38}{section.6.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces List of parameters to be optimized for each IDS scenario}}{38}{table.6.1}}
-\newlabel{tab:myfirsttable}{{6.1}{38}{Setup\relax }{table.6.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}\rmfamily   Mutation function}{39}{subsection.6.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}\rmfamily   Crossover function}{39}{subsection.6.2.2}}
+\newlabel{chap:calib}{{5}{40}{Calibration}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}\slshape   Hyper-volume indicator}{40}{section.5.1}}
+\citation{russo2012quick}
+\newlabel{eps_example}{{5.1}{41}{Hypervolume indicator implementation}{lstlisting.5.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Hypervolume indicator implementation}{41}{lstlisting.5.1}}
+\newlabel{eps_example}{{5.2}{41}{Calculation of intersecting hypervolumes}{lstlisting.5.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.2}Calculation of intersecting hypervolumes}{41}{lstlisting.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}\slshape   Parameters}{42}{section.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}\rmfamily   Population size and Number of generations}{42}{subsection.5.2.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}\slshape   Calibration with a search sample}{42}{section.5.3}}
 \bibstyle{plain}
 \bibdata{thesis.bib}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}\slshape   Evolution with aid of BOINC}{40}{section.6.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}\slshape   Results}{40}{section.6.4}}
 \bibcite{auger2009theory}{1}
 \bibcite{deb2002fast}{2}
 \bibcite{liefooghe2007Paradiseo}{3}

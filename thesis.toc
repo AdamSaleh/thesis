@@ -4,62 +4,60 @@
 \contentsline {section}{\numberline {2.1}\slshape Basic principles of meta-heuristics}{3}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}\rmfamily Diversification}{4}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}\rmfamily Intensification}{4}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}\slshape Single objective evolutionary algorithms}{5}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}\rmfamily Evolutionary algorithm}{5}{subsection.2.2.1}
-\contentsline {section}{\numberline {2.3}\slshape Multi-objective evolution algorithms}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}\slshape NSGAII}{8}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}\rmfamily Non-dominated sorting}{8}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}\rmfamily Crowding distance sorting}{9}{subsection.2.4.2}
-\contentsline {section}{\numberline {2.5}\slshape Spea2}{9}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}\rmfamily Fitness assignment}{10}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}\rmfamily Environmental selection}{11}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}\rmfamily Spea2+}{11}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}\slshape MOGA}{12}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}\rmfamily Domination ranking}{13}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}\rmfamily Sharing diversity metric}{13}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}\rmfamily MOGA+}{13}{subsection.2.6.3}
-\contentsline {section}{\numberline {2.7}\slshape Ibea}{14}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}\rmfamily $\epsilon $-indicator}{14}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}\rmfamily Hyper-volume based indicator}{14}{subsection.2.7.2}
-\contentsline {section}{\numberline {2.8}\slshape Choosing the algorithm}{16}{section.2.8}
-\contentsline {chapter}{\numberline {3}\bfseries Calibration}{17}{chapter.3}
-\contentsline {section}{\numberline {3.1}\slshape Measuring convergence}{17}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\rmfamily Hyper-volume indicator}{17}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}\rmfamily Distance indicator}{19}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}\rmfamily Average distance indicator}{19}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}\slshape Measuring diversity}{20}{section.3.2}
-\contentsline {section}{\numberline {3.3}\slshape Parameters}{21}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}\rmfamily Population size and Number of generations}{21}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}\rmfamily Mutation and Crossover}{21}{subsection.3.3.2}
-\contentsline {subsubsection}{ Uniform mutation}{21}{section*.6}
-\contentsline {subsubsection}{ Deterministic uniform mutation}{22}{section*.7}
-\contentsline {subsubsection}{ Normal mutation}{22}{section*.8}
-\contentsline {section}{\numberline {3.4}\slshape Calibration with a search sample}{23}{section.3.4}
-\contentsline {section}{\numberline {3.5}\slshape Iterative calibration}{23}{section.3.5}
-\contentsline {chapter}{\numberline {4}\bfseries Intrusion Detection System on Wireless Sensor Network}{24}{chapter.4}
-\contentsline {section}{\numberline {4.1}\slshape Wireless sensor network}{24}{section.4.1}
-\contentsline {section}{\numberline {4.2}\slshape Intrusion Detection System}{25}{section.4.2}
-\contentsline {chapter}{\numberline {5}\bfseries Our Framework}{28}{chapter.5}
-\contentsline {section}{\numberline {5.1}\slshape Paradiseo MOEO}{28}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}\rmfamily Design of ParadisEO MOEA}{28}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}\rmfamily Population object}{30}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}\rmfamily Fitness and diversity assignment}{30}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}\rmfamily Creation of new generation}{30}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}\rmfamily Stopping criteria}{31}{subsection.5.1.5}
-\contentsline {section}{\numberline {5.2}\slshape Embedded Python}{31}{section.5.2}
-\contentsline {section}{\numberline {5.3}\slshape Using of our framework}{32}{section.5.3}
-\contentsline {section}{\numberline {5.4}\slshape Entry points}{32}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}\rmfamily Input parameters}{32}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}\rmfamily Objectives}{33}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}\rmfamily Evaluation function}{33}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}\rmfamily Mutation and Crossover}{34}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}\rmfamily Reporting}{34}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}\slshape Example problem}{35}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}\rmfamily Boinc Assisted Evolution}{35}{subsection.5.5.1}
-\contentsline {chapter}{\numberline {6}\bfseries Experiments}{38}{chapter.6}
-\contentsline {section}{\numberline {6.1}\slshape Setup}{38}{section.6.1}
-\contentsline {section}{\numberline {6.2}\slshape Calibration}{38}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}\rmfamily Mutation function}{39}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}\rmfamily Crossover function}{39}{subsection.6.2.2}
-\contentsline {section}{\numberline {6.3}\slshape Evolution with aid of BOINC}{40}{section.6.3}
-\contentsline {section}{\numberline {6.4}\slshape Results}{40}{section.6.4}
+\contentsline {section}{\numberline {2.2}\slshape Evolutionary heuristics}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}\slshape Single objective evolutionary algorithms}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}\rmfamily Evolutionary algorithm}{5}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.4}\slshape Multi-objective evolution algorithms}{6}{section.2.4}
+\contentsline {section}{\numberline {2.5}\slshape NSGAII}{7}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}\rmfamily Non-dominated sorting}{8}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}\rmfamily Crowding distance sorting}{8}{subsection.2.5.2}
+\contentsline {section}{\numberline {2.6}\slshape Spea2}{9}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}\rmfamily Fitness assignment}{10}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}\rmfamily Environmental selection}{11}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}\slshape MOGA}{11}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}\rmfamily Domination ranking}{12}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}\rmfamily Sharing diversity metric}{12}{subsection.2.7.2}
+\contentsline {section}{\numberline {2.8}\slshape Ibea}{13}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}\rmfamily $\epsilon $-indicator}{13}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}\rmfamily Hyper-volume based indicator}{13}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}\rmfamily IBEA algorithm template}{14}{subsection.2.8.3}
+\contentsline {section}{\numberline {2.9}\slshape Choosing the algorithm}{15}{section.2.9}
+\contentsline {chapter}{\numberline {3}\bfseries Our Framework}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}\slshape Paradiseo MOEO}{17}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\rmfamily Design of ParadisEO MOEo}{18}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}\rmfamily Population object}{19}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}\rmfamily Fitness and diversity assignment}{19}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}\rmfamily Creation of new generation}{19}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}\rmfamily Stopping criteria}{20}{subsection.3.1.5}
+\contentsline {section}{\numberline {3.2}\slshape Example problem}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}\rmfamily Setting desired objectives}{21}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}\rmfamily Definition of individual}{21}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}\rmfamily Evaluation of the population}{22}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}\rmfamily Initializing and running the evolution}{23}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}\rmfamily Mutation and Crossover}{24}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}\rmfamily Mutation}{24}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}\rmfamily Crossover}{25}{subsection.3.2.7}
+\contentsline {section}{\numberline {3.3}\slshape Embedded Python}{26}{section.3.3}
+\contentsline {section}{\numberline {3.4}\slshape Using our framework}{26}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}\rmfamily Example problem in python}{26}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}\rmfamily Command line arguments}{27}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}\slshape Entry points}{28}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}\rmfamily Input parameters}{28}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}\rmfamily Objectives}{28}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}\rmfamily Evaluation function}{29}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}\rmfamily Parallel evaluation of population}{29}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}\rmfamily Reporting}{30}{subsection.3.5.5}
+\contentsline {section}{\numberline {3.6}\slshape Boinc integration}{31}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}\rmfamily Schedule}{32}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}\rmfamily Completed}{33}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}\rmfamily Collect}{33}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}\rmfamily Connection}{34}{subsection.3.6.4}
+\contentsline {chapter}{\numberline {4}\bfseries Intrusion Detection System for Wireless Sensor Network}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}\slshape Wireless sensor network settings}{35}{section.4.1}
+\contentsline {section}{\numberline {4.2}\slshape Intrusion Detection System}{36}{section.4.2}
+\contentsline {section}{\numberline {4.3}\slshape Network topology}{38}{section.4.3}
+\contentsline {chapter}{\numberline {5}\bfseries Calibration}{40}{chapter.5}
+\contentsline {section}{\numberline {5.1}\slshape Hyper-volume indicator}{40}{section.5.1}
+\contentsline {section}{\numberline {5.2}\slshape Parameters}{42}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}\rmfamily Population size and Number of generations}{42}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}\slshape Calibration with a search sample}{42}{section.5.3}

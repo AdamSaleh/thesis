@@ -106,9 +106,9 @@ Evolutionary algorithms help immensely with reducing demands for computational r
 
 We explain the basic ideas behind evolutionary heuristics in chapter~\ref{chap:evolution},as well as their applicability on concepts of multi-criteria optimization in terms of Pareto optimality, as well as the main principles of three state of the art multi-criteria evolutionary algorithms. 
 
-In the chapter~\ref{chap:WSN} we discuss intrusion detection systems for wireless sensor networks.
-
 We discuss calibration of the framework in chapter~\ref{chap:calib}. Because evolutionary algorithms are heuristic in nature, we provide several metrics that can be used to guide the settings. 
+
+In the chapter~\ref{chap:WSN} we discuss intrusion detection systems for wireless sensor networks.
 
 In chapter~\ref{chap:framework} we introduce our black-box micro-framework that is based on Paradiseo evolutionary framework. Because our framework is partially written in Paradiseo, we cover some of its design decisions in grater detail. Then we have provided a walk through of all the configuration entry points of our micro-framework, complete with examples in Python.
 
@@ -1028,8 +1028,6 @@ This gives us enough data not only to decide the best algorithm for the task at 
 After comparison of problem spaces, we have chosen the best settings and algorithm. We then apply it to the three of the more resource intensive scenarios, with $\Delta_t \in \{0.1,0.5,1\}$ seconds. With the help of Boinc-assisted evolution we could assess whether each MOEA evolution algorithm can provide reasonable and consistent optimization of IDS on WSN.
 
 \section{Results}
-
-
 
 
 \bibliographystyle{plain} % sets plain bibliography style
